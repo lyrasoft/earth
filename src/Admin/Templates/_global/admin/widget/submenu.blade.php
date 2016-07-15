@@ -9,6 +9,18 @@
     @translate('phoenix.title.submenu')
 </h3>
 
+<div id="user-info" class="text-center" style="padding-top: 50px; padding-bottom: 50px; border-bottom: 1px solid #efefef">
+    <div class="user-info-avatar-wrap text-center">
+        <img class="img-circle" src="{{ $user->avatar }}" width="75" height="75" alt="Avatar">
+    </div>
+    <div class="user-info-detail">
+        <h5 class="user-info-name"><strong>{{ $user->name }}</strong></h5>
+        <a class="btn btn-default btn-xs user-info-profile-button" href="@route('user', ['id' => $user->id])">
+            Profile
+        </a>
+    </div>
+</div>
+
 <div id="submenu" class="list-group">
     <a href="{{ $router->route('categories', ['type' => 'article']) }}"
         class="list-group-item {{ $helper->menu->active('categories', ['type' => 'article']) }}">

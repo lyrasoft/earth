@@ -5,6 +5,8 @@
  */
 ?>
 
+@php(\Phoenix\Script\BootstrapScript::tooltip())
+
 @section('header')
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -24,14 +26,16 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ $router->route('front@home') }}" target="_blank">
+                        <a href="{{ $router->route('front@home') }}" target="_blank"
+                            class="hasTooltip" title="Preview" data-placement="bottom">
                             <span class="glyphicon glyphicon-globe fa fa-globe"></span>
                         </a>
                     </li>
 
                     @if (\Lyrasoft\Warder\Helper\UserHelper::isLogin())
                         <li>
-                            <a href="{{ $router->route('logout') }}">
+                            <a href="{{ $router->route('logout') }}"
+                                class="hasTooltip" title="Logout" data-placement="bottom">
                                 <span class="glyphicon glyphicon-log-out fa fa-sign-out"></span>
                             </a>
                         </li>
