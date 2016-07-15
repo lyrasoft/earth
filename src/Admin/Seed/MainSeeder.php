@@ -27,7 +27,7 @@ class MainSeeder extends AbstractSeeder
 	}
 
 	/**
-	 * doClean
+	 * doClear
 	 *
 	 * @return  void
 	 */

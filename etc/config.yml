@@ -80,15 +80,19 @@ console:
     # Then just run `$ php windwalker run foo`
     script:
         prepare:
-            - echo dev > .mode
             - php windwalker asset sync phoenix
             - php windwalker asset sync admin
             - php windwalker asset sync front
             - php windwalker asset sync luna
+        preparedev:
+            - echo dev > .mode
+            - php windwalker run prepare
+            - php windwalker unidev bladeopt
+            - php windwalker migration reset --seed
         deploy:
             - git pull
             - composer install
-            - php windwalker run prepare --ansi
+            - php windwalker run prepare
             - php windwalker migration migrate
             - php windwalker asset makesum
             - echo prod > .mode
