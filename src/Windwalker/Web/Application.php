@@ -9,7 +9,6 @@
 namespace Windwalker\Web;
 
 use Windwalker\Core\Application\WebApplication;
-use Windwalker\Core\Provider;
 
 /**
  * Class Application
@@ -49,7 +48,7 @@ class Application extends WebApplication
 	 */
 	protected function prepareExecute()
 	{
-		
+
 	}
 
 	/**
