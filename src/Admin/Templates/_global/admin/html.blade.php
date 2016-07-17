@@ -19,7 +19,7 @@
 
     <title>{{ \Phoenix\Html\HtmlHeader::getPageTitle() }}</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ $asset->addBase('images/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $asset->path('images/favicon.ico') }}" />
     <meta name="generator" content="Windwalker Framework" />
     {!! \Phoenix\Html\HtmlHeader::renderMetadata() !!}
     @yield('meta')
