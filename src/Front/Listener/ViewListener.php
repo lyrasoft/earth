@@ -9,6 +9,7 @@
 namespace Front\Listener;
 
 use Lyrasoft\Luna\Category\CategoryHelper;
+use Lyrasoft\Luna\Helper\LunaHelper;
 use Windwalker\Event\Event;
 
 /**
@@ -27,6 +28,11 @@ class ViewListener
 	 */
 	public function onViewBeforeRender(Event $event)
 	{
+		if (LunaHelper::isAdmin())
+		{
+			return;
+		}
+
 		$view = $event['view'];
 
 		$view['categories'] = CategoryHelper::getAvailableCategories('article');
