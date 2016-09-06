@@ -10,6 +10,20 @@
 $ php composer.phar create-project lyrasoft/earth your_project ~1.1
 ```
 
+## Sync Assets
+
+Type this command in your terminal: 
+
+``` bash
+php windwalker run prepare
+```
+
+If you want to set prepare to dev mode, you can use this command in your terminal: 
+
+``` bash
+php windwalker run preparedev
+```
+
 ## Getting Started
 
 Open `http://{Your project root}/www/admin`, you will see the sample page.
