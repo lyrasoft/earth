@@ -21,7 +21,7 @@ $config = new \Windwalker\Structure\Structure;
 
 if (is_file(WINDWALKER_ETC . '/secret.yml'))
 {
-	$config->loadFile(WINDWALKER_ETC . '/secret.yml');
+	$config->loadFile(WINDWALKER_ETC . '/secret.yml', 'yaml');
 }
 
 // Get allow remote ips from config.
