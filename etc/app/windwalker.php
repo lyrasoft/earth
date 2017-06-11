@@ -21,13 +21,6 @@ return [
 	 * you registered here.
 	 */
 	'packages' => [
-		'phoenix' => \Phoenix\PhoenixPackage::class,
-		'unidev'  => \Lyrasoft\Unidev\UnidevPackage::class,
-		'warder'  => \Lyrasoft\Warder\WarderPackage::class,
-		'luna'    => \Lyrasoft\Luna\LunaPackage::class,
-
-		'admin' => \Admin\AdminPackage::class,
-		'front' => \Front\FrontPackage::class
 	],
 
 	/*
@@ -49,7 +42,8 @@ return [
 		//'logger' => \Windwalker\Core\Provider\LoggerProvider::class,
 		//'event'  => \Windwalker\Core\Provider\EventProvider::class,
 		//'mailer' => \Windwalker\Core\Mailer\MailerProvider::class,
-		//'mailer_adapter' => \Windwalker\Core\Mailer\SwiftMailerProvider::class
+		//'mailer_adapter' => \Windwalker\Core\Mailer\SwiftMailerProvider::class,
+		//'queue' => \Windwalker\Core\Queue\QueueProvider::class
 	],
 
 	/*
@@ -92,6 +86,7 @@ return [
 			// System
 			'application' => \Windwalker\Core\Application\WindwalkerApplicationInterface::class,
 			'app'         => \Windwalker\Core\Application\WindwalkerApplicationInterface::class,
+			'config'      => \Windwalker\Core\Config\Config::class,
 			'package.resolver' => \Windwalker\Core\Package\PackageResolver::class,
 
 			// Web
@@ -128,14 +123,15 @@ return [
 			'widget.manager'   => \Windwalker\Core\Widget\WidgetManager::class,
 
 			// Cache
-			'cache.factory' => \Windwalker\Core\Cache\CacheFactory::class,
+			'cache.manager' => \Windwalker\Core\Cache\CacheManager::class,
+			'cache'         => \Windwalker\Cache\Cache::class,
 
 			// Session
 			'session' => \Windwalker\Session\Session::class,
 
 			// User
-			'authentication' => \Windwalker\Authentication\Authentication::class,
-			'authorisation'  => \Windwalker\Authorisation\Authorisation::class,
+			'authentication' => \Windwalker\Authentication\AuthenticationInterface::class,
+			'authorisation'  => \Windwalker\Authorisation\AuthorisationInterface::class,
 			'user.manager'   => \Windwalker\Core\User\UserManager::class,
 
 			// Security
@@ -143,14 +139,18 @@ return [
 			'crypt' => \Windwalker\Crypt\CryptInterface::class,
 
 			// DateTime
-			'datetime' => \Windwalker\Core\DateTime\DateTime::class,
+			'datetime' => \Windwalker\Core\DateTime\Chronos::class,
 
 			// Asset
 			'asset' => \Windwalker\Core\Asset\AssetManager::class,
 			'script.manager' => \Windwalker\Core\Asset\ScriptManager::class,
 
 			// Mailer
-			'mailer' => \Windwalker\Core\Mailer\MailerManager::class
+			'mailer' => \Windwalker\Core\Mailer\MailerManager::class,
+
+			// Queue
+			'queue' => \Windwalker\Core\Queue\Queue::class,
+			'queue.manager' => \Windwalker\Core\Queue\QueueManager::class,
 		]
 	],
 

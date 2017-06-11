@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of phoenix project.
+ * Part of Windwalker project.
  *
  * @copyright  Copyright (C) 2016 {ORGANIZATION}. All rights reserved.
  * @license    GNU General Public License version 2 or later.
@@ -30,9 +30,10 @@ class CoverSeeder extends AbstractSeeder
 		foreach (range(1, 50) as $i)
 		{
 			$data = new \Windwalker\Data\Data;
+
 			$data->title = $faker->sentence(2);
 			$data->text = $faker->paragraph(3);
-			$data->state = $faker->randomElement(array(0, 1, 1));
+			$data->state = $faker->randomElement([0, 1, 1]);
 
 			$mapper->createOne($data);
 

@@ -6,14 +6,14 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Windwalker\Utilities\ArrayHelper;
+use Windwalker\Utilities\Arr;
 
 /*
  * Windwalker Web Config
  * -------------------------------------
  * Things you config here will be used in web environment.
  */
-return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
+return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
 	/*
 	 * Package Registration
 	 * -------------------------------------
@@ -23,7 +23,7 @@ return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
 	 * you registered here.
 	 */
 	'packages' => [
-
+		'main' => \Main\MainPackage::class
 	],
 
 	/*
@@ -43,18 +43,18 @@ return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
 	 */
 	'providers' =>[
 		//'web'      => \Windwalker\Core\Provider\WebProvider::class,
+		//'datetime' => \Windwalker\Core\Provider\DateTimeProvider::class,
 		//'error'    => \Windwalker\Core\Error\ErrorHandlingProvider::class,
 		//'logger'   => \Windwalker\Core\Provider\LoggerProvider::class,
 		//'event'    => \Windwalker\Core\Provider\EventProvider::class,
 		//'database' => \Windwalker\Core\Provider\DatabaseProvider::class,
 		//'router'   => \Windwalker\Core\Provider\RouterProvider::class,
 		//'lang'     => \Windwalker\Core\Provider\LanguageProvider::class,
-		//'template' => \Windwalker\Core\Provider\RendererProvider::class,
+		//'renderer' => \Windwalker\Core\Provider\RendererProvider::class,
 		//'cache'    => \Windwalker\Core\Provider\CacheProvider::class,
 		//'session'  => \Windwalker\Core\Provider\SessionProvider::class,
 		//'auth'     => \Windwalker\Core\Provider\UserProvider::class,
 		//'security' => \Windwalker\Core\Provider\SecurityProvider::class,
-		//'datetime' => \Windwalker\Core\Provider\DateTimeProvider::class,
 		//'asset'    => \Windwalker\Core\Asset\AssetProvider::class
 	],
 
@@ -122,7 +122,18 @@ return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
 	'error' => [
 		'handlers' => [
 			// Uncommnet this line if you need error log support
-			'log' => \Windwalker\Core\Error\Handler\ErrorLogHandler::class
+			// 'log' => \Windwalker\Core\Error\Handler\ErrorLogHandler::class
+		]
+	],
+
+	/*
+	 * Register User Auth Handlers
+	 */
+	'user' => [
+		'handler' => \Windwalker\Core\User\NullUserHandler::class,
+		'methods' => [
+		],
+		'policies' => [
 		]
 	]
 ]);

@@ -6,14 +6,14 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Windwalker\Utilities\ArrayHelper;
+use Windwalker\Utilities\Arr;
 
 /*
  * Windwalker Web Dev Config
  * -------------------------------------
  * Things you config here will be used in web environment with dev mode.
  */
-return ArrayHelper::merge(include __DIR__ . '/web.php', [
+return Arr::mergeRecursive(include __DIR__ . '/web.php', [
 	/*
 	 * Package Registration
 	 * -------------------------------------
@@ -23,7 +23,7 @@ return ArrayHelper::merge(include __DIR__ . '/web.php', [
 	 * you registered here.
 	 */
 	'packages' => [
-
+		'main' => \Main\MainPackage::class
 	],
 
 	/*
@@ -101,5 +101,26 @@ return ArrayHelper::merge(include __DIR__ . '/web.php', [
 	 */
 	'listeners' => [
 		// Add something here...
+	],
+
+	/*
+	 * Register Error Handler Classes
+	 */
+	'error' => [
+		'handlers' => [
+			// Uncommnet this line if you need error log support
+			// 'log' => \Windwalker\Core\Error\Handler\ErrorLogHandler::class
+		]
+	],
+
+	/*
+	 * Register User Auth Handlers
+	 */
+	'user' => [
+		'handler' => \Windwalker\Core\User\NullUserHandler::class,
+		'methods' => [
+		],
+		'policies' => [
+		]
 	]
 ]);

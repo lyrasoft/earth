@@ -6,14 +6,14 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Windwalker\Utilities\ArrayHelper;
+use Windwalker\Utilities\Arr;
 
 /*
  * Windwalker Console Config
  * -------------------------------------
  * Things you config here will be used in console environment.
  */
-return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
+return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
 	/*
 	 * Package Registration
 	 * -------------------------------------
@@ -41,14 +41,14 @@ return ArrayHelper::merge(include __DIR__ . '/windwalker.php', [
 	 * NOTE: You must familiar about how DI Container working, otherwise you may
 	 *       break your system.
 	 */
-	'providers' =>[
+	'providers' => [
 		//'console'  => \Windwalker\Core\Provider\ConsoleProvider::class,
+		//'datetime' => \Windwalker\Core\Provider\DateTimeProvider::class,
 		//'logger'   => \Windwalker\Core\Provider\LoggerProvider::class,
 		//'event'    => \Windwalker\Core\Provider\EventProvider::class,
 		//'database' => \Windwalker\Core\Provider\DatabaseProvider::class,
 		//'lang'     => \Windwalker\Core\Provider\LanguageProvider::class,
 		//'cache'    => \Windwalker\Core\Provider\CacheProvider::class,
-		//'datetime' => \Windwalker\Core\Provider\DateTimeProvider::class
 	],
 
 	/*
