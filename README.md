@@ -1,7 +1,5 @@
 # LYRASOFT Earth
 
-![151214-0001](https://cloud.githubusercontent.com/assets/1639206/14016277/15bb757c-f1fa-11e5-8b9c-821cb53d6f2a.jpg)
-
 ![p-2016-07-03-001](https://cloud.githubusercontent.com/assets/1639206/16545958/858490b6-416c-11e6-9981-03c6d1dce102.jpg)
 
 ## Installation Via Composer
@@ -67,10 +65,14 @@ Commands:
 
   muse         The template generator.
   phoenix      The Phoenix RAD package.
+  unidev       Unidev helpers
+  system       System operation.
+  run          Run custom scripts.
   asset        Asset management
   migration    Database migration system.
   seed         The data seeder help you create fake data.
   package      Package operations.
+  queue        Queue management.
 
 Welcome to Windwalker Console.
 ```
