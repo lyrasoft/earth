@@ -122,7 +122,7 @@ return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
 	'error' => [
 		'handlers' => [
 			// Uncommnet this line if you need error log support
-			// 'log' => \Windwalker\Core\Error\Handler\ErrorLogHandler::class
+			'log' => \Windwalker\Core\Error\Handler\ErrorLogHandler::class
 		]
 	],
 
