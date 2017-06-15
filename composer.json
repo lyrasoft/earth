@@ -26,7 +26,7 @@
     "scripts": {
         "post-create-project-cmd": [
             "Windwalker\\Composer\\StarterInstaller::rootInstall",
-            "php windwalker run preparedev"
+            "Windwalker\\Composer\\EarthInstaller::install"
         ],
         "post-autoload-dump": "php windwalker system clear-cache renderer"
     },
