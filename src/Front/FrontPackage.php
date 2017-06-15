@@ -10,12 +10,9 @@ namespace Front;
 
 use Phoenix\Language\TranslatorHelper;
 use Phoenix\Script\BootstrapScript;
-use Symfony\Component\Yaml\Yaml;
 use Windwalker\Core\Package\AbstractPackage;
 use Windwalker\Core\Router\MainRouter;
 use Windwalker\Debugger\Helper\DebuggerHelper;
-use Windwalker\Event\Dispatcher;
-use Windwalker\Filesystem\File;
 use Windwalker\Filesystem\Folder;
 
 if (!defined('PACKAGE_FRONT_ROOT'))

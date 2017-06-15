@@ -9,11 +9,8 @@
 namespace Admin\Model;
 
 use Admin\Mapper\DashboardMapper;
-use Phoenix\Model\ItemModel;
 use Windwalker\Core\Model\DatabaseModel;
 use Windwalker\Core\Model\ModelRepository;
-use Windwalker\Data\Data;
-use Windwalker\Data\DataSet;
 
 /**
  * The DashboardModel class.
@@ -27,5 +24,5 @@ class DashboardModel extends ModelRepository
 	 *
 	 * @var  string
 	 */
-	protected $name = 'dashboard';
+	protected $name = 'Dashboard';
 }

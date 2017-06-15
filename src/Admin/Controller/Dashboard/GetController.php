@@ -10,9 +10,9 @@ namespace Admin\Controller\Dashboard;
 
 use Admin\Model\DashboardModel;
 use Admin\View\Dashboard\DashboardHtmlView;
-use Lyrasoft\Luna\Admin\Model\ArticlesModel;
 use Phoenix\Controller\Display\DisplayController;
 use Windwalker\Core\Model\ModelRepository;
+use Windwalker\Core\View\AbstractView;
 
 /**
  * The GetController class.
@@ -26,21 +26,7 @@ class GetController extends DisplayController
 	 *
 	 * @var  string
 	 */
-	protected $name = 'dashboard';
-
-	/**
-	 * Property itemName.
-	 *
-	 * @var  string
-	 */
-	protected $itemName = 'dashboard';
-
-	/**
-	 * Property listName.
-	 *
-	 * @var  string
-	 */
-	protected $listName = 'dashboards';
+	protected $name = 'Dashboard';
 
 	/**
 	 * Property model.
@@ -57,7 +43,7 @@ class GetController extends DisplayController
 	protected $view;
 
 	/**
-	 * prepareExecute
+	 * A hook before main process executing.
 	 *
 	 * @return  void
 	 */
@@ -67,24 +53,31 @@ class GetController extends DisplayController
 	}
 
 	/**
-	 * prepareModelState
+	 * Prepare view and default model.
 	 *
-	 * @param   ModelRepository $model
+	 * You can configure default model state here, or add more sub models to view.
+	 * Remember to call parent to make sure default model already set in view.
+	 *
+	 * @param AbstractView    $view  The view to render page.
+	 * @param ModelRepository $model The default mode.
 	 *
 	 * @return  void
 	 */
-	protected function prepareModelState(ModelRepository $model)
+	protected function prepareViewModel(AbstractView $view, ModelRepository $model)
 	{
-		/** @var ArticlesModel $model */
-		$model = $this->getModel('Articles');
+		/**
+		 * @var $view  DashboardHtmlView
+		 * @var $model DashboardModel
+		 */
+		parent::prepareViewModel($view, $model);
 
-		parent::prepareModelState($model);
+		// Configure View nad Models here
 	}
 
 	/**
-	 * postExecute
+	 * A hook after main process executing.
 	 *
-	 * @param mixed $result
+	 * @param mixed $result The result content to return, can be any value or boolean.
 	 *
 	 * @return  mixed
 	 */

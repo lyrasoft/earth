@@ -22,7 +22,7 @@ class DashboardHtmlView extends AbstractPhoenixHtmView
 	 *
 	 * @var  string
 	 */
-	protected $name = 'dashboard';
+	protected $name = 'Dashboard';
 
 	/**
 	 * prepareData
