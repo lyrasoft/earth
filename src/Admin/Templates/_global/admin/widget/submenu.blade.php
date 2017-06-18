@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $helper \Admin\Helper\MenuHelper
+ * @var $helper \Windwalker\Core\View\Helper\Set\HelperSet
  * @var $router \Windwalker\Core\Router\PackageRouter
  */
 ?>
