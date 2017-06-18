@@ -9,7 +9,7 @@
 use Lyrasoft\Luna\Admin\DataMapper\TagMapper;
 use Lyrasoft\Luna\Table\LunaTable;
 use Faker\Factory;
-use Windwalker\Core\DateTime\DateTime;
+use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
 use Windwalker\Data\Data;
 use Windwalker\Filter\OutputFilter;
@@ -48,9 +48,9 @@ class TagSeeder extends AbstractSeeder
 			$data['title']       = ucfirst($faker->word);
 			$data['alias']       = OutputFilter::stringURLSafe($data['title']);
 			$data['state']       = $faker->randomElement(array(1, 1, 1, 1, 0, 0));
-			$data['created']     = $faker->dateTime->format(DateTime::getSqlFormat());
+			$data['created']     = $faker->dateTime->format(Chronos::getSqlFormat());
 			$data['created_by']  = $faker->randomElement($userIds);
-			$data['modified']    = $faker->dateTime->format(DateTime::getSqlFormat());
+			$data['modified']    = $faker->dateTime->format(Chronos::getSqlFormat());
 			$data['modified_by'] = $faker->randomElement($userIds);
 			$data['language']    = 'en-GB';
 			$data['params']      = '';

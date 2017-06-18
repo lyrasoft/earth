@@ -14,7 +14,7 @@
         "windwalker/core" : "~3.0",
         "fzaninotto/faker": "~1.0",
         "swiftmailer/swiftmailer": "~5.0",
-        "lyrasoft/luna": "~1.1"
+        "lyrasoft/luna": "~1.2"
     },
     "require-dev": {
     },

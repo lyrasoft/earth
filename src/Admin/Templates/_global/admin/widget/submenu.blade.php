@@ -37,7 +37,7 @@
         @translate($luna->langPrefix . 'tags.title')
     </a>
 
-    <a href="{{ $router->route('comments', array('type' => 'article')) }}"
+    <a href="{{ $router->route('comments', ['type' => 'article']) }}"
         class="list-group-item {{ $helper->menu->active('comments') }}">
         @translate($luna->langPrefix . 'comments.title')
     </a>
@@ -55,6 +55,11 @@
     <a href="{{ $router->route('users') }}"
         class="list-group-item {{ $helper->menu->active('users') }}">
         @translate($warder->langPrefix . 'users.title')
+    </a>
+
+    <a href="{{ $router->route('contacts') }}"
+        class="list-group-item {{ $helper->menu->active('contacts') }}">
+        @translate($luna->langPrefix . 'contacts.title')
     </a>
 
     {{-- @muse-placeholder  submenu  Do not remove this line --}}

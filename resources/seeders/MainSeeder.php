@@ -35,6 +35,8 @@ class MainSeeder extends AbstractSeeder
 		$this->execute(CommentSeeder::class);
 
 		$this->execute(ModuleSeeder::class);
+
+		$this->execute(ContactSeeder::class);
 	}
 
 	/**
@@ -57,5 +59,7 @@ class MainSeeder extends AbstractSeeder
 		$this->clear(CommentSeeder::class);
 
 		$this->clear(ModuleSeeder::class);
+
+		$this->clear(ContactSeeder::class);
 	}
 }

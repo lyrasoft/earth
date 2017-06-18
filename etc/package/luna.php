@@ -34,14 +34,15 @@ return [
 	'frontend' => [
 		'package' => 'front',
 		'view' => [
-			'extends' => '_global.html'
+			'extends' => '_global.html',
+			'error_extends' => '_global.html'
 		],
 		'redirect' => [
 			'language' => 'home'
 		],
 		'language' => [
 			'prefix' => 'luna.',
-			'enabled' => '',
+			'enabled' => false,
 			'default' => 'en-GB'
 		]
 	],
@@ -53,14 +54,15 @@ return [
 	'admin' => [
 		'package' => 'admin',
 		'view' => [
-			'extends' => '_global.admin.admin'
+			'extends' => '_global.admin.admin',
+			'error_extends' => '_global.admin.admin'
 		],
 		'redirect' => [
 			'language' => 'articles'
 		],
 		'language' => [
 			'prefix' => 'luna.',
-			'enabled' => '',
+			'enabled' => false,
 			'locale' => 'en-GB',
 			'default' => 'en-GB'
 		]
@@ -88,5 +90,6 @@ return [
 		'editor' => \Lyrasoft\Luna\Listener\EditorListener::class,
 		'language' => \Lyrasoft\Luna\Listener\LanguageListener::class,
 		'error' => \Lyrasoft\Luna\Listener\ErrorListener::class,
+		'contact' => \Lyrasoft\Luna\Listener\ContactListener::class
 	]
 ];

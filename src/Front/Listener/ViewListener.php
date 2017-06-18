@@ -10,6 +10,7 @@ namespace Front\Listener;
 
 use Lyrasoft\Luna\Category\CategoryHelper;
 use Lyrasoft\Luna\Helper\LunaHelper;
+use Lyrasoft\Luna\Model\CategoriesModel;
 use Windwalker\Event\Event;
 
 /**
@@ -25,6 +26,7 @@ class ViewListener
 	 * @param Event $event
 	 *
 	 * @return  void
+	 * @throws \RuntimeException
 	 */
 	public function onViewBeforeRender(Event $event)
 	{
@@ -35,6 +37,10 @@ class ViewListener
 
 		$view = $event['view'];
 
-		$view['categories'] = CategoryHelper::getAvailableCategories('article');
+		$view['categories'] = CategoriesModel::getInstance()
+			->type('article')
+			->hasRoot(false)
+			->onlyAvailable()
+			->getItems();
 	}
 }
