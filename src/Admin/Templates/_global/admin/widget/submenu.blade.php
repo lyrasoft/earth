@@ -9,7 +9,7 @@
     @translate('phoenix.title.submenu')
 </h3>
 
-<div id="user-info" class="text-center" style="padding-top: 50px; padding-bottom: 50px; border-bottom: 1px solid #efefef">
+<div id="user-info" class="text-center" style="padding-top: 50px; padding-bottom: 50px;">
     <div class="user-info-avatar-wrap text-center">
         <img class="img-circle" src="{{ $user->avatar }}" width="75" height="75" alt="Avatar">
     </div>
@@ -21,46 +21,54 @@
     </div>
 </div>
 
-<div id="submenu" class="list-group">
-    <a href="{{ $router->route('categories', ['type' => 'article']) }}"
-        class="list-group-item {{ $helper->menu->active('categories', ['type' => 'article']) }}">
-        @translate($luna->langPrefix . 'categories.title')
-    </a>
+<ul id="submenu" class="nav nav-pills nav-stacked">
+    <li class="{{ $helper->menu->active('categories', ['type' => 'article']) }}">
+        <a href="{{ $router->route('categories', ['type' => 'article']) }}">
+            @translate($luna->langPrefix . 'categories.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('articles') }}"
-        class="list-group-item {{ $helper->menu->active('articles') }}">
+    <li class="{{ $helper->menu->active('articles') }}">
+        <a href="{{ $router->route('articles') }}">
             @translate($luna->langPrefix . 'articles.title')
-    </a>
+        </a>
+    </li>
 
-    <a href="{{ $router->route('tags') }}"
-        class="list-group-item {{ $helper->menu->active('tags') }}">
-        @translate($luna->langPrefix . 'tags.title')
-    </a>
+    <li class="{{ $helper->menu->active('tags') }}">
+        <a href="{{ $router->route('tags') }}">
+            @translate($luna->langPrefix . 'tags.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('comments', ['type' => 'article']) }}"
-        class="list-group-item {{ $helper->menu->active('comments') }}">
-        @translate($luna->langPrefix . 'comments.title')
-    </a>
+    <li class="{{ $helper->menu->active('comments') }}">
+        <a href="{{ $router->route('comments', ['type' => 'article']) }}">
+            @translate($luna->langPrefix . 'comments.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('languages') }}"
-        class="list-group-item {{ $helper->menu->active('languages') }}">
-        @translate($luna->langPrefix . 'languages.title')
-    </a>
+    <li class="{{ $helper->menu->active('languages') }}">
+        <a href="{{ $router->route('languages') }}">
+            @translate($luna->langPrefix . 'languages.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('modules') }}"
-        class="list-group-item {{ $helper->menu->active('modules') }}">
-        @translate($luna->langPrefix . 'modules.title')
-    </a>
+    <li class="{{ $helper->menu->active('modules') }}">
+        <a href="{{ $router->route('modules') }}">
+            @translate($luna->langPrefix . 'modules.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('users') }}"
-        class="list-group-item {{ $helper->menu->active('users') }}">
-        @translate($warder->langPrefix . 'users.title')
-    </a>
+    <li class="{{ $helper->menu->active('users') }}">
+        <a href="{{ $router->route('users') }}">
+            @translate($warder->langPrefix . 'users.title')
+        </a>
+    </li>
 
-    <a href="{{ $router->route('contacts') }}"
-        class="list-group-item {{ $helper->menu->active('contacts') }}">
-        @translate($luna->langPrefix . 'contacts.title')
-    </a>
+    <li class="{{ $helper->menu->active('contacts') }}">
+        <a href="{{ $router->route('contacts') }}">
+            @translate($luna->langPrefix . 'contacts.title')
+        </a>
+    </li>
 
     {{-- @muse-placeholder  submenu  Do not remove this line --}}
-</div>
+</ul>
