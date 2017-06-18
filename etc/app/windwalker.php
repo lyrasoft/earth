@@ -46,11 +46,8 @@ return [
 	 *       break your system.
 	 */
 	'providers' =>[
-		//'logger' => \Windwalker\Core\Provider\LoggerProvider::class,
-		//'event'  => \Windwalker\Core\Provider\EventProvider::class,
-		//'mailer' => \Windwalker\Core\Mailer\MailerProvider::class,
-		//'mailer_adapter' => \Windwalker\Core\Mailer\SwiftMailerProvider::class,
-		//'queue' => \Windwalker\Core\Queue\QueueProvider::class
+//		'logger' => \Windwalker\Core\Provider\LoggerProvider::class,
+//		'event'  => \Windwalker\Core\Provider\EventProvider::class,
 	],
 
 	/*
@@ -80,7 +77,7 @@ return [
 	 * Example: 'foo' => ['class' => MyListener::class, 'priority' => 300, 'enabled' => boolean]
 	 */
 	'listeners' => [
-		
+
 	],
 
 	/*
@@ -144,6 +141,7 @@ return [
 			// Security
 			'security.csrf' => \Windwalker\Core\Security\CsrfGuard::class,
 			'crypt' => \Windwalker\Crypt\CryptInterface::class,
+			'hasher' => \Windwalker\Crypt\HasherInterface::class,
 
 			// DateTime
 			'datetime' => \Windwalker\Core\DateTime\Chronos::class,
