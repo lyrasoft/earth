@@ -49,7 +49,7 @@ class MenuHelper extends AbstractHelper
 		}
 
 		// If route not matched, we match extra values from routing.
-		$routePath = $view['app']->get('route.extra.menu.' . $menu);
+		$routePath = $view['app']->get('route.extra.active.' . $menu);
 
 		$path = array_filter(explode('/', trim($path, '/')), 'strlen');
 		$routePath = array_filter(explode('/', trim($routePath, '/')), 'strlen');
