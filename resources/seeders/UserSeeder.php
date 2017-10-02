@@ -8,12 +8,9 @@
 
 use Faker\Factory;
 use Lyrasoft\Unidev\Helper\PravatarHelper;
-use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
-use Windwalker\Crypt\Password;
+use Windwalker\Core\User\User;
 use Windwalker\Data\Data;
-use Windwalker\DataMapper\DataMapper;
-use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Helper\UserHelper;
 use Lyrasoft\Warder\Table\WarderTable;
 
@@ -48,13 +45,13 @@ class UserSeeder extends AbstractSeeder
 			$data->blocked     = 0;
 			$data->activation  = '';
 			$data->reset_token = '';
-			$data->last_reset  = $faker->dateTime->format(Chronos::getSqlFormat());
-			$data->last_login  = $faker->dateTime->format(Chronos::getSqlFormat());
-			$data->registered  = $faker->dateTime->format(Chronos::getSqlFormat());
-			$data->modified    = $faker->dateTime->format(Chronos::getSqlFormat());
+			$data->last_reset  = $faker->dateTimeThisYear->format($this->getDateFormat());
+			$data->last_login  = $faker->dateTimeThisYear->format($this->getDateFormat());
+			$data->registered  = $faker->dateTimeThisYear->format($this->getDateFormat());
+			$data->modified    = $faker->dateTimeThisYear->format($this->getDateFormat());
 			$data->params      = '';
 
-			UserMapper::createOne($data);
+			User::save($data);
 
 			$this->outCounting();
 		}
