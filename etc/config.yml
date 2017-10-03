@@ -94,11 +94,11 @@ console:
     # Then just run `$ php windwalker run foo`
     scripts:
         prepare:
-            - php windwalker asset sync phoenix
-            - php windwalker asset sync admin
-            - php windwalker asset sync front
-            - php windwalker asset sync luna
-            - php windwalker asset sync unidev
+            - php windwalker asset sync phoenix -f
+            - php windwalker asset sync admin -f
+            - php windwalker asset sync front -f
+            - php windwalker asset sync luna -f
+            - php windwalker asset sync unidev -f
         preparedev:
             - echo dev > .mode
             - php windwalker run prepare
