@@ -8,41 +8,43 @@
 @php(\Phoenix\Script\BootstrapScript::tooltip())
 
 @section('header')
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ $router->route('articles') }}">EARTH</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    @section('nav')
-                        @include('_global.admin.widget.mainmenu')
-                    @show
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{{ $router->route('front@home') }}" target="_blank"
-                            class="hasTooltip" title="Preview" data-placement="bottom">
-                            <span class="glyphicon glyphicon-globe fa fa-globe"></span>
+    <div class="navbar navbar-default navbar-dark bg-dark navbar-fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ $uri->path }}">EARTH</a>
+            <button type="button" class="navbar-toggle navbar-toggler"  data-toggle="collapse"
+                data-target="#top-navbar-content" aria-controls="#top-navbar-content" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div id="top-navbar-content" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav mr-auto">
+                @section('nav')
+                    @include('_global.admin.widget.mainmenu')
+                @show
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a href="{{ $router->route('front@home') }}" target="_blank"
+                        class="nav-link hasTooltip" title="Preview" data-placement="bottom">
+                        <span class="glyphicon glyphicon-globe fa fa-globe"></span>
+                    </a>
+                </li>
+
+                @if (\Lyrasoft\Warder\Helper\UserHelper::isLogin())
+                    <li class="nav-item">
+                        <a href="{{ $router->route('logout') }}"
+                            class="nav-link hasTooltip" title="Logout" data-placement="bottom">
+                            <span class="glyphicon glyphicon-log-out fa fa-sign-out"></span>
                         </a>
                     </li>
-
-                    @if (\Lyrasoft\Warder\Helper\UserHelper::isLogin())
-                        <li>
-                            <a href="{{ $router->route('logout') }}"
-                                class="hasTooltip" title="Logout" data-placement="bottom">
-                                <span class="glyphicon glyphicon-log-out fa fa-sign-out"></span>
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+                @endif
+            </ul>
         </div>
+        <!--/.nav-collapse -->
     </div>
+
+
 @show

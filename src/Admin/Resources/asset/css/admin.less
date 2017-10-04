@@ -109,6 +109,8 @@ body.sidebar-hide {
 
     .main-body {
         width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
 
@@ -133,7 +135,8 @@ body.sidebar-hide {
             height   : 0;
             overflow : hidden;
 
-            &.collapse.in {
+            &.collapse.in,
+            &.collapse.show {
                 height : auto;
             }
         }

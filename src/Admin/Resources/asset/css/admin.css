@@ -78,6 +78,8 @@ body.sidebar-hide .main-sidebar {
 }
 body.sidebar-hide .main-body {
   width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 #copyright {
   padding-bottom: 20px;
@@ -93,7 +95,8 @@ body.sidebar-hide .main-body {
     height: 0;
     overflow: hidden;
   }
-  #admin-toolbar .admin-toolbar-buttons.collapse.in {
+  #admin-toolbar .admin-toolbar-buttons.collapse.in,
+  #admin-toolbar .admin-toolbar-buttons.collapse.show {
     height: auto;
   }
   #admin-toolbar .toolbar-toggle-button,

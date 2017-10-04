@@ -53,8 +53,8 @@ class AdminPackage extends AbstractPackage
 		$this->checkAccess();
 
 		// Assets
-		BootstrapScript::css();
-		BootstrapScript::script();
+		BootstrapScript::css(4);
+		BootstrapScript::script(4);
 		BootstrapScript::fontAwesome();
 		Asset::addCSS($this->name . '/css/admin.css');
 

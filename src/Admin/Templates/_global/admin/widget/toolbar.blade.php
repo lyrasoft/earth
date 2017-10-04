@@ -36,7 +36,10 @@
                     if (document.body.clientWidth > 480)
                     {
                         $('.subhead-collapse').height(toolbar.height());
-                        toolbar.scrollspy({offset: {top: toolbar.offset().top - $('nav.navbar').height()}});
+                        toolbar.scrollspy({
+                            offset: toolbar.offset().top - $('nav.navbar').height(),
+                            target: '#admin-toolbar'
+                        });
                     }
                 }
             }
