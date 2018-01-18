@@ -51,7 +51,7 @@ class UserSeeder extends AbstractSeeder
 			$data->modified    = $faker->dateTimeThisYear->format($this->getDateFormat());
 			$data->params      = '';
 
-			User::save($data);
+			UserMapper::createOne($data);
 
 			$this->outCounting();
 		}
