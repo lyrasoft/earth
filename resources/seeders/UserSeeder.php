@@ -12,6 +12,7 @@ use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Windwalker\Core\Seeder\AbstractSeeder;
 use Windwalker\Data\Data;
 use Lyrasoft\Warder\Helper\UserHelper;
+use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Table\WarderTable;
 
 /**
