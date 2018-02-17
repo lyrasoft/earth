@@ -2,7 +2,7 @@
     "name": "lyrasoft/earth",
     "description": "Home Land of LYRASOFT",
     "homepage": "https://github.com/lyrasoft/earth",
-    "license": "GNU Lesser General Public License",
+    "license": "LGPL-2.0-or-later",
     "minimum-stability": "beta",
     "authors": [
         {
