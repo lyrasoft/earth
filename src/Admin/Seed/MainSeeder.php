@@ -10,30 +10,30 @@ use Windwalker\Core\Seeder\AbstractSeeder;
 
 /**
  * The MainSeeder class.
- * 
+ *
  * @since  1.0
  */
 class MainSeeder extends AbstractSeeder
 {
-	/**
-	 * doExecute
-	 *
-	 * @return  void
-	 */
-	public function doExecute()
-	{
+    /**
+     * doExecute
+     *
+     * @return  void
+     */
+    public function doExecute()
+    {
 
-		// @muse-placeholder  seeder-execute  Do not remove this.
-	}
+        // @muse-placeholder  seeder-execute  Do not remove this.
+    }
 
-	/**
-	 * doClear
-	 *
-	 * @return  void
-	 */
-	public function doClear()
-	{
+    /**
+     * doClear
+     *
+     * @return  void
+     */
+    public function doClear()
+    {
 
-		// @muse-placeholder  seeder-clean  Do not remove this.
-	}
+        // @muse-placeholder  seeder-clean  Do not remove this.
+    }
 }

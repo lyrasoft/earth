@@ -11,8 +11,8 @@
     <div class="navbar navbar-default navbar-dark bg-dark navbar-fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ $uri->path }}">EARTH</a>
-            <button type="button" class="navbar-toggle navbar-toggler"  data-toggle="collapse"
-                data-target="#top-navbar-content" aria-controls="#top-navbar-content" aria-expanded="false">
+            <button type="button" class="navbar-toggle navbar-toggler" data-toggle="collapse"
+                    data-target="#top-navbar-content" aria-controls="#top-navbar-content" aria-expanded="false">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
                     <a href="{{ $router->route('front@home') }}" target="_blank"
-                        class="nav-link hasTooltip" title="Preview" data-placement="bottom">
+                       class="nav-link hasTooltip" title="Preview" data-placement="bottom">
                         <span class="glyphicon glyphicon-globe fa fa-globe"></span>
                     </a>
                 </li>
@@ -36,7 +36,7 @@
                 @if (\Lyrasoft\Warder\Helper\UserHelper::isLogin())
                     <li class="nav-item">
                         <a href="{{ $router->route('logout') }}"
-                            class="nav-link hasTooltip" title="Logout" data-placement="bottom">
+                           class="nav-link hasTooltip" title="Logout" data-placement="bottom">
                             <span class="glyphicon glyphicon-log-out fa fa-sign-out"></span>
                         </a>
                     </li>

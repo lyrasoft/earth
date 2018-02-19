@@ -14,15 +14,15 @@ use Windwalker\Core\Model\ModelRepository;
 
 /**
  * The DashboardModel class.
- * 
+ *
  * @since  1.0
  */
 class DashboardModel extends ModelRepository
 {
-	/**
-	 * Property name.
-	 *
-	 * @var  string
-	 */
-	protected $name = 'Dashboard';
+    /**
+     * Property name.
+     *
+     * @var  string
+     */
+    protected $name = 'Dashboard';
 }

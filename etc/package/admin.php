@@ -7,33 +7,33 @@
  */
 
 return [
-	'providers' => [
+    'providers' => [
 
-	],
+    ],
 
-	'routing' => [
-		'files' => [
-			'main' => PACKAGE_ADMIN_ROOT . '/routing.yml',
-			'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getAdminRouting(),
-			'luna'   => \Lyrasoft\Luna\Helper\LunaHelper::getAdminRouting(),
-		]
-	],
+    'routing' => [
+        'files' => [
+            'main' => PACKAGE_ADMIN_ROOT . '/routing.yml',
+            'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getAdminRouting(),
+            'luna'   => \Lyrasoft\Luna\Helper\LunaHelper::getAdminRouting(),
+        ]
+    ],
 
-	'middlewares' => [
+    'middlewares' => [
 
-	],
+    ],
 
-	'configs' => [
+    'configs' => [
 
-	],
+    ],
 
-	'listeners' => [
-		'orphans' => \Phoenix\Listener\DumpOrphansListener::class
-	],
+    'listeners' => [
+        'orphans' => \Phoenix\Listener\DumpOrphansListener::class
+    ],
 
-	'console' => [
-		'commands' => [
+    'console' => [
+        'commands' => [
 
-		]
-	]
+        ]
+    ]
 ];

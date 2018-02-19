@@ -7,34 +7,34 @@
  */
 
 return [
-	'providers' => [
+    'providers' => [
 
-	],
+    ],
 
-	'routing' => [
-		'files' => [
-			'main'   => PACKAGE_FRONT_ROOT . '/routing.yml',
-			'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getFrontendRouting(),
-			'luna'   => \Lyrasoft\Luna\Helper\LunaHelper::getFrontendRouting(),
-		]
-	],
+    'routing' => [
+        'files' => [
+            'main'   => PACKAGE_FRONT_ROOT . '/routing.yml',
+            'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getFrontendRouting(),
+            'luna'   => \Lyrasoft\Luna\Helper\LunaHelper::getFrontendRouting(),
+        ]
+    ],
 
-	'middlewares' => [
+    'middlewares' => [
 
-	],
+    ],
 
-	'configs' => [
+    'configs' => [
 
-	],
+    ],
 
-	'listeners' => [
-		'orphans' => \Phoenix\Listener\DumpOrphansListener::class,
-		'view' => \Front\Listener\ViewListener::class
-	],
+    'listeners' => [
+        'orphans' => \Phoenix\Listener\DumpOrphansListener::class,
+        'view' => \Front\Listener\ViewListener::class
+    ],
 
-	'console' => [
-		'commands' => [
+    'console' => [
+        'commands' => [
 
-		]
-	],
+        ]
+    ],
 ];

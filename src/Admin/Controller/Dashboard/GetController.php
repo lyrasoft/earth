@@ -16,73 +16,73 @@ use Windwalker\Core\View\AbstractView;
 
 /**
  * The GetController class.
- * 
+ *
  * @since  1.0
  */
 class GetController extends DisplayController
 {
-	/**
-	 * Property name.
-	 *
-	 * @var  string
-	 */
-	protected $name = 'Dashboard';
+    /**
+     * Property name.
+     *
+     * @var  string
+     */
+    protected $name = 'Dashboard';
 
-	/**
-	 * Property model.
-	 *
-	 * @var  DashboardModel
-	 */
-	protected $model;
+    /**
+     * Property model.
+     *
+     * @var  DashboardModel
+     */
+    protected $model;
 
-	/**
-	 * Property view.
-	 *
-	 * @var  DashboardHtmlView
-	 */
-	protected $view;
+    /**
+     * Property view.
+     *
+     * @var  DashboardHtmlView
+     */
+    protected $view;
 
-	/**
-	 * A hook before main process executing.
-	 *
-	 * @return  void
-	 */
-	protected function prepareExecute()
-	{
-		parent::prepareExecute();
-	}
+    /**
+     * A hook before main process executing.
+     *
+     * @return  void
+     */
+    protected function prepareExecute()
+    {
+        parent::prepareExecute();
+    }
 
-	/**
-	 * Prepare view and default model.
-	 *
-	 * You can configure default model state here, or add more sub models to view.
-	 * Remember to call parent to make sure default model already set in view.
-	 *
-	 * @param AbstractView    $view  The view to render page.
-	 * @param ModelRepository $model The default mode.
-	 *
-	 * @return  void
-	 */
-	protected function prepareViewModel(AbstractView $view, ModelRepository $model)
-	{
-		/**
-		 * @var $view  DashboardHtmlView
-		 * @var $model DashboardModel
-		 */
-		parent::prepareViewModel($view, $model);
+    /**
+     * Prepare view and default model.
+     *
+     * You can configure default model state here, or add more sub models to view.
+     * Remember to call parent to make sure default model already set in view.
+     *
+     * @param AbstractView    $view  The view to render page.
+     * @param ModelRepository $model The default mode.
+     *
+     * @return  void
+     */
+    protected function prepareViewModel(AbstractView $view, ModelRepository $model)
+    {
+        /**
+         * @var $view  DashboardHtmlView
+         * @var $model DashboardModel
+         */
+        parent::prepareViewModel($view, $model);
 
-		// Configure View nad Models here
-	}
+        // Configure View nad Models here
+    }
 
-	/**
-	 * A hook after main process executing.
-	 *
-	 * @param mixed $result The result content to return, can be any value or boolean.
-	 *
-	 * @return  mixed
-	 */
-	protected function postExecute($result = null)
-	{
-		return parent::postExecute($result);
-	}
+    /**
+     * A hook after main process executing.
+     *
+     * @param mixed $result The result content to return, can be any value or boolean.
+     *
+     * @return  mixed
+     */
+    protected function postExecute($result = null)
+    {
+        return parent::postExecute($result);
+    }
 }

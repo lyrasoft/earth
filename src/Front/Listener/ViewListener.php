@@ -8,7 +8,6 @@
 
 namespace Front\Listener;
 
-use Lyrasoft\Luna\Category\CategoryHelper;
 use Lyrasoft\Luna\Helper\LunaHelper;
 use Lyrasoft\Luna\Model\CategoriesModel;
 use Windwalker\Event\Event;
@@ -20,27 +19,26 @@ use Windwalker\Event\Event;
  */
 class ViewListener
 {
-	/**
-	 * onViewBeforeRender
-	 *
-	 * @param Event $event
-	 *
-	 * @return  void
-	 * @throws \RuntimeException
-	 */
-	public function onViewBeforeRender(Event $event)
-	{
-		if (LunaHelper::isAdmin())
-		{
-			return;
-		}
+    /**
+     * onViewBeforeRender
+     *
+     * @param Event $event
+     *
+     * @return  void
+     * @throws \RuntimeException
+     */
+    public function onViewBeforeRender(Event $event)
+    {
+        if (LunaHelper::isAdmin()) {
+            return;
+        }
 
-		$view = $event['view'];
+        $view = $event['view'];
 
-		$view['categories'] = CategoriesModel::getInstance()
-			->type('article')
-			->hasRoot(false)
-			->onlyAvailable()
-			->getItems();
-	}
+        $view['categories'] = CategoriesModel::getInstance()
+            ->type('article')
+            ->hasRoot(false)
+            ->onlyAvailable()
+            ->getItems();
+    }
 }

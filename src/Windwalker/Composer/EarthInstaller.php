@@ -17,29 +17,27 @@ use Composer\Script\Event;
  */
 class EarthInstaller
 {
-	/**
-	 * install
-	 *
-	 * @param Event $event
-	 *
-	 * @return  void
-	 */
-	public static function install(Event $event)
-	{
-		$io = $event->getIO();
+    /**
+     * install
+     *
+     * @param Event $event
+     *
+     * @return  void
+     */
+    public static function install(Event $event)
+    {
+        $io = $event->getIO();
 
-		$io->write('Earth will help you run migration, seed and make asset links.', true);
+        $io->write('Earth will help you run migration, seed and make asset links.', true);
 
-		if (defined('PHP_WINDOWS_VERSION_BUILD'))
-		{
-			$io->write('(Your system is Windows, please make sure you are running as Administrator.)', true);
-		}
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            $io->write('(Your system is Windows, please make sure you are running as Administrator.)', true);
+        }
 
-		if ($io->askConfirmation("\nDo you want to run 'preparedev'? [Y/n]: ", true))
-		{
-			system('php windwalker run preparedev');
-		}
+        if ($io->askConfirmation("\nDo you want to run 'preparedev'? [Y/n]: ", true)) {
+            system('php windwalker run preparedev');
+        }
 
-		$io->write('Earth install complete.');
-	}
+        $io->write('Earth install complete.');
+    }
 }

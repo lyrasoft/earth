@@ -9,16 +9,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="batch-modal-title">
-                    <span class="glyphicon glyphicon-modal-window fa fa-sliders"></span> @translate('phoenix.batch.modal.title')
+                    <span class="glyphicon glyphicon-modal-window fa fa-sliders"></span>
+                    @translate('phoenix.batch.modal.title')
                 </h4>
             </div>
             <div class="modal-body">
                 <p>
                     @translate('phoenix.batch.modal.desc')
                 </p>
-                <hr />
+                <hr/>
                 <div class="form-horizontal">
                     {!! $form->renderFields(null, 'batch') !!}
                 </div>

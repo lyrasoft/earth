@@ -1,5 +1,5 @@
 {{-- Part of Windwalker project. --}}
-<!doctype html>
+    <!doctype html>
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
 
     <title>{{ \Phoenix\Html\HtmlHeader::getPageTitle() }}</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ $asset->path }}/images/favicon.ico" />
-    <meta name="generator" content="Windwalker Framework" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $asset->path }}/images/favicon.ico"/>
+    <meta name="generator" content="Windwalker Framework"/>
     {!! \Phoenix\Html\HtmlHeader::renderMetadata() !!}
     @yield('meta')
 
@@ -19,8 +19,9 @@
     @yield('script')
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 </head>
-<body class="package-{{ $package->name }} view-{{ $view->getName() }} layout-{{ $view->getLayout() }}" style="padding-top: 50px">
-    @section('navbar')
+<body class="package-{{ $package->name }} view-{{ $view->getName() }} layout-{{ $view->getLayout() }}"
+      style="padding-top: 50px">
+@section('navbar')
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,26 +34,27 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                     @section('nav')
+                    @section('nav')
                         <li class="active"><a href="{{ $router->route('home') }}">Home</a></li>
-                     @show
+                    @show
 
-                     <li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                             Category
-                             <span class="caret"></span>
-                         </a>
-                         <ul class="dropdown-menu">
-                             @foreach ($categories as $category)
-                                 <li>
-                                     <a href="{{ $router->route('article_category', array('path' => $category->path)) }}">
-                                         {{ str_repeat('-', $category->level - 1) }}
-                                         {{ $category->title }}
-                                     </a>
-                                 </li>
-                             @endforeach
-                         </ul>
-                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            Category
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($categories as $category)
+                                <li>
+                                    <a href="{{ $router->route('article_category', array('path' => $category->path)) }}">
+                                        {{ str_repeat('-', $category->level - 1) }}
+                                        {{ $category->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{-- <li class="pull-right"><a href="{{ $uri->path }}/admin">Admin</a></li> --}}
@@ -61,21 +63,21 @@
             <!--/.nav-collapse -->
         </div>
     </div>
-    @show
+@show
 
-    @section('message')
-        @messages()
-    @show
+@section('message')
+    @messages()
+@show
 
-    @yield('content', 'Content')
+@yield('content', 'Content')
 
-    @section('copyright')
+@section('copyright')
     <div id="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
 
-                    <hr />
+                    <hr/>
 
                     <footer>
                         &copy; Windwalker {{ $datetime->format('Y') }}
@@ -84,7 +86,7 @@
             </div>
         </div>
     </div>
-    @show
+@show
 {!! $asset->getTemplate()->renderTemplates() !!}
 </body>
 </html>

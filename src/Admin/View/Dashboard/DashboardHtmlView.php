@@ -12,39 +12,39 @@ use Phoenix\View\AbstractPhoenixHtmView;
 
 /**
  * The DashboardHtmlView class.
- * 
+ *
  * @since  1.0
  */
 class DashboardHtmlView extends AbstractPhoenixHtmView
 {
-	/**
-	 * Property name.
-	 *
-	 * @var  string
-	 */
-	protected $name = 'Dashboard';
+    /**
+     * Property name.
+     *
+     * @var  string
+     */
+    protected $name = 'Dashboard';
 
-	/**
-	 * prepareData
-	 *
-	 * @param \Windwalker\Data\Data $data
-	 *
-	 * @return  void
-	 */
-	protected function prepareData($data)
-	{
-		parent::prepareData($data);
-	}
+    /**
+     * prepareData
+     *
+     * @param \Windwalker\Data\Data $data
+     *
+     * @return  void
+     */
+    protected function prepareData($data)
+    {
+        parent::prepareData($data);
+    }
 
-	/**
-	 * setTitle
-	 *
-	 * @param string $title
-	 *
-	 * @return  static
-	 */
-	public function setTitle($title = 'Dashboard')
-	{
-		return parent::setTitle($title);
-	}
+    /**
+     * setTitle
+     *
+     * @param string $title
+     *
+     * @return  static
+     */
+    public function setTitle($title = 'Dashboard')
+    {
+        return parent::setTitle($title);
+    }
 }

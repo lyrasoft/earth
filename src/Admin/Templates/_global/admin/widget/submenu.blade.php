@@ -15,7 +15,8 @@
     </div>
     <div class="user-info-detail">
         <h5 class="user-info-name my-3"><strong>{{ $user->name }}</strong></h5>
-        <a class="btn btn-default btn-outline-secondary btn-sm user-info-profile-button" href="@route('user', ['id' => $user->id])">
+        <a class="btn btn-default btn-outline-secondary btn-sm user-info-profile-button"
+           href="@route('user', ['id' => $user->id])">
             Profile
         </a>
     </div>
@@ -23,7 +24,8 @@
 
 <ul id="submenu" class="nav nav-stacked nav-pills flex-column">
     <li class="nav-item {{ $helper->menu->active('categories', ['type' => 'article']) }}">
-        <a href="{{ $router->route('categories', ['type' => 'article']) }}" class="nav-link {{ $helper->menu->active('categories', ['type' => 'article']) }}">
+        <a href="{{ $router->route('categories', ['type' => 'article']) }}"
+           class="nav-link {{ $helper->menu->active('categories', ['type' => 'article']) }}">
             @translate($luna->langPrefix . 'categories.title')
         </a>
     </li>
@@ -41,7 +43,8 @@
     </li>
 
     <li class="nav-item {{ $helper->menu->active('comments') }}">
-        <a href="{{ $router->route('comments', ['type' => 'article']) }}" class="nav-link {{ $helper->menu->active('comments') }}">
+        <a href="{{ $router->route('comments', ['type' => 'article']) }}"
+           class="nav-link {{ $helper->menu->active('comments') }}">
             @translate($luna->langPrefix . 'comments.title')
         </a>
     </li>

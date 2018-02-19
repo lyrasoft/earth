@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <hr />
+                <hr/>
 
                 <footer>
                     &copy; Windwalker {{ $datetime->format('Y') }}

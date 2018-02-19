@@ -10,13 +10,12 @@ namespace Admin\Table;
 
 /**
  * The Table class.
- * 
+ *
  * @since  1.0
  */
 abstract class Table
 {
+    const DASHBOARDS = 'dashboards';
 
-	const DASHBOARDS = 'dashboards';
-
-	// @muse-placeholder  db-table  Do not remove this.
+    // @muse-placeholder  db-table  Do not remove this.
 }
