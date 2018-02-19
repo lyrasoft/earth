@@ -15,6 +15,7 @@
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
 
     <title>{{ \Phoenix\Html\HtmlHeader::getPageTitle() }}</title>
