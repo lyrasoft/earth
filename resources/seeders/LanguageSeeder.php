@@ -8,36 +8,32 @@
 
 use Lyrasoft\Luna\Admin\DataMapper\LanguageMapper;
 use Lyrasoft\Luna\Table\LunaTable;
-use Faker\Factory;
-use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
-use Windwalker\Data\Data;
-use Windwalker\Filter\OutputFilter;
 
 /**
  * The LanguageSeeder class.
- * 
+ *
  * @since  1.0
  */
 class LanguageSeeder extends AbstractSeeder
 {
-	/**
-	 * doExecute
-	 *
-	 * @return  void
-	 */
-	public function doExecute()
-	{
-		LanguageMapper::updateBatch(['state' => 1], ['code' => ['zh-TW', 'ja-JP']]);
-	}
+    /**
+     * doExecute
+     *
+     * @return  void
+     */
+    public function doExecute()
+    {
+        LanguageMapper::updateBatch(['state' => 1], ['code' => ['zh-TW', 'ja-JP']]);
+    }
 
-	/**
-	 * doClear
-	 *
-	 * @return  void
-	 */
-	public function doClear()
-	{
-		$this->truncate(LunaTable::LANGUAGES);
-	}
+    /**
+     * doClear
+     *
+     * @return  void
+     */
+    public function doClear()
+    {
+        $this->truncate(LunaTable::LANGUAGES);
+    }
 }
