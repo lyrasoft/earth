@@ -9,28 +9,28 @@
 // Start composer
 $root = __DIR__ . '/..';
 
-if (!is_file($root . '/vendor/autoload.php'))
-{
-	exit('Please run `composer install` First.');
+if (!is_file($root . '/vendor/autoload.php')) {
+    exit('Please run `composer install` First.');
 }
 
-include_once $root . '/vendor/autoload.php';
+include $root . '/vendor/autoload.php';
 include_once $root . '/etc/define.php';
 
 $config = new \Windwalker\Structure\Structure;
 
-if (is_file(WINDWALKER_ETC . '/secret.yml'))
-{
-	$config->loadFile(WINDWALKER_ETC . '/secret.yml', \Windwalker\Structure\Format::YAML);
+if (is_file(WINDWALKER_ETC . '/secret.yml')) {
+    $config->loadFile(WINDWALKER_ETC . '/secret.yml', \Windwalker\Structure\Format::YAML);
 }
 
 // Get allow remote ips from config.
-if (isset($_SERVER['HTTP_CLIENT_IP']) || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-	|| !(in_array(@$_SERVER['REMOTE_ADDR'], (array) $config->get('dev.allow_ips', ['127.0.0.1', '::1', 'fe80::1']))))
-{
-	header('HTTP/1.1 403 Forbidden');
+if (
+    isset($_SERVER['HTTP_CLIENT_IP'])
+    || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+    || !in_array(@$_SERVER['REMOTE_ADDR'], (array) $config->get('dev.allow_ips', ['127.0.0.1', '::1', 'fe80::1']), true)
+) {
+    header('HTTP/1.1 403 Forbidden');
 
-	exit('Forbidden');
+    exit('Forbidden');
 }
 
 // Start our application.

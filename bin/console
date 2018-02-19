@@ -9,12 +9,11 @@
 
 $autoload = __DIR__ . '/../vendor/autoload.php';
 
-if (!is_file($autoload))
-{
-	exit('Please run `composer install` First.');
+if (!is_file($autoload)) {
+    exit('Please run `composer install` First.');
 }
 
-include_once $autoload;
+include $autoload;
 
 include_once __DIR__ . '/../etc/define.php';
 
