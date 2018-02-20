@@ -1,0 +1,21 @@
+{
+    "name": "earth",
+    "version": "1.0.0",
+    "description": "Home land of Lyrasoft",
+    "main": "index.js",
+    "repository": "https://github.com/lyrasoft/earth.git",
+    "author": "Simon Asika <asika32764@gmail.com>",
+    "license": "LGPL-2.0-or-later",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "laravel-mix": "^2.0.0",
+        "cross-env": "^5.1.3"
+    }
+}

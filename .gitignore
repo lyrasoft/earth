@@ -20,3 +20,6 @@ composer.lock
 #Test
 /phpunit.xml
 /phpunit.core.xml
+
+# Others
+mix-manifest.json
