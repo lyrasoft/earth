@@ -22,6 +22,8 @@ class MainSeeder extends AbstractSeeder
      */
     public function doExecute()
     {
+        error_reporting(-1);
+
         $this->execute(UserSeeder::class);
 
         $this->execute(LanguageSeeder::class);
