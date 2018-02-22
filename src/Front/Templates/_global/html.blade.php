@@ -1,5 +1,5 @@
 {{-- Part of Windwalker project. --}}
-    <!doctype html>
+<!DOCTYPE html>
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
     <meta charset="UTF-8">
