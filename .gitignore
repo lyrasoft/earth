@@ -22,4 +22,5 @@ composer.lock
 /phpunit.core.xml
 
 # Others
-mix-manifest.json
+/mix-manifest.json
+/mix.js.map
