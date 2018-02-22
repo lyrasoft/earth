@@ -1,6 +1,7 @@
 let mix = require('laravel-mix');
 
 mix.setPublicPath('./');
+mix.webpackConfig({ devtool: "source-map" });
 
 /*
  |--------------------------------------------------------------------------
@@ -15,7 +16,9 @@ mix.setPublicPath('./');
 
 mix
   // .js('www/asset/src/main.js', 'www/asset/js/')
-  .sass('src/Admin/Resources/asset/css/admin.scss', 'src/Admin/Resources/asset/css/');
+  .sass('src/Admin/Resources/asset/css/admin.scss', 'www/asset/admin/css/')
+  .minify('www/asset/admin/css/admin.css')
+  .sourceMaps();
 
 // Full API
 // mix.js(src, output);
