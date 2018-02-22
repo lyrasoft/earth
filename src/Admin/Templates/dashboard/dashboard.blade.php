@@ -13,6 +13,8 @@
  */
 
 $faker = \Faker\Factory::create();
+
+\Lyrasoft\Unidev\Script\UnidevScript::polyfill();
 ?>
 
 @extends('_global.admin.admin')
