@@ -1,6 +1,5 @@
 {
     "name": "earth",
-    "version": "1.0.0",
     "description": "Home land of Lyrasoft",
     "main": "index.js",
     "repository": "https://github.com/lyrasoft/earth.git",

@@ -11,8 +11,9 @@
 /node_modules
 /bower_components
 
-# Remove this line when you start a project
+# Remove above lines when you start a project
 composer.lock
+yarn.lock
 
 # Windwalker
 /etc/secret.yml
