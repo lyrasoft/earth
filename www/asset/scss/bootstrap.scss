@@ -1,9 +1,6 @@
 // Custom Bootstrap for project.
 
-// Override variables
-// $theme-colors: ( 'primary': #007bff );
-
+@import "./global";
 @import "../phoenix/css/bootstrap/4/scss/bootstrap";
-
 
 // Add some extended classes

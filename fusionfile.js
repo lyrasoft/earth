@@ -22,7 +22,7 @@ fusion.task('main', () => {
 fusion.task('bootstrap', () => {
   // Watch start
   fusion.watch([
-    'www/asset/scss/bootstrap.scss',
+    'www/asset/scss/*.scss',
     'www/asset/phoenix/css/bootstrap/**/*.scss',
   ]);
   // Watch end
