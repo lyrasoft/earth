@@ -57,8 +57,23 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right ml-auto">
                     {{-- <li class="pull-right"><a href="{{ $uri->path }}/admin">Admin</a></li> --}}
+                    @if (!$user->isMember())
+                        <li class="nav-item">
+                            <a class="nav-link" href="@route('login', ['return' => base64_encode($uri->full)])">
+                                <span class="fa fa-sign-in fa-sign-in-alt"></span>
+                                Login
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="@route('logout', ['return' => base64_encode($uri->full)])">
+                                <span class="fa fa-sign-out fa-sign-out-alt"></span>
+                                Logout
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <!--/.nav-collapse -->
