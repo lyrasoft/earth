@@ -22,24 +22,25 @@
 <body class="package-{{ $package->name }} view-{{ $view->getName() }} layout-{{ $view->getLayout() }}"
       style="padding-top: 50px">
 @section('navbar')
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ $router->route('home') }}">Windwalker</a>
-            </div>
+            <a class="navbar-brand" href="{{ $router->route('home') }}">Windwalker</a>
+            <button type="button" class="navbar-toggle navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     @section('nav')
-                        <li class="active"><a href="{{ $router->route('home') }}">Home</a></li>
+                        <li class="nav-item active">
+                            <a href="{{ $router->route('home') }}" class="nav-link">Home</a>
+                        </li>
                     @show
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             Category
                             <span class="caret"></span>
@@ -47,7 +48,7 @@
                         <ul class="dropdown-menu">
                             @foreach ($categories as $category)
                                 <li>
-                                    <a href="{{ $router->route('article_category', array('path' => $category->path)) }}">
+                                    <a class="dropdown-item" href="{{ $router->route('article_category', array('path' => $category->path)) }}">
                                         {{ str_repeat('-', $category->level - 1) }}
                                         {{ $category->title }}
                                     </a>

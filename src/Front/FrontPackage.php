@@ -10,6 +10,7 @@ namespace Front;
 
 use Phoenix\Language\TranslatorHelper;
 use Phoenix\Script\BootstrapScript;
+use Windwalker\Core\Asset\Asset;
 use Windwalker\Core\Package\AbstractPackage;
 use Windwalker\Core\Router\MainRouter;
 use Windwalker\Debugger\Helper\DebuggerHelper;
@@ -47,8 +48,9 @@ class FrontPackage extends AbstractPackage
         $this->checkAccess();
 
         // Assets
-        BootstrapScript::css();
-        BootstrapScript::script();
+        Asset::alias('phoenix/css/bootstrap/4/bootstrap.css', 'css/bootstrap/bootstrap.min.css');
+        BootstrapScript::css(4);
+        BootstrapScript::script(4);
 
         // Language
         TranslatorHelper::loadAll($this, 'ini');
