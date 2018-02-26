@@ -1,10 +1,5 @@
 {
-    "name": "earth",
-    "description": "Home land of Lyrasoft",
-    "main": "index.js",
-    "repository": "https://github.com/lyrasoft/earth.git",
-    "author": "Simon Asika <asika32764@gmail.com>",
-    "license": "LGPL-2.0+",
+    "name": "windwalker",
     "scripts": {
         "build": "cross-env NODE_ENV=development node_modules/gulp/bin/gulp.js --gulpfile=fusionfile.js",
         "watch": "cross-env NODE_ENV=development node_modules/gulp/bin/gulp.js --gulpfile=fusionfile.js --watch=1",
@@ -12,7 +7,6 @@
         "prod": "cross-env NODE_ENV=production node_modules/gulp/bin/gulp.js --gulpfile=fusionfile.js"
     },
     "dependencies": {
-        "cross-env": "^5.1.3",
         "windwalker-fusion": "^0.1.0"
     }
 }
