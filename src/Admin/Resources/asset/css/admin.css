@@ -39,6 +39,13 @@ body {
   padding-right: 15px; }
 
 #admin-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   background-color: #f6f6f6;
   padding: 7px 15px; }
   #admin-toolbar .toolbar-toggle-button,
@@ -46,14 +53,6 @@ body {
     display: none; }
   #admin-toolbar .btn-wide {
     min-width: 175px; }
-
-.admin-toolbar-fixed {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); }
 
 .main-sidebar ul.nav {
   margin-left: -15px;
