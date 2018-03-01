@@ -39,19 +39,20 @@ body {
   padding-right: 15px; }
 
 #admin-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   background-color: #f6f6f6;
   padding: 7px 15px; }
   #admin-toolbar .toolbar-toggle-button,
   #admin-toolbar .admin-toolbar-buttons hr {
     display: none; }
-
-.admin-toolbar-fixed {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); }
+  #admin-toolbar .btn-wide {
+    min-width: 175px; }
 
 .main-sidebar ul.nav {
   margin-left: -15px;
@@ -89,7 +90,9 @@ body.sidebar-hide .main-body {
   #admin-toolbar .admin-toolbar-buttons {
     height: 0;
     overflow: hidden; }
-    #admin-toolbar .admin-toolbar-buttons.collapse.in, #admin-toolbar .admin-toolbar-buttons.collapse.show {
+    #admin-toolbar .admin-toolbar-buttons.collapse.in {
+      height: auto; }
+    #admin-toolbar .admin-toolbar-buttons.collapse.show {
       height: auto; }
   #admin-toolbar .toolbar-toggle-button,
   #admin-toolbar .admin-toolbar-buttons hr {
@@ -106,11 +109,14 @@ body.sidebar-hide .main-body {
 .clearfix {
   clear: both; }
 
+.alert p:last-child {
+  margin-bottom: 0; }
+
 .search-container {
   margin-bottom: 15px; }
 
 .ordering-control {
-  max-width: 90px; }
+  max-width: 120px; }
   .ordering-control input {
     min-width: 40px; }
 
@@ -124,14 +130,14 @@ body.sidebar-hide .main-body {
 #phoenix-iframe-modal .modal-body iframe {
   height: 500px; }
 
+.modal-xs {
+  max-width: 900px; }
+
 @media (max-width: 767px) {
-  .filter-buttons-group {
-    display: block;
-    width: 100%; }
-    .filter-buttons-group .filter-toggle-button {
-      width: 70%; }
-    .filter-buttons-group .search-clear-button {
-      width: 30%; }
+  .filter-buttons-group .filter-toggle-button {
+    width: 70%; }
+  .filter-buttons-group .search-clear-button {
+    width: 30%; }
   .search-container > * {
     margin-bottom: 5px; }
   .search-container::after {
@@ -144,9 +150,6 @@ body.sidebar-hide .main-body {
     min-width: 90%; }
   #phoenix-iframe-modal .modal-body iframe {
     height: 400px; } }
-
-.btn-group .btn {
-  margin-left: -1px; }
 
 .chosen-container {
   cursor: pointer;

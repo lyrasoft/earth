@@ -1,3 +1,5 @@
+// Flower package CSS
+
 // This section is for default template, you can delete it if you use custom templates.
 // ------------------------------------------------------------------------------------
 
@@ -60,6 +62,11 @@ body {
 }
 
 #admin-toolbar {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .1);
   background-color: #f6f6f6;
   padding: 7px 15px;
 
@@ -67,14 +74,10 @@ body {
   .admin-toolbar-buttons hr {
     display: none;
   }
-}
 
-.admin-toolbar-fixed {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, .1);
+  .btn-wide {
+    min-width: 175px;
+  }
 }
 
 // Sidebar
@@ -134,7 +137,10 @@ body.sidebar-hide {
       height: 0;
       overflow: hidden;
 
-      &.collapse.in,
+      &.collapse.in {
+        height: auto;
+      }
+
       &.collapse.show {
         height: auto;
       }
@@ -166,6 +172,11 @@ body.sidebar-hide {
   clear: both;
 }
 
+// Alert
+.alert p:last-child {
+  margin-bottom: 0;
+}
+
 // Grid
 .search-container {
   margin-bottom: 15px;
@@ -176,7 +187,7 @@ body.sidebar-hide {
     min-width: 40px;
   }
 
-  max-width: 90px;
+  max-width: 120px;
 }
 
 // Input
@@ -197,10 +208,12 @@ body.sidebar-hide {
   }
 }
 
+.modal-xs {
+  max-width: 900px;
+}
+
 @media (max-width: 767px) {
   .filter-buttons-group {
-    display: block;
-    width: 100%;
 
     .filter-toggle-button {
       width: 70%;
@@ -232,11 +245,6 @@ body.sidebar-hide {
       height: 400px;
     }
   }
-}
-
-// Button
-.btn-group .btn {
-  margin-left: -1px;
 }
 
 // Chosen
