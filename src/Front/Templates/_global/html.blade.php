@@ -14,9 +14,11 @@
 
     {!! $asset->renderStyles(true) !!}
     @yield('style')
+    @stack('style')
 
     {!! $asset->renderScripts(true) !!}
     @yield('script')
+    @stack('script')
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 </head>
 <body class="package-{{ $package->name }} view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }}"

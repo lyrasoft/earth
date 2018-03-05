@@ -27,9 +27,11 @@
 
     {!! $asset->renderStyles(true) !!}
     @yield('style')
+    @stack('style')
 
     {!! $asset->renderScripts(true) !!}
     @yield('script')
+    @stack('script')
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 </head>
 <body class="{{ $package->getName() }}-admin-body phoenix-admin package-{{ $package->getName() }}
