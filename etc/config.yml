@@ -99,7 +99,7 @@ console:
             - php windwalker asset sync front -f
             - php windwalker asset sync luna -f
             - php windwalker asset sync unidev -f
-            - npm install
+            - yarn install
             - bower install
         preparedev:
             - echo dev > .mode
