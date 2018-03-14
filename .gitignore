@@ -5,6 +5,7 @@
 !.htaccess
 !.editorconfig
 !web.config
+!.bowerrc
 
 # Libraries
 /vendor
