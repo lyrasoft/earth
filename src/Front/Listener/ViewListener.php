@@ -9,7 +9,7 @@
 namespace Front\Listener;
 
 use Lyrasoft\Luna\Helper\LunaHelper;
-use Lyrasoft\Luna\Model\CategoriesModel;
+use Lyrasoft\Luna\Repository\CategoriesRepository;
 use Windwalker\Event\Event;
 
 /**
@@ -35,7 +35,7 @@ class ViewListener
 
         $view = $event['view'];
 
-        $view['categories'] = CategoriesModel::getInstance()
+        $view['categories'] = CategoriesRepository::getInstance()
             ->type('article')
             ->hasRoot(false)
             ->onlyAvailable()
