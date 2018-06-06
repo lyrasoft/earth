@@ -10,13 +10,13 @@ const fusion = require('windwalker-fusion');
 // The task `main`
 fusion.task('main', () => {
   // Watch start
-  fusion.watch('www/asset/admin/**/*.scss');
-  fusion.watch('www/asset/css/**/*.scss');
+  fusion.watch('www/asset/scss/admin/**/*.scss');
+  fusion.watch('www/asset/scss/front/**/*.scss');
   // Watch end
 
   // Compile Start
-  fusion.sass('www/asset/admin/css/admin.scss');
-  fusion.sass('www/asset/css/main.scss');
+  fusion.sass('www/asset/scss/admin/admin.scss', 'www/asset/admin/css/');
+  fusion.sass('www/asset/scss/front/main.scss', 'www/asset/css');
   // Compile end
 });
 
