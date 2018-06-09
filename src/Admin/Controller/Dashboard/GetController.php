@@ -8,12 +8,11 @@
 
 namespace Admin\Controller\Dashboard;
 
-use Admin\Model\DashboardModel;
+use Admin\Repository\DashboardRepository;
 use Admin\View\Dashboard\DashboardHtmlView;
 use Phoenix\Controller\Display\DisplayController;
 use Windwalker\Core\Repository\Repository;
 use Windwalker\Core\View\AbstractView;
-use Windwalker\Debugger\Repository\DashboardRepository;
 
 /**
  * The GetController class.
@@ -32,7 +31,7 @@ class GetController extends DisplayController
     /**
      * Property model.
      *
-     * @var  DashboardModel
+     * @var  DashboardRepository
      */
     protected $model;
 
