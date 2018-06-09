@@ -41,10 +41,9 @@ class UserInit extends AbstractMigration
             $schema->datetime('modified')->comment('Modified Time');
             $schema->text('params')->comment('Params');
 
-            $schema->addIndex('id');
-            $schema->addIndex('username');
-            $schema->addIndex('email');
-            $schema->addIndex('group');
+            $schema->addIndex('username(150)');
+            $schema->addIndex('email(150)');
+            $schema->addIndex('group(150)');
         });
 
         $this->createTable(WarderTable::USER_SOCIALS, function (Schema $schema) {
@@ -53,7 +52,7 @@ class UserInit extends AbstractMigration
             $schema->char('provider')->length(15)->comment('Social provider');
 
             $schema->addIndex('user_id');
-            $schema->addIndex('identifier');
+            $schema->addIndex('identifier(150)');
         });
 
         $faker = Factory::create();
