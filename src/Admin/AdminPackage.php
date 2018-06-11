@@ -31,8 +31,9 @@ class AdminPackage extends AbstractPackage
     /**
      * initialise
      *
-     * @throws  \LogicException
      * @return  void
+     * @throws \ReflectionException
+     * @throws \Windwalker\DI\Exception\DependencyResolutionException
      */
     public function boot()
     {
@@ -54,7 +55,7 @@ class AdminPackage extends AbstractPackage
         // Assets
         BootstrapScript::css(4);
         BootstrapScript::script(4);
-        BootstrapScript::fontAwesome();
+        BootstrapScript::fontAwesome(5);
         Asset::addCSS($this->name . '/css/admin.css');
 
         // Language
