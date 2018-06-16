@@ -25,7 +25,7 @@ class ViewListener
      * @param Event $event
      *
      * @return  void
-     * @throws \RuntimeException
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function onViewBeforeRender(Event $event)
     {

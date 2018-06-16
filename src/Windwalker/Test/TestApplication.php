@@ -29,6 +29,8 @@ class TestApplication extends Application
      * initialise
      *
      * @return  void
+     * @throws \ReflectionException
+     * @throws \Windwalker\DI\Exception\DependencyResolutionException
      */
     protected function init()
     {

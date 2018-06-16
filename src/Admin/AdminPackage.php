@@ -46,7 +46,8 @@ class AdminPackage extends AbstractPackage
      * prepareExecute
      *
      * @return  void
-     * @throws \Exception
+     * @throws \Psr\Cache\InvalidArgumentException
+     * @throws \ReflectionException
      */
     protected function prepareExecute()
     {
@@ -67,8 +68,7 @@ class AdminPackage extends AbstractPackage
      *
      * @return  void
      *
-     * @throws  RouteNotFoundException
-     * @throws  \Exception
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     protected function checkAccess()
     {

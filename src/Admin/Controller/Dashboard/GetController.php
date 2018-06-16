@@ -64,6 +64,7 @@ class GetController extends DisplayController
      *
      * @return  void
      *
+     * @throws \ReflectionException
      * @since  __DEPLOY_VERSION__
      */
     protected function prepareViewRepository(AbstractView $view, Repository $repository)

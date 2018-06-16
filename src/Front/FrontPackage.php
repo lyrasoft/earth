@@ -30,8 +30,9 @@ class FrontPackage extends AbstractPackage
     /**
      * initialise
      *
-     * @throws  \LogicException
      * @return  void
+     * @throws \ReflectionException
+     * @throws \Windwalker\DI\Exception\DependencyResolutionException
      */
     public function boot()
     {
@@ -42,6 +43,7 @@ class FrontPackage extends AbstractPackage
      * prepareExecute
      *
      * @return  void
+     * @throws \ReflectionException
      */
     protected function prepareExecute()
     {
