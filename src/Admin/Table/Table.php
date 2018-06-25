@@ -8,12 +8,15 @@
 
 namespace Admin\Table;
 
+use Lyrasoft\Luna\Table\LunaTable;
+use Lyrasoft\Warder\Table\WarderTable;
+
 /**
  * The Table class.
  *
  * @since  1.0
  */
-abstract class Table
+abstract class Table implements WarderTable, LunaTable
 {
     const DASHBOARDS = 'dashboards';
 
