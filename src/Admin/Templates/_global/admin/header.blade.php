@@ -37,7 +37,7 @@
                     <li class="nav-item">
                         <a href="{{ $router->route('logout') }}"
                            class="nav-link hasTooltip" title="Logout" data-placement="bottom">
-                            <span class="glyphicon glyphicon-log-out fa fa-sign-out"></span>
+                            <span class="glyphicon glyphicon-log-out fa fa-sign-out fa-sign-out-alt"></span>
                         </a>
                     </li>
                 @endif

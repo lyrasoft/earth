@@ -6,18 +6,16 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-namespace Admin\Model;
+namespace Admin\Repository;
 
-use Admin\Mapper\DashboardMapper;
-use Windwalker\Core\Model\DatabaseModel;
-use Windwalker\Core\Model\ModelRepository;
+use Windwalker\Core\Repository\Repository;
 
 /**
  * The DashboardModel class.
  *
  * @since  1.0
  */
-class DashboardModel extends ModelRepository
+class DashboardRepository extends Repository
 {
     /**
      * Property name.

@@ -91,6 +91,7 @@ class MenuHelper extends AbstractHelper
      * getSubmenus
      *
      * @return  array
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function getSubmenus()
     {
@@ -104,7 +105,7 @@ class MenuHelper extends AbstractHelper
 
             $links[] = new HtmlElement(
                 'a',
-                Translator::translate($package->getName() . '.' . $menu),
+                __($package->getName() . '.' . $menu),
                 [
                     'href' => $view->getRouter()->route($menu),
                     'class' => $active,

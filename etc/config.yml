@@ -22,7 +22,7 @@ session:
     # Session handler, supports `native`, `database`, `apc`, `memcached`
     handler: native
     # By minutes
-    expire_time: 15
+    expire_time: 150
 
 routing:
     # Enable routing debug, if route key not found when you generate routs,

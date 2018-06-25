@@ -16,7 +16,7 @@ fusion.task('main', () => {
 
   // Compile Start
   fusion.sass('www/asset/scss/admin/admin.scss', 'www/asset/admin/css/');
-  fusion.sass('www/asset/scss/front/main.scss', 'www/asset/css');
+  fusion.sass('www/asset/scss/front/main.scss', 'www/asset/css/');
   // Compile end
 });
 
