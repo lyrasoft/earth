@@ -15,7 +15,7 @@ return [
         'files' => [
             'main' => PACKAGE_ADMIN_ROOT . '/routing.yml',
             'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getAdminRouting(),
-            'luna'   => \Lyrasoft\Luna\Helper\LunaHelper::getAdminRouting(),
+            'luna' => \Lyrasoft\Luna\Helper\LunaHelper::getAdminRouting(),
         ]
     ],
 
