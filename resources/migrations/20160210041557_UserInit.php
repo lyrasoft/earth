@@ -33,6 +33,7 @@ class UserInit extends AbstractMigration
             $schema->varchar('avatar')->comment('Avatar');
             $schema->varchar('group')->comment('Group');
             $schema->tinyint('blocked')->length(1)->comment('0: normal, 1: blocked');
+            $schema->tinyint('receive_mail')->defaultValue(0)->length(1);
             $schema->varchar('activation')->comment('Activation code.');
             $schema->varchar('reset_token')->comment('Reset Token');
             $schema->datetime('last_reset')->comment('Last Reset Time');
@@ -65,6 +66,7 @@ class UserInit extends AbstractMigration
         $user->avatar     = 'https://avatars0.githubusercontent.com/u/13175487';
         $user->password   = Hasher::create('1234');
         $user->blocked    = 0;
+        $user->receive_mail = 1;
         $user->activation = '';
         $user->last_reset = $faker->dateTimeThisYear->format($this->getDateFormat());
         $user->last_login = $faker->dateTimeThisYear->format($this->getDateFormat());
