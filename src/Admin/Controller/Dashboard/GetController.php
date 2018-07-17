@@ -43,6 +43,14 @@ class GetController extends DisplayController
     protected $view;
 
     /**
+     * Class init.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * A hook before main process executing.
      *
      * @return  void
