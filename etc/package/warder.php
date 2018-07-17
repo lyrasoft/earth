@@ -12,11 +12,11 @@ return [
      * ------------------------------------------------
      */
     'user' => [
-        'login_name'    => 'username',
+        'login_name' => 'username',
 
         // The below is ACL settings, we haven't implement it.
         'default_group' => 'registered',
-        'session_name'  => 'user'
+        'session_name' => 'user'
     ],
 
     /*
@@ -24,11 +24,11 @@ return [
      * ------------------------------------------------
      */
     'table' => [
-        'users'        => 'users',
+        'users' => 'users',
         'user_socials' => 'user_socials',
-        'groups'       => 'groups',
+        'groups' => 'groups',
         'user_group_maps' => 'user_group_maps',
-        'actions'      => 'actions'
+        'actions' => 'actions'
     ],
 
     /*
@@ -98,7 +98,7 @@ return [
      */
     'class' => [
         'handler' => \Lyrasoft\Warder\Handler\UserHandler::class,
-        'data'    => \Lyrasoft\Warder\Data\UserData::class
+        'data' => \Lyrasoft\Warder\Data\UserData::class
     ],
 
     'listeners' => [

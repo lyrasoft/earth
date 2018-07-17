@@ -27,7 +27,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a href="{{ $router->route('front@home') }}" target="_blank"
+                    <a href="{{ $router->to('front@home')->mute() }}" target="_blank"
                        class="nav-link hasTooltip" title="Preview" data-placement="bottom">
                         <span class="glyphicon glyphicon-globe fa fa-globe"></span>
                     </a>
@@ -35,7 +35,7 @@
 
                 @if ($user->isMember())
                     <li class="nav-item">
-                        <a href="{{ $router->route('logout') }}"
+                        <a href="{{ $router->to('logout')->mute() }}"
                            class="nav-link hasTooltip" title="Logout" data-placement="bottom">
                             <span class="glyphicon glyphicon-log-out fa fa-sign-out fa-sign-out-alt"></span>
                         </a>

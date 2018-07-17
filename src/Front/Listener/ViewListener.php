@@ -26,6 +26,8 @@ class ViewListener
      *
      * @return  void
      * @throws \Psr\Cache\InvalidArgumentException
+     * @throws \ReflectionException
+     * @throws \Windwalker\DI\Exception\DependencyResolutionException
      */
     public function onViewBeforeRender(Event $event)
     {

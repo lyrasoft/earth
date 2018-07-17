@@ -33,7 +33,7 @@
                 <ul class="nav navbar-nav">
                     @section('nav')
                         <li class="nav-item active">
-                            <a href="{{ $router->route('home') }}" class="nav-link">Home</a>
+                            <a href="{{ $router->to('home')->mute() }}" class="nav-link">Home</a>
                         </li>
                     @show
 
@@ -46,7 +46,7 @@
                         <ul class="dropdown-menu">
                             @foreach ($categories as $category)
                                 <li>
-                                    <a class="dropdown-item" href="{{ $router->route('article_category', array('path' => $category->path)) }}">
+                                    <a class="dropdown-item" href="{{ $router->to('article_category', array('path' => $category->path))->mute() }}">
                                         {{ str_repeat('-', $category->level - 1) }}
                                         {{ $category->title }}
                                     </a>
