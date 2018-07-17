@@ -33,7 +33,7 @@
                     </a>
                 </li>
 
-                @if (\Lyrasoft\Warder\Helper\UserHelper::isLogin())
+                @if ($user->isMember())
                     <li class="nav-item">
                         <a href="{{ $router->route('logout') }}"
                            class="nav-link hasTooltip" title="Logout" data-placement="bottom">
@@ -45,6 +45,5 @@
         </div>
         <!--/.nav-collapse -->
     </div>
-
 
 @show
