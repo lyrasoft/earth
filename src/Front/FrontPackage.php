@@ -16,10 +16,6 @@ use Windwalker\Core\Router\MainRouter;
 use Windwalker\Debugger\Helper\DebuggerHelper;
 use Windwalker\Filesystem\Folder;
 
-if (!defined('PACKAGE_FRONT_ROOT')) {
-    define('PACKAGE_FRONT_ROOT', __DIR__);
-}
-
 /**
  * The FrontPackage class.
  *
@@ -27,6 +23,9 @@ if (!defined('PACKAGE_FRONT_ROOT')) {
  */
 class FrontPackage extends AbstractPackage
 {
+    const DIR = __DIR__;
+    const FILE = __FILE__;
+
     /**
      * initialise
      *
@@ -66,7 +65,7 @@ class FrontPackage extends AbstractPackage
      */
     protected function checkAccess()
     {
-
+        //
     }
 
     /**
@@ -79,9 +78,11 @@ class FrontPackage extends AbstractPackage
     protected function postExecute($result = null)
     {
         if (WINDWALKER_DEBUG) {
-            if (class_exists('Windwalker\Debugger\Helper\DebuggerHelper')) {
-                DebuggerHelper::addCustomData('Language Orphans',
-                    '<pre>' . TranslatorHelper::getFormattedOrphans() . '</pre>');
+            if (class_exists(DebuggerHelper::class)) {
+                DebuggerHelper::addCustomData(
+                    'Language Orphans',
+                    '<pre>' . TranslatorHelper::getFormattedOrphans() . '</pre>'
+                );
             }
         }
 

@@ -39,6 +39,6 @@ class TestApplication extends Application
         $this->boot();
 
         $session = $this->session;
-        $session->setBridge(new MockArrayBridge);
+        $session->setBridge(new MockArrayBridge());
     }
 }

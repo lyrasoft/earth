@@ -47,7 +47,7 @@ class Application extends WebApplication
      */
     protected function prepareExecute()
     {
-
+        //
     }
 
     /**
@@ -57,5 +57,6 @@ class Application extends WebApplication
      */
     protected function postExecute()
     {
+        //
     }
 }

@@ -8,7 +8,6 @@
 
 namespace Admin;
 
-use Lyrasoft\Warder\Helper\UserHelper;
 use Lyrasoft\Warder\Warder;
 use Phoenix\Language\TranslatorHelper;
 use Phoenix\Script\BootstrapScript;
@@ -16,11 +15,6 @@ use Windwalker\Core\Asset\Asset;
 use Windwalker\Core\Package\AbstractPackage;
 use Windwalker\Core\Router\MainRouter;
 use Windwalker\Filesystem\Folder;
-use Windwalker\Router\Exception\RouteNotFoundException;
-
-if (!defined('PACKAGE_ADMIN_ROOT')) {
-    define('PACKAGE_ADMIN_ROOT', __DIR__);
-}
 
 /**
  * The AdminPackage class.
@@ -29,6 +23,9 @@ if (!defined('PACKAGE_ADMIN_ROOT')) {
  */
 class AdminPackage extends AbstractPackage
 {
+    const DIR = __DIR__;
+    const FILE = __FILE__;
+
     /**
      * initialise
      *
