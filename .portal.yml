@@ -1,0 +1,8 @@
+title: Earth
+public: /www
+parses:
+    - etc/secret.dist.yml
+scripts:
+    - cp etc/secret.portal.yml etc/secret.yml
+    - composer install
+    - php windwalker run preparedev

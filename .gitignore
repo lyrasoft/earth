@@ -6,6 +6,8 @@
 !.editorconfig
 !web.config
 !.bowerrc
+!.portal.yml
+!.circleci
 
 # Libraries
 /vendor
