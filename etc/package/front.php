@@ -13,7 +13,7 @@ return [
 
     'routing' => [
         'files' => [
-            'main' => PACKAGE_FRONT_ROOT . '/routing.yml',
+            'main' => \Front\FrontPackage::DIR . '/routing.yml',
             'warder' => \Lyrasoft\Warder\Helper\WarderHelper::getFrontendRouting(),
             'luna' => \Lyrasoft\Luna\Helper\LunaHelper::getFrontendRouting(),
         ]
