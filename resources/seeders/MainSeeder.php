@@ -19,6 +19,7 @@ class MainSeeder extends AbstractSeeder
      * doExecute
      *
      * @return  void
+     * @throws ReflectionException
      */
     public function doExecute()
     {
@@ -31,6 +32,8 @@ class MainSeeder extends AbstractSeeder
         $this->execute(TagSeeder::class);
 
         $this->execute(CategorySeeder::class);
+
+        $this->execute(PageSeeder::class);
 
         $this->execute(ArticleSeeder::class);
 
@@ -45,6 +48,7 @@ class MainSeeder extends AbstractSeeder
      * doClear
      *
      * @return  void
+     * @throws ReflectionException
      */
     public function doClear()
     {
@@ -55,6 +59,8 @@ class MainSeeder extends AbstractSeeder
         $this->clear(TagSeeder::class);
 
         $this->clear(CategorySeeder::class);
+
+        $this->clear(PageSeeder::class);
 
         $this->clear(ArticleSeeder::class);
 

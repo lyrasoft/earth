@@ -36,6 +36,12 @@
         </a>
     </li>
 
+    <li class="nav-item {{ $helper->menu->active('pages') }}">
+        <a href="{{ $router->route('pages') }}" class="nav-link {{ $helper->menu->active('pages') }}">
+            @translate($luna->langPrefix . 'pages.title')
+        </a>
+    </li>
+
     <li class="nav-item {{ $helper->menu->active('tags') }}">
         <a href="{{ $router->route('tags') }}" class="nav-link {{ $helper->menu->active('tags') }}">
             @translate($luna->langPrefix . 'tags.title')
