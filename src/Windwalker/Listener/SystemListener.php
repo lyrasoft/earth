@@ -8,9 +8,11 @@
 
 namespace Windwalker\Listener;
 
+use Front\FrontPackage;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Windwalker\Core\Application\WebApplication;
+use Windwalker\Core\Package\PackageHelper;
 use Windwalker\Core\View\HtmlView;
 use Windwalker\Event\Event;
 use Windwalker\Http\Response\HtmlResponse;
@@ -37,7 +39,7 @@ class SystemListener
         $app = $event['app'];
 
         // Remove index.php
-        if ($app->uri->script == 'index.php') {
+        if ($app->uri->script === 'index.php') {
             $app->uri->script = null;
         }
     }
@@ -53,6 +55,18 @@ class SystemListener
     {
         /** @var WebApplication $app */
         $app = $event['app'];
+
+        if (strpos($app->getUri()->route, 'admin') !== 0) {
+            return;
+        }
+
+        $keyPass = $app->get('system.admin_key')
+            ? $app->get('system.admin_key') !== $app->input->header->get('X-Admin-Key')
+            : false;
+
+        if ($keyPass) {
+            return;
+        }
 
         if ($app->get('system.offline', false) && !$app->get('system.debug')) {
             $app->server->setHandler(
