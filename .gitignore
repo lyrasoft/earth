@@ -13,11 +13,11 @@
 /vendor
 /node_modules
 /bower_components
+/yarn-error.log
 
 # Remove above lines when you start a project
 composer.lock
 yarn.lock
-yarn-error.log
 package-lock.json
 
 # Windwalker
