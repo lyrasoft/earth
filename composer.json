@@ -14,7 +14,13 @@
         "windwalker/core" : "~3.0",
         "fzaninotto/faker": "~1.0",
         "swiftmailer/swiftmailer": "~5.0",
-        "lyrasoft/luna": "~1.0"
+        "lyrasoft/luna": "~1.0",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-simplexml": "*",
+        "ext-curl": "*",
+        "ext-openssl": "*",
+        "ext-zlib": "*"
     },
     "require-dev": {
     },
