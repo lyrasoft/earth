@@ -79,5 +79,11 @@
         </a>
     </li>
 
+    <li class="nav-item {{ $helper->menu->active('config', ['type' => 'core']) }}">
+        <a href="{{ $router->route('config', ['type' => 'core']) }}" class="nav-link {{ $helper->menu->active('config', ['type' => 'core']) }}">
+            @translate($luna->langPrefix . 'config.title')
+        </a>
+    </li>
+
     {{-- @muse-placeholder  submenu  Do not remove this line --}}
 </ul>
