@@ -1,19 +1,25 @@
 /**
- * Part of starter project. 
+ * Part of earth project.
  *
- * @copyright  Copyright (C) 2014 {ORGANIZATION}. All rights reserved.
+ * @copyright  Copyright (C) 2018 {ORGANIZATION}. All rights reserved.
  * @license    GNU General Public License version 2 or later;
  */
 
-//@import "../global";
+// Variables
+@import "../global";
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-	padding-top: 50px;
-	padding-bottom: 20px;
-}
+// Base
+@import "base/utilities";
+@import "base/extended";
 
-.navbar-brand img {
-	height: 35px;
-	margin-top: -8px;
-}
+// Layout
+@import "layout/base";
+@import "layout/header";
+@import "layout/banner";
+@import "layout/footer";
+
+// component
+@import "components/breadcrumb";
+
+// Pages
+@import "pages/home";
