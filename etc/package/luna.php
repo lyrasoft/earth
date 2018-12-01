@@ -45,7 +45,8 @@ return [
         'language' => [
             'prefix' => 'luna.',
             'enabled' => false,
-            'default' => 'en-GB'
+            'default' => 'en-GB',
+            'use_browser' => false
         ]
     ],
 
@@ -66,7 +67,8 @@ return [
             'prefix' => 'luna.',
             'enabled' => false,
             'locale' => 'en-GB',
-            'default' => 'en-GB'
+            'default' => 'en-GB',
+            'use_browser' => false
         ]
     ],
 
