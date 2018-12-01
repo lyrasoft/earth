@@ -1,0 +1,89 @@
+menu-1:
+    title: 大型家電
+    children:
+        Freezer:
+            title: 冰箱
+            is_tag: true
+        TV:
+            title: 電視
+            is_tag: true
+        Washer:
+            title: 洗衣機
+            is_tag: true
+menu-2:
+    title: 嵌入式家電
+    children:
+        Oven:
+            title: 烤箱
+            is_tag: true
+        Dishwasher:
+            title: 洗碗機
+            is_tag: true
+        GasCooktop:
+            title: 瓦斯爐
+            is_tag: true
+        InductionCooktop:
+            title: 電磁爐
+            is_tag: true
+menu-3:
+    title: 小型家電
+    children:
+        Fragrance Machine / Humidifier:
+            title: 香氛機/加濕器
+            is_tag: true
+        dehumidifier:
+            title: 除濕機
+            is_tag: true
+        Electric Kettle:
+            title: 細口快煮壺
+            is_tag: true
+        Washlet:
+            title: 智能洗淨便座
+            is_tag: true
+        Rice Storage / Waste Disposal:
+            title: 儲米機/廚餘機
+            is_tag: true
+        Air Purifier / Air Sterilizer:
+             title: 空氣清淨機/空氣殺菌機
+             is_tag: true
+        Air Conditioner:
+            title: 冷氣機
+            is_tag: true
+        Heater:
+             title: 電暖器
+             is_tag: true
+        Kerosene Heater:
+            title: 煤油爐
+            is_tag: true
+        Infrared Machine:
+             title: 遠紅外線照護機
+             is_tag: true
+        Fan:
+            title: 風扇/循環扇/水冷扇
+            is_tag: true
+        Vacuum Cleaner:
+             title: 吸塵器
+             is_tag: true
+        Electric Mop:
+             title: 電動拖把
+             is_tag: true
+        Pressure Washer:
+             title: 高壓清洗機
+             is_tag: true
+        Window Cleaning Robot:
+             title: 擦玻璃機器人
+             is_tag: true
+        Floor Clean:
+             title: 地板清潔/妞妞掃
+             is_tag: true
+        Massage:
+             title: 按摩用品
+             is_tag: true
+menu-4:
+    title: 生活用品
+menu-5:
+    title: 廚房器具
+menu-6:
+    title: 耗件配材
+menu-7:
+    title: 福利出清

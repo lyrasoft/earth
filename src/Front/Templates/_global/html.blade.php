@@ -16,6 +16,19 @@
     @yield('style')
     @stack('style')
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
+
+    @php($config = \Lyrasoft\Luna\Config\ConfigHelper::getConfig('core'))
+    @if ($config->exists('ga'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90546985-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{ $config->get('ga') }}');
+        </script>
+    @endif
 </head>
 <body class="package-{{ $package->name }} view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }}"
       style="padding-top: 56px">

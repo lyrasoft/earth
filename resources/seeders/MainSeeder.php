@@ -27,6 +27,8 @@ class MainSeeder extends AbstractSeeder
 
         $this->execute(UserSeeder::class);
 
+        $this->execute(ConfigSeeder::class);
+
         $this->execute(LanguageSeeder::class);
 
         $this->execute(TagSeeder::class);
@@ -53,6 +55,8 @@ class MainSeeder extends AbstractSeeder
     public function doClear()
     {
         $this->clear(UserSeeder::class);
+
+        $this->clear(ConfigSeeder::class);
 
         $this->clear(LanguageSeeder::class);
 

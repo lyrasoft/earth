@@ -9,9 +9,9 @@
 namespace Admin;
 
 use Lyrasoft\Warder\Warder;
-use Phoenix\Language\TranslatorHelper;
 use Phoenix\Script\BootstrapScript;
 use Windwalker\Core\Asset\Asset;
+use Windwalker\Core\Language\Translator;
 use Windwalker\Core\Package\AbstractPackage;
 use Windwalker\Core\Router\MainRouter;
 use Windwalker\Filesystem\Folder;
@@ -24,6 +24,7 @@ use Windwalker\Filesystem\Folder;
 class AdminPackage extends AbstractPackage
 {
     const DIR = __DIR__;
+
     const FILE = __FILE__;
 
     /**
@@ -36,7 +37,6 @@ class AdminPackage extends AbstractPackage
     public function boot()
     {
         parent::boot();
-
         // Add your own boot logic
     }
 
@@ -58,7 +58,8 @@ class AdminPackage extends AbstractPackage
         Asset::addCSS($this->name . '/css/admin.css');
 
         // Language
-        TranslatorHelper::loadAll($this, 'ini');
+        Translator::loadAll($this, 'ini');
+        Translator::loadFile('main');
     }
 
     /**
@@ -102,7 +103,6 @@ class AdminPackage extends AbstractPackage
 
         $router->group($group, function (MainRouter $router) {
             $router->addRouteFromFiles(Folder::files(__DIR__ . '/Resources/routing'), $this->getName());
-
             // Merge other routes here...
         });
 

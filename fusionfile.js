@@ -7,8 +7,8 @@
 
 const fusion = require('windwalker-fusion');
 
-// The task `main`
-fusion.task('main', () => {
+// The task `css`
+fusion.task('css', () => {
   // Watch start
   fusion.watch('www/asset/scss/admin/**/*.scss');
   fusion.watch('www/asset/scss/front/**/*.scss');
@@ -17,6 +17,19 @@ fusion.task('main', () => {
   // Compile Start
   fusion.sass('www/asset/scss/admin/admin.scss', 'www/asset/admin/css/');
   fusion.sass('www/asset/scss/front/main.scss', 'www/asset/css/');
+  // Compile end
+});
+
+// The task `js`
+fusion.task('js', () => {
+  // Watch start
+  fusion.watch('www/asset/src/admin/**/*.js');
+  fusion.watch('www/asset/src/front/**/*.js');
+  // Watch end
+
+  // Compile Start
+  fusion.sass('www/asset/src/admin/**/*.js', 'www/asset/admin/js/');
+  fusion.sass('www/asset/src/front/**/*.js', 'www/asset/js/');
   // Compile end
 });
 
@@ -34,7 +47,23 @@ fusion.task('bootstrap', () => {
   // Compile end
 });
 
-fusion.default(['main']);
+// The task `install`
+fusion.task('install', () => {
+  const vendors = [
+    '@fancyapps/fancybox',
+    'sortablejs',
+    'vuedraggable',
+    'jquery-zoom',
+    'countdown'
+  ];
+
+  vendors.forEach(vendor => {
+    console.log(`[Copy] node_modules/${vendor}/**/* => www/asset/vendor/${vendor}/`);
+    fusion.copy(`node_modules/${vendor}/**/*`, `www/asset/vendor/${vendor}/`);
+  });
+});
+
+fusion.default(['css', 'js']);
 
 /*
  * APIs
