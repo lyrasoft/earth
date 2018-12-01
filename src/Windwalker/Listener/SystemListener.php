@@ -56,12 +56,12 @@ class SystemListener
         /** @var WebApplication $app */
         $app = $event['app'];
 
-        if (strpos($app->getUri()->route, 'admin') !== 0) {
+        if (strpos($app->getUri()->route, 'admin') === 0) {
             return;
         }
 
         $keyPass = $app->get('system.admin_key')
-            ? $app->get('system.admin_key') !== $app->input->header->get('X-Admin-Key')
+            ? (string) $app->get('system.admin_key') === (string) $app->input->header->get('X-Admin-Key')
             : false;
 
         if ($keyPass) {
