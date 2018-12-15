@@ -50,11 +50,7 @@ fusion.task('bootstrap', () => {
 // The task `install`
 fusion.task('install', () => {
   const vendors = [
-    '@fancyapps/fancybox',
-    'sortablejs',
-    'vuedraggable',
-    'jquery-zoom',
-    'countdown'
+    //
   ];
 
   vendors.forEach(vendor => {
