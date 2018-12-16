@@ -28,8 +28,8 @@ fusion.task('js', () => {
   // Watch end
 
   // Compile Start
-  fusion.sass('www/asset/src/admin/**/*.js', 'www/asset/admin/js/');
-  fusion.sass('www/asset/src/front/**/*.js', 'www/asset/js/');
+  fusion.js('www/asset/src/admin/**/*.js', 'www/asset/admin/js/');
+  fusion.js('www/asset/src/front/**/*.js', 'www/asset/js/');
   // Compile end
 });
 
