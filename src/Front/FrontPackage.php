@@ -52,8 +52,11 @@ class FrontPackage extends AbstractPackage
         // Assets
         Asset::alias('phoenix/css/bootstrap/4/bootstrap.css', 'css/bootstrap/bootstrap.min.css');
         BootstrapScript::css(4);
-        BootstrapScript::script(4);
         BootstrapScript::fontAwesome(5);
+        Asset::addCSS('css/main.min.css');
+
+        BootstrapScript::script(4);
+        Asset::addJS('js/main.min.js');
 
         // Language
         Translator::loadAll($this, 'ini');
