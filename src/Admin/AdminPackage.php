@@ -53,9 +53,11 @@ class AdminPackage extends AbstractPackage
 
         // Assets
         BootstrapScript::css(4);
-        BootstrapScript::script(4);
         BootstrapScript::fontAwesome(5);
-        Asset::addCSS($this->name . '/css/admin.css');
+        Asset::addCSS($this->name . '/css/admin.min.css');
+
+        BootstrapScript::script(4);
+        Asset::addJS($this->name . '/js/admin.min.js');
 
         // Language
         Translator::loadAll($this, 'ini');
