@@ -3,7 +3,7 @@
     "description": "Home Land of LYRASOFT",
     "homepage": "https://github.com/lyrasoft/earth",
     "license": "LGPL-2.0-or-later",
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Simon Asika",
@@ -40,7 +40,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.0.10"
+            "php": "7.1.3"
         }
     },
     "extra": {
