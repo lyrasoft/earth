@@ -9,4 +9,5 @@
 use Windwalker\Core\Router\RouteCreator;
 
 /** @var RouteCreator $router */
-$router->registerPackage('main', '/');
+$router->registerPackage('front', '/');
+$router->registerPackage('admin', '/admin');
