@@ -11,9 +11,11 @@
         }
     ],
     "require": {
+        "php": ">=7.1",
         "windwalker/core" : "~3.0",
         "fzaninotto/faker": "~1.0",
         "swiftmailer/swiftmailer": "~5.0",
+        "windwalker/phoenix": "^1.6",
         "lyrasoft/luna": "~1.0",
         "ext-json": "*",
         "ext-pdo": "*",
@@ -31,7 +33,7 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "Windwalker\\Composer\\StarterInstaller::rootInstall",
+            "Windwalker\\Core\\Composer\\StarterInstaller::rootInstall",
             "Windwalker\\Composer\\EarthInstaller::install"
         ],
         "post-autoload-dump": "php windwalker system clear-cache renderer"

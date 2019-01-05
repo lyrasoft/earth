@@ -6,6 +6,8 @@
  * @license    GNU Lesser General Public License version 3 or later.
  */
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+
 use Windwalker\Core\Seeder\AbstractSeeder;
 
 /**

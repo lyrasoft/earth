@@ -51,9 +51,7 @@ class Application extends WebApplication
     }
 
     /**
-     * Pose execute hook.
-     *
-     * @return  mixed
+     * Post execute hook.
      */
     protected function postExecute()
     {
