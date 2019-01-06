@@ -22,6 +22,10 @@ return Arr::mergeRecursive(
         'console'  => require __DIR__ . '/conf/console.php',
         'mail'     => require __DIR__ . '/conf/mail.php',
         'queue'    => require __DIR__ . '/conf/queue.php',
+
+        // LYRASOFT
+        'unidev' => require __DIR__ . '/conf/unidev.php',
+        'warder' => require __DIR__ . '/conf/warder.php',
     ],
 
     // Load custom values

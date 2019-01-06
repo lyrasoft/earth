@@ -1,8 +1,8 @@
 title: Earth
 public: /www
 parses:
-    - etc/secret.dist.yml
+    - .env.portal.dist
 scripts:
-    - cp etc/secret.portal.yml etc/secret.yml
+    - cp .env.portal.dist .env
     - composer install
     - php windwalker run preparedev
