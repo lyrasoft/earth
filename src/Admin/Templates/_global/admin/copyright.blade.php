@@ -2,15 +2,10 @@
 
 <div id="copyright">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
+        <hr/>
 
-                <hr/>
-
-                <footer>
-                    &copy; Windwalker {{ $datetime->format('Y') }}
-                </footer>
-            </div>
-        </div>
+        <footer>
+            &copy; Windwalker {{ $datetime->format('Y') }}
+        </footer>
     </div>
 </div>

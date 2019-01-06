@@ -9,3 +9,8 @@
 use Windwalker\Core\Router\RouteCreator;
 
 /** @var RouteCreator $router */
+
+$router->group('package')
+    ->register(function (RouteCreator $router) {
+        $router->load(__DIR__ . '/Resources/routing/*.php');
+    });

@@ -13,7 +13,7 @@ return [
 
     'routing' => [
         'files' => [
-            'main' => \Admin\AdminPackage::DIR . '/routing.yml',
+            //
         ],
     ],
 
