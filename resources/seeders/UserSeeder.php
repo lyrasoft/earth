@@ -6,10 +6,8 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Faker\Factory;
 use Lyrasoft\Unidev\Helper\PravatarHelper;
 use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
-use Lyrasoft\Warder\Helper\UserHelper;
 use Lyrasoft\Warder\Table\WarderTable;
 use Lyrasoft\Warder\Warder;
 use Windwalker\Core\Seeder\AbstractSeeder;
@@ -29,7 +27,7 @@ class UserSeeder extends AbstractSeeder
      */
     public function doExecute()
     {
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
         $pass = Warder::hashPassword(1234);
 

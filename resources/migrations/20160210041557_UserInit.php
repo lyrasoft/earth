@@ -6,7 +6,6 @@
  * @license    GNU General Public License version 2 or later;
  */
 
-use Faker\Factory;
 use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Data\UserData;
 use Lyrasoft\Warder\Table\WarderTable;
@@ -56,22 +55,22 @@ class UserInit extends AbstractMigration
             $schema->addIndex('identifier(150)');
         });
 
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
         $user = new UserData();
 
-        $user->email      = 'webadmin@simular.co';
-        $user->name       = 'Simular';
-        $user->username   = 'admin';
-        $user->avatar     = 'https://avatars0.githubusercontent.com/u/13175487';
-        $user->password   = Hasher::create('1234');
-        $user->blocked    = 0;
+        $user->email        = 'webadmin@simular.co';
+        $user->name         = 'Simular';
+        $user->username     = 'admin';
+        $user->avatar       = 'https://avatars0.githubusercontent.com/u/13175487';
+        $user->password     = Hasher::create('1234');
+        $user->blocked      = 0;
         $user->receive_mail = 1;
-        $user->activation = '';
-        $user->last_reset = $faker->dateTimeThisYear->format($this->getDateFormat());
-        $user->last_login = $faker->dateTimeThisYear->format($this->getDateFormat());
-        $user->registered = $faker->dateTimeThisYear->format($this->getDateFormat());
-        $user->modified   = $faker->dateTimeThisYear->format($this->getDateFormat());
+        $user->activation   = '';
+        $user->last_reset   = $faker->dateTimeThisYear->format($this->getDateFormat());
+        $user->last_login   = $faker->dateTimeThisYear->format($this->getDateFormat());
+        $user->registered   = $faker->dateTimeThisYear->format($this->getDateFormat());
+        $user->modified     = $faker->dateTimeThisYear->format($this->getDateFormat());
 
         UserMapper::createOne($user);
     }

@@ -6,7 +6,6 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Faker\Factory;
 use Lyrasoft\Luna\Admin\DataMapper\ArticleMapper;
 use Lyrasoft\Luna\Admin\DataMapper\CategoryMapper;
 use Lyrasoft\Luna\Admin\DataMapper\LanguageMapper;
@@ -16,7 +15,6 @@ use Lyrasoft\Luna\Table\LunaTable;
 use Lyrasoft\Unidev\Helper\UnsplashHelper;
 use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Helper\WarderHelper;
-use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
 use Windwalker\Data\Data;
 use Windwalker\Filter\OutputFilter;
@@ -32,10 +30,11 @@ class ArticleSeeder extends AbstractSeeder
      * doExecute
      *
      * @return  void
+     * @throws Exception
      */
     public function doExecute()
     {
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
         $languages   = LanguageMapper::find(['state' => 1])->code;
         $languages[] = '*';
@@ -57,7 +56,7 @@ class ArticleSeeder extends AbstractSeeder
 
         foreach ($categories as $category) {
             foreach (range(7, 15) as $i) {
-                $data = new Data;
+                $data = new Data();
 
                 $lang = $faker->randomElement($languages);
 
@@ -80,7 +79,7 @@ class ArticleSeeder extends AbstractSeeder
                 ArticleMapper::createOne($data);
 
                 foreach ($faker->randomElements($tags, random_int(5, 7)) as $tag) {
-                    $map = new Data;
+                    $map = new Data();
 
                     $map->tag_id    = $tag->id;
                     $map->target_id = $data->id;

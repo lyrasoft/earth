@@ -22,6 +22,7 @@ class MainSeeder extends AbstractSeeder
      *
      * @return  void
      * @throws ReflectionException
+     * @throws \Windwalker\DI\Exception\DependencyResolutionException
      */
     public function doExecute()
     {

@@ -6,13 +6,11 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Faker\Factory;
 use Lyrasoft\Luna\Admin\DataMapper\ModuleMapper;
 use Lyrasoft\Luna\Module\ModuleHelper;
 use Lyrasoft\Luna\Table\LunaTable;
 use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Helper\WarderHelper;
-use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
 use Windwalker\Data\Data;
 
@@ -27,10 +25,11 @@ class ModuleSeeder extends AbstractSeeder
      * doExecute
      *
      * @return  void
+     * @throws Exception
      */
     public function doExecute()
     {
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
         if (WarderHelper::tableExists('users')) {
             $userIds = UserMapper::findAll()->id;
@@ -43,7 +42,7 @@ class ModuleSeeder extends AbstractSeeder
         $types = ModuleHelper::getModuleTypes()->dump();
 
         foreach (range(1, 75) as $i) {
-            $data = new Data;
+            $data = new Data();
 
             /** @var \Lyrasoft\Luna\Module\ModuleType $module */
             $module = $faker->randomElement($types);

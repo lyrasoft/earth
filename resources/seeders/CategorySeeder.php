@@ -6,14 +6,12 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Faker\Factory;
 use Lyrasoft\Luna\Admin\DataMapper\LanguageMapper;
 use Lyrasoft\Luna\Admin\Record\CategoryRecord;
 use Lyrasoft\Luna\Table\LunaTable;
 use Lyrasoft\Unidev\Helper\UnsplashHelper;
 use Lyrasoft\Warder\Admin\DataMapper\UserMapper;
 use Lyrasoft\Warder\Helper\WarderHelper;
-use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Seeder\AbstractSeeder;
 use Windwalker\Filter\OutputFilter;
 
@@ -37,12 +35,13 @@ class CategorySeeder extends AbstractSeeder
      * doExecute
      *
      * @return  void
+     * @throws Exception
      */
     public function doExecute()
     {
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
-        $record = new CategoryRecord;
+        $record = new CategoryRecord();
 
         $languages   = LanguageMapper::find(['state' => 1])->code;
         $languages[] = '*';
@@ -97,12 +96,13 @@ class CategorySeeder extends AbstractSeeder
      * doClear
      *
      * @return  void
+     * @throws Exception
      */
     public function doClear()
     {
         $this->truncate(LunaTable::CATEGORIES);
 
-        $record = new CategoryRecord;
+        $record = new CategoryRecord();
         $record->createRoot();
     }
 }

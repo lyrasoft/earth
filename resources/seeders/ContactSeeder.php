@@ -6,7 +6,6 @@
  * @license    GNU General Public License version 2 or later.
  */
 
-use Faker\Factory;
 use Lyrasoft\Luna\Admin\DataMapper\ContactMapper;
 use Lyrasoft\Luna\Table\LunaTable;
 use Windwalker\Core\Seeder\AbstractSeeder;
@@ -23,14 +22,15 @@ class ContactSeeder extends AbstractSeeder
      * doExecute
      *
      * @return  void
+     * @throws Exception
      */
     public function doExecute()
     {
-        $faker = Factory::create();
+        $faker = $this->faker->create();
 
         foreach (range(1, 150) as $i) {
             $created = $faker->dateTimeThisYear;
-            $data    = new Data;
+            $data    = new Data();
 
             $data['subject']     = $faker->sentence(random_int(3, 5));
             $data['email']       = $faker->email;
