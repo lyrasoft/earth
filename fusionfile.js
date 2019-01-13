@@ -10,26 +10,26 @@ const fusion = require('windwalker-fusion');
 // The task `css`
 fusion.task('css', () => {
   // Watch start
-  fusion.watch('www/asset/scss/admin/**/*.scss');
-  fusion.watch('www/asset/scss/front/**/*.scss');
+  fusion.watch('resources/asset/scss/admin/**/*.scss');
+  fusion.watch('resources/asset/scss/front/**/*.scss');
   // Watch end
 
   // Compile Start
-  fusion.sass('www/asset/scss/admin/admin.scss', 'www/asset/admin/css/');
-  fusion.sass('www/asset/scss/front/main.scss', 'www/asset/css/');
+  fusion.sass('resources/asset/scss/admin/admin.scss', 'www/asset/admin/css/');
+  fusion.sass('resources/asset/scss/front/main.scss', 'www/asset/css/');
   // Compile end
 });
 
 // The task `js`
 fusion.task('js', () => {
   // Watch start
-  fusion.watch('www/asset/src/admin/**/*.js');
-  fusion.watch('www/asset/src/front/**/*.js');
+  fusion.watch('resources/asset/src/admin/**/*.js');
+  fusion.watch('resources/asset/src/front/**/*.js');
   // Watch end
 
   // Compile Start
-  fusion.js('www/asset/src/admin/**/*.js', 'www/asset/admin/js/');
-  fusion.js('www/asset/src/front/**/*.js', 'www/asset/js/');
+  fusion.js('resources/asset/src/admin/**/*.js', 'www/asset/admin/js/');
+  fusion.js('resources/asset/src/front/**/*.js', 'www/asset/js/');
   // Compile end
 });
 
@@ -37,13 +37,12 @@ fusion.task('js', () => {
 fusion.task('bootstrap', () => {
   // Watch start
   fusion.watch([
-    'www/asset/scss/*.scss',
-    'www/asset/phoenix/css/bootstrap/**/*.scss',
+    'resources/asset/scss/*.scss'
   ]);
   // Watch end
 
   // Compile Start
-  fusion.sass('www/asset/scss/bootstrap.scss', 'www/asset/css/bootstrap/');
+  fusion.sass('resources/asset/scss/bootstrap.scss', 'www/asset/css/bootstrap/');
   // Compile end
 });
 
