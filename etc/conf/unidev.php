@@ -49,6 +49,6 @@ return [
         'album' => ''
     ],
     'local' => [
-        'path' => 'asset/upload'
+        'path' => env('IMAGE_UPLOAD_LOCAL_PATH') ?? 'asset/upload'
     ]
 ];

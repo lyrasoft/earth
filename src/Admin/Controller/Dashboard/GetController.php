@@ -82,7 +82,6 @@ class GetController extends DisplayController
          * @var $repository DashboardRepository
          */
         parent::prepareViewRepository($view, $repository);
-
         // Configure View nad Models here
     }
 
