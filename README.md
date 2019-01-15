@@ -5,7 +5,7 @@
 ## Installation Via Composer
 
 ``` bash
-composer create-project lyrasoft/earth your_project ^1.1
+composer create-project lyrasoft/earth your_project
 ```
 
 ## Prepare System
