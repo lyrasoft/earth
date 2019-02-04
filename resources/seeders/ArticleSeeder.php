@@ -60,7 +60,7 @@ class ArticleSeeder extends AbstractSeeder
                 $lang = $faker->randomElement($languages);
 
                 $data['category_id'] = $category->id;
-                $data['title']       = '(' . $lang . ') ' . $faker->sentence(random_int(3, 5));
+                $data['title']       = '(' . $lang . ') ' . $faker->sentence(2);
                 $data['alias']       = OutputFilter::stringURLSafe($data['title']);
                 $data['introtext']   = '(' . $lang . ') ' . $faker->paragraph(5);
                 $data['fulltext']    = $faker->paragraph(5);
