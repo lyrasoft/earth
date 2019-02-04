@@ -30,7 +30,7 @@ class ConfigSeeder extends AbstractSeeder
      */
     public function doExecute()
     {
-        $faker   = Factory::create('en_GB');
+        $faker   = $this->faker->create();
         $userIds = UserMapper::findColumn('id');
 
         $created = $faker->dateTimeThisYear;
