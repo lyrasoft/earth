@@ -23,10 +23,6 @@ use Windwalker\Filesystem\Folder;
  */
 class AdminPackage extends AbstractPackage
 {
-    const DIR = __DIR__;
-
-    const FILE = __FILE__;
-
     /**
      * initialise
      *
