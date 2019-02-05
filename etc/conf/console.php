@@ -38,8 +38,8 @@ return [
         'deploy' => [
             'git pull',
             'composer install --no-dev',
-            'php windwalker run prepare',
             'php windwalker migration migrate',
+            'php windwalker run prepare',
             'php windwalker asset makesum',
             'echo prod > .mode'
         ]
