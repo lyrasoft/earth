@@ -9,16 +9,22 @@
 use Windwalker\Core\Router\RouteCreator;
 
 /** @var RouteCreator $router */
-$router->any('home', '/')
-    ->controller('Category')
-    ->requirement('page', '\d+')
-    ->extra('layout', 'category')
-    ->extra('menu', 'mainmenu')
-    ->extra('category', [
-        'type' => 'article',
-        'model' => 'Articles',
-        'view' => 'Category',
-        'ordering' => 'article.created',
-        'direction' => 'DESC',
-        'deep' => true
-    ]);
+
+$router->group('package')
+    ->register(function (RouteCreator $router) {
+        $router->any('home', '/')
+            ->controller('Category')
+            ->requirement('page', '\d+')
+            ->extra('layout', 'category')
+            ->extra('menu', 'mainmenu')
+            ->extra('category', [
+                'type' => 'article',
+                'model' => 'Articles',
+                'view' => 'Category',
+                'ordering' => 'article.created',
+                'direction' => 'DESC',
+                'deep' => true
+            ]);
+
+        $router->load(__DIR__ . '/Resources/routing/*.php');
+    });
