@@ -10,8 +10,7 @@ const fusion = require('windwalker-fusion');
 // The task `css`
 fusion.task('css', () => {
   // Watch start
-  fusion.watch('resources/asset/scss/admin/**/*.scss');
-  fusion.watch('resources/asset/scss/front/**/*.scss');
+  fusion.watch('resources/asset/scss/**/*.scss');
   // Watch end
 
   // Compile Start
