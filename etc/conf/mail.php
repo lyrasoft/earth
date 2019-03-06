@@ -7,7 +7,7 @@
  */
 
 return [
-    'enabled' => (bool) (env('MAIL_ENABLED') ?? false),
+    'enabled' => (bool) (env('MAIL_ENABLED') ?: false),
 
     // Auto use this as sender if not provided in runtime.
     'from' => [
