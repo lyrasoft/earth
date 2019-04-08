@@ -34,6 +34,7 @@ return [
         // Prepare for development and reset migration
         'preparedev' => [
             'php windwalker run makelink',
+            'yarn install',
             'yarn build ' . $assetBuild,
             'php windwalker unidev bladeopt',
             'php windwalker migration reset --seed',
