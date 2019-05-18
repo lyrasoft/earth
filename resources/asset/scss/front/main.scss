@@ -12,14 +12,14 @@
 @import "base/utilities";
 @import "base/extended";
 
+// component
+@import "components/breadcrumb";
+
 // Layout
 @import "layout/base";
 @import "layout/header";
 @import "layout/banner";
 @import "layout/footer";
-
-// component
-@import "components/breadcrumb";
 
 // Pages
 @import "pages/home";

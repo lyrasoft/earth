@@ -57,7 +57,7 @@ class AdminPackage extends AbstractPackage
 
         // Language
         Translator::loadAll($this, 'ini');
-        Translator::loadFile('main');
+        Translator::loadAll();
     }
 
     /**

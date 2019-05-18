@@ -6,6 +6,8 @@
  * @license    __LICENSE__
  */
 
+$assetBuild = 'default bootstrap';
+
 return [
     // Custom scripts, add some commands here to batch execute. Example:
     // 'scripts' => [
@@ -16,19 +18,24 @@ return [
     //
     // Then just run `$ php windwalker run foo`
     'scripts' => [
-        // Prepare assets and install dependencies
-        'prepare' => [
+        'makelink' => [
             'php windwalker asset sync phoenix -f',
             'php windwalker asset sync luna -f',
             'php windwalker asset sync unidev -f',
+        ],
+
+        // Prepare assets and install dependencies
+        'prepare' => [
+            'php windwalker run makelink',
             'yarn install',
-            'yarn prod default bootstrap'
+            'yarn prod ' . $assetBuild,
         ],
 
         // Prepare for development and reset migration
         'preparedev' => [
-            'echo dev > .mode',
-            'php windwalker run prepare',
+            'php windwalker run makelink',
+            'yarn install',
+            'yarn build ' . $assetBuild,
             'php windwalker unidev bladeopt',
             'php windwalker migration reset --seed',
             'lyra pstorm sniffer',
@@ -41,7 +48,6 @@ return [
             'php windwalker migration migrate',
             'php windwalker run prepare',
             'php windwalker asset makesum',
-            'echo prod > .mode'
         ]
     ]
 ];
