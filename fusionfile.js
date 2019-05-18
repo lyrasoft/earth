@@ -55,6 +55,9 @@ fusion.task('install', () => {
     console.log(`[Copy] node_modules/${vendor}/**/* => www/asset/vendor/${vendor}/`);
     fusion.copy(`node_modules/${vendor}/**/*`, `www/asset/vendor/${vendor}/`);
   });
+
+  console.log(`[Copy] resources/asset/vendor/**/* => www/asset/vendor/`);
+  fusion.copy(`resources/asset/vendor/**/*`, `www/asset/vendor/`);
 });
 
 fusion.default(['css', 'js']);
