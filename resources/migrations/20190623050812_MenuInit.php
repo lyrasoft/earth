@@ -11,6 +11,8 @@
 use Lyrasoft\Luna\Admin\Record\CategoryRecord;
 use Lyrasoft\Luna\Admin\Record\MenuRecord;
 use Lyrasoft\Luna\Table\LunaTable;
+use Phoenix\Utilities\SlugHelper;
+use Symfony\Component\Yaml\Yaml;
 use Windwalker\Core\Migration\AbstractMigration;
 use Windwalker\Database\Schema\Schema;
 
@@ -62,6 +64,80 @@ class MenuInit extends AbstractMigration
     }
 
     /**
+     * importCategoriesFromFile
+     *
+     * @param string $type
+     * @param string $file
+     * @param int    $parentId
+     *
+     * @return  void
+     *
+     * @throws Exception
+     *
+     * @since  __DEPLOY_VERSION__
+     */
+    protected function importFromFile($type, $file, $parentId = 1)
+    {
+        $this->import(
+            $type,
+            Yaml::parse(file_get_contents($file)),
+            $parentId
+        );
+    }
+
+    /**
+     * importCategories
+     *
+     * @param string $type
+     * @param array  $menus
+     * @param int    $parentId
+     *
+     * @return  void
+     *
+     * @throws Exception
+     * @since  __DEPLOY_VERSION__
+     */
+    protected function import($type, array $menus, $parentId = 1): void
+    {
+        $faker = $this->faker->create();
+
+        $record = new MenuRecord();
+
+        $userId = 1;
+
+        foreach ($menus as $alias => $menu) {
+            $record->reset();
+
+            $record['title']       = $menu['title'];
+            $record['alias']       = SlugHelper::safe($alias);
+            $record['type']        = $type;
+            $record['view']        = $menu['view'];
+            $record['image']       = $faker->unsplashImage();
+            $record['state']       = 1;
+            $record['target']      = $menu['target'] ?? '_self';
+            $record['variables']   = json_encode($menu['varialbes'] ?? []);
+            $record['created']     = $faker->dateTime->format($this->getDateFormat());
+            $record['created_by']  = $userId;
+            $record['modified']    = $faker->dateTime->format($this->getDateFormat());
+            $record['modified_by'] = $userId;
+            $record['language']    = $menu['language'] ?? '*';
+            $record['params']      = json_encode($menu['params'] ?? []);
+
+            $record->setLocation($parentId, $record::LOCATION_LAST_CHILD);
+
+            $record->store();
+
+            $record->rebuildPath();
+
+            $this->outCounting();
+
+            if (isset($menu['children'])) {
+                $this->import($type, $menu['children'], $record->id);
+            }
+        }
+    }
+
+    /**
      * Migrate Down.
      * @throws Exception
      */
@@ -69,7 +145,7 @@ class MenuInit extends AbstractMigration
     {
         $this->drop(LunaTable::MENUS);
 
-        $record = new CategoryRecord();
+        $record = new MenuRecord();
         $record->createRoot();
     }
 }
