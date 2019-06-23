@@ -20,6 +20,7 @@ return [
         'contacts' => 'contacts',
         'pages' => 'pages',
         'configs' => 'configs',
+        'menus' => 'menus',
     ],
 
     /*
@@ -45,7 +46,7 @@ return [
         ],
         'language' => [
             'prefix' => 'luna.',
-            'enabled' => false,
+            'enabled' => true,
             'default' => 'en-GB',
             'use_browser' => false
         ]
@@ -105,6 +106,28 @@ return [
         ],
         'positions' => [
 
+        ]
+    ],
+
+    /*
+     * The menus configuration.
+     * ------------------------------------------------
+     */
+    'menu' => [
+        'types' => [
+            'mainmenu' => 'luna.menu.type.mainmenu',
+        ],
+
+        'views' => [
+            'link' => \Lyrasoft\Luna\Menu\View\LinkMenuView::class,
+            'placeholder' => \Lyrasoft\Luna\Menu\View\PlaceholderMenuView::class,
+            'route' => \Lyrasoft\Luna\Menu\View\RouteMenuView::class,
+            'alias' => \Lyrasoft\Luna\Menu\View\AliasMenuView::class,
+
+            // Article
+            'article' => \Lyrasoft\Luna\Menu\View\ArticleMenuView::class,
+            'article_category' => \Lyrasoft\Luna\Menu\View\ArticleCategoryMenuView::class,
+            'page' => \Lyrasoft\Luna\Menu\View\PageMenuView::class,
         ]
     ],
 

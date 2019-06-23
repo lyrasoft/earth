@@ -16,7 +16,7 @@ $menu = $app->make(\Phoenix\Html\MenuHelper::class);
 ?>
 
 <h3 class="visible-xs-block d-sm-block d-md-none">
-    @translate('phoenix.title.submenu')
+    @lang('phoenix.title.submenu')
 </h3>
 
 <div id="user-info" class="text-center" style="padding-top: 50px; padding-bottom: 50px;">
@@ -36,62 +36,69 @@ $menu = $app->make(\Phoenix\Html\MenuHelper::class);
     <li class="nav-item {{ $menu->active('categories', ['type' => 'article']) }}">
         <a href="{{ $router->route('categories', ['type' => 'article']) }}"
            class="nav-link {{ $menu->active('categories', ['type' => 'article']) }}">
-            @translate($luna->langPrefix . 'categories.title')
+            @lang($luna->langPrefix . 'article.categories')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('articles') }}">
         <a href="{{ $router->route('articles') }}" class="nav-link {{ $menu->active('articles') }}">
-            @translate($luna->langPrefix . 'articles.title')
+            @lang($luna->langPrefix . 'articles.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('pages') }}">
         <a href="{{ $router->route('pages') }}" class="nav-link {{ $menu->active('pages') }}">
-            @translate($luna->langPrefix . 'pages.title')
+            @lang($luna->langPrefix . 'pages.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('tags') }}">
         <a href="{{ $router->route('tags') }}" class="nav-link {{ $menu->active('tags') }}">
-            @translate($luna->langPrefix . 'tags.title')
+            @lang($luna->langPrefix . 'tags.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('comments') }}">
         <a href="{{ $router->route('comments', ['type' => 'article']) }}"
            class="nav-link {{ $menu->active('comments') }}">
-            @translate($luna->langPrefix . 'comments.title')
+            @lang($luna->langPrefix . 'comments.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('languages') }}">
         <a href="{{ $router->route('languages') }}" class="nav-link {{ $menu->active('languages') }}">
-            @translate($luna->langPrefix . 'languages.title')
+            @lang($luna->langPrefix . 'languages.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('modules') }}">
         <a href="{{ $router->route('modules') }}" class="nav-link {{ $menu->active('modules') }}">
-            @translate($luna->langPrefix . 'modules.title')
+            @lang($luna->langPrefix . 'modules.title')
+        </a>
+    </li>
+
+    <li class="nav-item {{ $menu->active('menus', ['type' => 'mainmenu']) }}">
+        <a href="{{ $router->route('menus', ['type' => 'mainmenu']) }}"
+            class="nav-link {{ $menu->active('menus', ['type' => 'mainmenu']) }}">
+            @lang($luna->langPrefix . 'menu.manager.title', __($luna->langPrefix . 'menu.type.mainmenu'))
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('users') }}">
         <a href="{{ $router->route('users') }}" class="nav-link {{ $menu->active('users') }}">
-            @translate($warder->langPrefix . 'users.title')
+            @lang($warder->langPrefix . 'users.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('contacts') }}">
         <a href="{{ $router->route('contacts') }}" class="nav-link {{ $menu->active('contacts') }}">
-            @translate($luna->langPrefix . 'contacts.title')
+            @lang($luna->langPrefix . 'contacts.title')
         </a>
     </li>
 
     <li class="nav-item {{ $menu->active('config', ['type' => 'core']) }}">
         <a href="{{ $router->route('config', ['type' => 'core']) }}" class="nav-link {{ $menu->active('config', ['type' => 'core']) }}">
-            @translate($luna->langPrefix . 'config.title')
+            @lang($luna->langPrefix . 'config.title')
         </a>
     </li>
 
