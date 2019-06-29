@@ -66,6 +66,7 @@ class UserInit extends AbstractMigration
         $user->password     = Hasher::create('1234');
         $user->blocked      = 0;
         $user->receive_mail = 1;
+        $user->group        = 'admin';
         $user->activation   = '';
         $user->last_reset   = $faker->dateTimeThisYear->format($this->getDateFormat());
         $user->last_login   = $faker->dateTimeThisYear->format($this->getDateFormat());

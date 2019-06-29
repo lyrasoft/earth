@@ -21,6 +21,7 @@ return [
         'makelink' => [
             'php windwalker asset sync phoenix -f',
             'php windwalker asset sync luna -f',
+            'php windwalker asset sync warder -f',
             'php windwalker asset sync unidev -f',
         ],
 

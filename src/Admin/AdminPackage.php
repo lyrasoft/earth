@@ -70,8 +70,12 @@ class AdminPackage extends AbstractPackage
     protected function checkAccess()
     {
         // Add your access checking
-        if (Warder::requireLogin(true) /* && User::get()->group == 2 */) {
+        if (Warder::requireLogin(true)) {
             Warder::goToLogin($this->app->uri->full);
+        }
+
+        if (Warder::isLogin() && !Warder::getUser()->getGroupProperties()['is_admin']) {
+            $this->app->redirect($this->router->to('front@home'));
         }
     }
 

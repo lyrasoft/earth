@@ -13,10 +13,7 @@ return [
      */
     'user' => [
         'login_name' => 'username',
-
-        // The below is ACL settings, we haven't implement it.
-        'default_group' => 'registered',
-        'session_name' => 'user'
+        'default_group' => 'member',
     ],
 
     /*
@@ -99,6 +96,21 @@ return [
         'language' => [
             'prefix' => 'warder.'
         ]
+    ],
+
+    /*
+     * User groups.
+     * ------------------------------------------------
+     */
+    'groups' => [
+        'member' => [
+            'title' => 'warder.group.member',
+            'is_admin' => false
+        ],
+        'admin' => [
+            'title' => 'warder.group.admin',
+            'is_admin' => true
+        ],
     ],
 
     /*
