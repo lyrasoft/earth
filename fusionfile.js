@@ -36,7 +36,7 @@ fusion.task('js', () => {
 fusion.task('bootstrap', () => {
   // Watch start
   fusion.watch([
-    'resources/asset/scss/*.scss'
+    'resources/asset/scss/*.scss',
   ]);
   // Watch end
 
@@ -48,16 +48,16 @@ fusion.task('bootstrap', () => {
 // The task `install`
 fusion.task('install', () => {
   const vendors = [
-    '@fortawesome/fontawesome-pro'
+    '@fortawesome/fontawesome-pro',
   ];
 
-  vendors.forEach(vendor => {
+  vendors.forEach((vendor) => {
     console.log(`[Copy] node_modules/${vendor}/**/* => www/asset/vendor/${vendor}/`);
     fusion.copy(`node_modules/${vendor}/**/*`, `www/asset/vendor/${vendor}/`);
   });
 
-  console.log(`[Copy] resources/asset/vendor/**/* => www/asset/vendor/`);
-  fusion.copy(`resources/asset/vendor/**/*`, `www/asset/vendor/`);
+  console.log('[Copy] resources/asset/vendor/**/* => www/asset/vendor/');
+  fusion.copy('resources/asset/vendor/**/*', 'www/asset/vendor/');
 });
 
 fusion.default(['css', 'js']);
