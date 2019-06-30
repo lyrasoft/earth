@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a href="{{ $router->to('front@home')->mute() }}" target="_blank"
                        class="nav-link hasTooltip" title="Preview" data-placement="bottom">
-                        <span class="glyphicon glyphicon-globe fa fa-globe"></span>
+                        <span class="far fa-eye"></span>
                     </a>
                 </li>
 

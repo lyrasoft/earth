@@ -48,7 +48,7 @@ fusion.task('bootstrap', () => {
 // The task `install`
 fusion.task('install', () => {
   const vendors = [
-    //
+    '@fortawesome/fontawesome-pro'
   ];
 
   vendors.forEach(vendor => {

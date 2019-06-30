@@ -8,6 +8,7 @@
 !.bowerrc
 !.portal.yml
 !.circleci
+!.npmrc.dist
 
 # Libraries
 /vendor
@@ -21,8 +22,7 @@ yarn.lock
 package-lock.json
 
 # Windwalker
-!/.env.dist
-!/.env.portal.dist
+!.env.dist
 
 #Test
 /phpunit.xml

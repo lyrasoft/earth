@@ -8,6 +8,7 @@
 
 namespace Admin;
 
+use Lyrasoft\Script\EarthScript;
 use Lyrasoft\Warder\Warder;
 use Phoenix\Script\BootstrapScript;
 use Windwalker\Core\Asset\Asset;
@@ -49,7 +50,7 @@ class AdminPackage extends AbstractPackage
 
         // Assets
         BootstrapScript::css(4);
-        BootstrapScript::fontAwesome(5);
+        EarthScript::fontAwesome();
         Asset::addCSS($this->name . '/css/admin.min.css');
 
         BootstrapScript::script(4);

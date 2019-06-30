@@ -8,6 +8,7 @@
 
 namespace Front;
 
+use Lyrasoft\Script\EarthScript;
 use Phoenix\Script\BootstrapScript;
 use Windwalker\Core\Asset\Asset;
 use Windwalker\Core\Language\Translator;
@@ -48,7 +49,7 @@ class FrontPackage extends AbstractPackage
         // Assets
         Asset::alias('phoenix/css/bootstrap/4/bootstrap.css', 'css/bootstrap/bootstrap.min.css');
         BootstrapScript::css(4);
-        BootstrapScript::fontAwesome(5);
+        EarthScript::fontAwesome();
         Asset::addCSS('css/main.min.css');
 
         BootstrapScript::script(4);
