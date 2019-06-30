@@ -9,6 +9,7 @@
 !.portal.yml
 !.circleci
 !.npmrc.dist
+!.eslintrc
 
 # Libraries
 /vendor
