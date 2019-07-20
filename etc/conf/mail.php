@@ -6,6 +6,8 @@
  * @license    __LICENSE__
  */
 
+use Windwalker\Core\Mailer\Adapter\SwiftMailerAdapter;
+
 return [
     'enabled' => (bool) (env('MAIL_ENABLED') ?: false),
 
@@ -14,6 +16,8 @@ return [
         'name' => env('MAIL_FROM_NAME') ?: 'Windwalker',
         'email' => env('MAIL_FROM_EMAIL') ?: 'noreply@windwalker.local'
     ],
+
+    'adapter' => SwiftMailerAdapter::class,
 
     // Transport to send mail (SwiftMailer transport)
     'transport' => env('MAIL_TRANSPORT') ?: 'php',
