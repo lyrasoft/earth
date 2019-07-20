@@ -56,8 +56,9 @@ class FrontPackage extends AbstractPackage
         Asset::addJS('js/main.min.js');
 
         // Language
+        Translator::loadAll('admin');
         Translator::loadAll($this, 'ini');
-        Translator::loadFile('main');
+        Translator::loadAll();
     }
 
     /**
