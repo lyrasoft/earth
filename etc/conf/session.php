@@ -8,8 +8,15 @@
 
 return [
     // Session handler, supports `native`, `database`, `apc`, `memcached`
-    'handler' => 'native',
+    'handler' => 'database',
 
     // By minutes
-    'expire_time' => 150
+    'expire_time' => 150,
+
+    'cookie_path' => null,
+
+    // Session database options
+    'database' => [
+        'table' => 'sessions'
+    ]
 ];

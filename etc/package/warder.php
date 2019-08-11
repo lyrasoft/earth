@@ -25,7 +25,8 @@ return [
         'user_socials' => 'user_socials',
         'groups' => 'groups',
         'user_group_maps' => 'user_group_maps',
-        'actions' => 'actions'
+        'actions' => 'actions',
+        'sessions' => 'sessions'
     ],
 
     /*
