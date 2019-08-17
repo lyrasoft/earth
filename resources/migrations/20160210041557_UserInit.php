@@ -55,6 +55,17 @@ class UserInit extends AbstractMigration
             $schema->addIndex('identifier(150)');
         });
 
+        $this->createTable(WarderTable::SESSIONS, function (Schema $schema) {
+            $schema->varchar('id')->length(192);
+            $schema->text('data');
+            $schema->integer('user_id');
+            $schema->integer('time');
+
+            $schema->addIndex('id(150)');
+            $schema->addIndex('user_id');
+            $schema->addIndex('time');
+        });
+
         $faker = $this->faker->create();
 
         $user = new UserData();
@@ -83,5 +94,6 @@ class UserInit extends AbstractMigration
     {
         $this->drop(WarderTable::USERS);
         $this->drop(WarderTable::USER_SOCIALS);
+        $this->drop(WarderTable::SESSIONS);
     }
 }

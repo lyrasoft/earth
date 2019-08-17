@@ -8,8 +8,15 @@
 
 return [
     // Session handler, supports `native`, `database`, `apc`, `memcached`
-    'handler' => 'native',
+    'handler' => env('SESSION_HANDLER') ?: 'database',
 
     // By minutes
-    'expire_time' => 150
+    'expire_time' => (int) ENV('SESSION_EXPIRE_TIME', 150),
+
+    'cookie_path' => ENV('SESSION_COOKIE_PATH', '/'),
+
+    // Session database options
+    'database' => [
+        'table' => 'sessions'
+    ]
 ];

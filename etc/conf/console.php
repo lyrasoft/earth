@@ -35,7 +35,10 @@ return [
             'cross-env NODE_ENV=development php windwalker run prepare',
             'php windwalker unidev bladeopt',
             'php windwalker migration reset --seed',
-            'lyra pstorm sniffer -p',
+            [
+                'cmd' => 'lyra pstorm sniffer -p',
+                'ignore_error' => true
+            ],
         ],
 
         // Deploy new version

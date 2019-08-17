@@ -122,7 +122,7 @@ return [
             'link' => \Lyrasoft\Luna\Menu\View\LinkMenuView::class,
             'placeholder' => \Lyrasoft\Luna\Menu\View\PlaceholderMenuView::class,
             'route' => \Lyrasoft\Luna\Menu\View\RouteMenuView::class,
-            'alias' => \Lyrasoft\Luna\Menu\View\AliasMenuView::class,
+            'menu_alias' => \Lyrasoft\Luna\Menu\View\AliasMenuView::class,
 
             // Article
             'article' => \Lyrasoft\Luna\Menu\View\ArticleMenuView::class,
