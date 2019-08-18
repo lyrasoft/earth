@@ -32,6 +32,17 @@ fusion.task('js', () => {
   // Compile end
 });
 
+// The task `assets`
+fusion.task('assets', () => {
+  // Watch start
+  fusion.watch('resources/asset/images/**/*');
+  // Watch end
+
+  // Compile Start
+  fusion.copy('resources/asset/images/**/*', 'www/asset/images/');
+  // Compile end
+});
+
 // The task `bootstrap`
 fusion.task('bootstrap', () => {
   // Watch start
@@ -60,7 +71,7 @@ fusion.task('install', () => {
   fusion.copy('resources/asset/vendor/**/*', 'www/asset/vendor/');
 });
 
-fusion.default(['css', 'js']);
+fusion.default(['css', 'js', 'assets']);
 
 /*
  * APIs
