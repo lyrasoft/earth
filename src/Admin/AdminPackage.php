@@ -34,6 +34,7 @@ class AdminPackage extends AbstractPackage
     public function boot()
     {
         parent::boot();
+
         // Add your own boot logic
     }
 
