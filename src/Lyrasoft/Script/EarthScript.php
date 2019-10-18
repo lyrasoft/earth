@@ -9,6 +9,7 @@
 namespace Lyrasoft\Script;
 
 use Phoenix\Script\BootstrapScript;
+use Phoenix\Script\PhoenixScript;
 use Windwalker\Core\Asset\AbstractScript;
 use Windwalker\Utilities\Arr;
 
@@ -36,11 +37,11 @@ class EarthScript extends AbstractScript
         if (!static::inited(__METHOD__)) {
             if ($pro) {
                 static::getAsset()->alias(
-                    'phoenix/css/fontawesome/all.min.css',
+                    PhoenixScript::phoenixName() . '/css/fontawesome/all.min.css',
                     'vendor/@fortawesome/fontawesome-pro/css/all.min.css'
                 )
                     ->alias(
-                        'phoenix/css/fontawesome/v4-shims.min.css',
+                        PhoenixScript::phoenixName() . '/css/fontawesome/v4-shims.min.css',
                         'vendor/@fortawesome/fontawesome-pro/css/v4-shims.min.css'
                     );
             }
