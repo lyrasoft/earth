@@ -11,6 +11,8 @@
  * @var $route    \Windwalker\Core\Router\PackageRouter       Route builder object.
  * @var $asset    \Windwalker\Core\Asset\AssetManager         The Asset manager.
  */
+
+$hideSidebar = $helper->getView() instanceof \Phoenix\View\EditView || $app->get('sidebar_hide');
 ?><!DOCTYPE html>
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
@@ -31,7 +33,7 @@
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 </head>
 <body class="{{ $package->getName() }}-admin-body phoenix-admin package-{{ $package->getName() }}
-    view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }} {{ $helper->getView() instanceof \Phoenix\View\EditView ? 'sidebar-hide' : null }}
+    view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }} {{ $hideSidebar ? 'sidebar-hide' : null }}
     bootstrap-{{ \Phoenix\Script\BootstrapScript::$currentVersion }}">
 @section('superbody')
 

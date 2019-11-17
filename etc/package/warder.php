@@ -58,6 +58,7 @@ return [
         'package' => ['front', 'main'],
         'view' => [
             'extends' => '_global.html',
+            'edit_extends' => '_global.html',
             'noauth_extends' => '_global.html'
         ],
         'redirect' => [
@@ -85,6 +86,7 @@ return [
         'package' => ['admin'],
         'view' => [
             'extends' => '_global.admin.admin',
+            'edit_extends' => '_global.admin.admin',
             'noauth_extends' => '_global.admin.admin'
         ],
         'redirect' => [

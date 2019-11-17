@@ -15,7 +15,7 @@
 $faker = \Faker\Factory::create();
 ?>
 
-@extends('_global.admin.admin')
+@extends('_global.admin.admin-pure')
 
 @section('toolbar')
 @stop
