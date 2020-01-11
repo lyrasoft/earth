@@ -32,6 +32,7 @@ return [
 
         // Prepare for development and reset migration
         'preparedev' => [
+            'composer install',
             'cross-env NODE_ENV=development php windwalker run prepare',
             'php windwalker unidev bladeopt',
             'php windwalker migration reset --seed',
