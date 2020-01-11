@@ -39,6 +39,7 @@ return [
         'package' => 'front',
         'view' => [
             'extends' => '_global.html',
+            'edit_extends' => '_global.html',
             'error_extends' => '_global.html'
         ],
         'redirect' => [
@@ -60,6 +61,7 @@ return [
         'package' => 'admin',
         'view' => [
             'extends' => '_global.admin.admin',
+            'edit_extends' => '_global.admin.admin',
             'error_extends' => '_global.admin.admin'
         ],
         'redirect' => [
