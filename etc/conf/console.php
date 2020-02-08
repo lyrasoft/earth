@@ -25,6 +25,7 @@ return [
 
         // Prepare assets and install dependencies
         'prepare' => [
+            'composer install',
             'php windwalker run makelink',
             'yarn install',
             'yarn build default bootstrap',
@@ -32,7 +33,6 @@ return [
 
         // Prepare for development and reset migration
         'preparedev' => [
-            'composer install',
             'cross-env NODE_ENV=development php windwalker run prepare',
             'php windwalker unidev bladeopt',
             'php windwalker migration reset --seed',
