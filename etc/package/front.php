@@ -19,7 +19,10 @@ return [
     ],
 
     'middlewares' => [
-
+        \Windwalker\DI\Container::meta(
+            \Windwalker\Core\Application\Middleware\OfflineWebMiddleware::class,
+            []
+        )
     ],
 
     'configs' => [
