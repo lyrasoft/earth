@@ -25,7 +25,7 @@ return Arr::mergeRecursive(
 
         // LYRASOFT
         'unidev' => require __DIR__ . '/conf/unidev.php',
-        'warder' => require __DIR__ . '/conf/warder.php',
+        'social_login' => require __DIR__ . '/conf/social_login.php',
     ],
 
     // Load custom values
