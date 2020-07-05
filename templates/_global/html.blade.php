@@ -3,6 +3,7 @@
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>@yield('page_title')</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ $uri->path }}/asset/images/favicon.ico" />

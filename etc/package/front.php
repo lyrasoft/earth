@@ -23,7 +23,8 @@ return [
             \Windwalker\Core\Application\Middleware\OfflineWebMiddleware::class,
             [
                 'options' => [
-                    'enabled' => env('SYSTEM_OFFLINE')
+                    'enabled' => env('SYSTEM_OFFLINE'),
+                    'tester' => env('SYSTEM_TESTER'),
                 ]
             ]
         )
