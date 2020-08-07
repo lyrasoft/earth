@@ -25,7 +25,7 @@ return [
 
         // Prepare assets and install dependencies
         'prepare' => [
-            'composer install',
+            'cross-env COMPOSER_PROCESS_TIMEOUT=600 composer install',
             'php windwalker run makelink',
             'yarn install',
             'yarn build default bootstrap',
@@ -45,7 +45,7 @@ return [
         // Deploy new version
         'deploy' => [
             'git pull',
-            'composer install --no-dev',
+            'cross-env COMPOSER_PROCESS_TIMEOUT=600 composer install --no-dev',
             'cross-env APP_ENV=dev php windwalker migration migrate',
             'cross-env NODE_ENV=production php windwalker run prepare',
             'php windwalker asset makesum',
