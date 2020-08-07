@@ -9,6 +9,7 @@
 namespace Front;
 
 use Lyrasoft\Script\EarthScript;
+use Phoenix\Html\HtmlHeader;
 use Phoenix\Script\BootstrapScript;
 use Windwalker\Core\Asset\Asset;
 use Windwalker\Core\Language\Translator;
@@ -59,6 +60,11 @@ class FrontPackage extends AbstractPackage
         Translator::loadAll('admin');
         Translator::loadAll($this, 'ini');
         Translator::loadAll();
+
+        // Metadata
+        HtmlHeader::setSiteName(null);
+        HtmlHeader::addMetadata('description', null);
+        HtmlHeader::addOpenGraph('og:image', null);
     }
 
     /**

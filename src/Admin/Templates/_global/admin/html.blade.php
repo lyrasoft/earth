@@ -33,8 +33,8 @@ $hideSidebar = $helper->getView() instanceof \Phoenix\View\EditView || $app->get
     @stack('style')
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 </head>
-<body class="{{ $package->getName() }}-admin-body phoenix-admin package-{{ $package->getName() }}
-    view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }} {{ $hideSidebar ? 'sidebar-hide' : null }}
+<body class="{{ $package->getName() }}-admin-body phoenix-admin
+@yield('body-class', $bodyClass ?? '') {{ $hideSidebar ? 'sidebar-hide' : null }}
     bootstrap-{{ \Phoenix\Script\BootstrapScript::$currentVersion }}">
 @section('superbody')
 

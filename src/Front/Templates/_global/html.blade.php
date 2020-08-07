@@ -21,7 +21,7 @@
 @php($config = \Lyrasoft\Luna\Config\ConfigHelper::getConfig('core'))
 @if ($config->exists('ga'))
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90546985-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $config->get('ga') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -31,7 +31,7 @@
     </script>
 @endif
 </head>
-<body class="package-{{ $package->name }} view-{{ strtolower($view->getName()) }} layout-{{ $view->getLayout() }}"
+<body class="@yield('body-class', $bodyClass ?? '')"
       style="padding-top: 56px">
 @section('navbar')
     <div class="navbar navbar-default navbar-fixed-top fixed-top navbar-expand-lg navbar-light bg-light">
