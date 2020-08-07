@@ -25,7 +25,22 @@ return Arr::mergeRecursive(
         ],
 
         'whoops' => [
-            'editor' => env('WHOOPS_EDITOR') ?? 'phpstorm'
+            'editor' => env('WHOOPS_EDITOR') ?? 'phpstorm',
+            'blacklist' => [
+                '_ENV' => array_keys($_ENV ?? []),
+                '_SERVER' => array_merge(
+                    [
+                        'PATH',
+                        'SERVER_SOFTWARE',
+                        'DOCUMENT_ROOT',
+                        'CONTEXT_DOCUMENT_ROOT',
+                        'SERVER_ADMIN',
+                        'SCRIPT_FILENAME',
+                        'REMOTE_PORT',
+                    ],
+                    array_keys($_ENV ?? [])
+                )
+            ]
         ]
     ]
 );
