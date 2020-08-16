@@ -18,5 +18,7 @@ return [
     // Session database options
     'database' => [
         'table' => 'sessions'
-    ]
+    ],
+
+    'samesite' => env('SESSION_SAMESITE') ?: 'Lax'
 ];
