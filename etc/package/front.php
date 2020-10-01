@@ -27,7 +27,8 @@ return [
                     'tester' => env('SYSTEM_TESTER'),
                 ]
             ]
-        )
+        ),
+        \Windwalker\Core\Application\Middleware\SefWebMiddleware::class
     ],
 
     'configs' => [
