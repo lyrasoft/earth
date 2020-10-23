@@ -6,7 +6,9 @@
  * @license    GNU General Public License version 2 or later.
  */
 
+use Windwalker\Core\Application\Middleware\ForceSslWebMiddleware;
 use Windwalker\Core\Application\Middleware\SecurityHeaderMiddleware;
+use Windwalker\DI\Container;
 use Windwalker\Utilities\Arr;
 
 /*
@@ -88,7 +90,13 @@ return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
     'middlewares' => [
         //800  => \Windwalker\Core\Application\Middleware\SessionRaiseMiddleware::class,
         //900  => \Windwalker\Core\Application\Middleware\RoutingMiddleware::class,
-        SecurityHeaderMiddleware::class
+        2000 => Container::meta(
+            ForceSslWebMiddleware::class,
+            [
+                'enabled' => env('FORCE_SSL')
+            ]
+        ),
+        500 => SecurityHeaderMiddleware::class
     ],
 
     /*
