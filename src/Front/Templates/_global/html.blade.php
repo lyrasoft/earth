@@ -32,7 +32,7 @@
 @endif
 </head>
 <body class="@yield('body-class', $bodyClass ?? '')"
-      style="padding-top: 56px">
+      style="">
 @section('navbar')
     <div class="navbar navbar-default navbar-fixed-top fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
