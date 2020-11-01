@@ -8,6 +8,7 @@
 
 use Windwalker\Core\Application\Middleware\ForceSslWebMiddleware;
 use Windwalker\Core\Application\Middleware\SecurityHeaderMiddleware;
+use Windwalker\Core\Application\Middleware\SefWebMiddleware;
 use Windwalker\DI\Container;
 use Windwalker\Utilities\Arr;
 
@@ -96,7 +97,8 @@ return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
                 'enabled' => env('FORCE_SSL')
             ]
         ),
-        500 => SecurityHeaderMiddleware::class
+        500 => SecurityHeaderMiddleware::class,
+        450 => SefWebMiddleware::class,
     ],
 
     /*
