@@ -37,7 +37,7 @@
             "Windwalker\\Core\\Composer\\StarterInstaller::rootInstall",
             "Windwalker\\Composer\\EarthInstaller::install"
         ],
-        "post-autoload-dump": "php windwalker system clear-cache renderer"
+        "post-autoload-dump": "php windwalker system clear-cache renderer annotations"
     },
     "config": {
         "platform": {
