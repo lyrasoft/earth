@@ -16,6 +16,8 @@ $hideSidebar = $helper->getView() instanceof \Phoenix\View\EditView || $app->get
 ?><!DOCTYPE html>
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
+    <base href="{{ $uri::clear($uri->path .  '/') }}" />
+
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
