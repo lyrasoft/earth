@@ -1,4 +1,3 @@
-{{-- Part of Windwalker project. --}}
 <!DOCTYPE html>
 <html lang="{{ $app->get('language.locale') ? : $app->get('language.default', 'en-GB') }}">
 <head>
@@ -21,7 +20,7 @@
     {!! \Phoenix\Html\HtmlHeader::renderCustomTags() !!}
 
 @php($config = \Lyrasoft\Luna\Config\ConfigHelper::getConfig('core'))
-@if ($config->exists('ga'))
+@if ($config->get('ga'))
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $config->get('ga') }}"></script>
     <script>

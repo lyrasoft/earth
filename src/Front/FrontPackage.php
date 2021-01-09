@@ -8,6 +8,7 @@
 
 namespace Front;
 
+use Lyrasoft\Luna\Config\ConfigHelper;
 use Lyrasoft\Script\EarthScript;
 use Phoenix\Html\HtmlHeader;
 use Phoenix\Script\BootstrapScript;
@@ -62,6 +63,11 @@ class FrontPackage extends AbstractPackage
         Translator::loadAll();
 
         // Metadata
+        $coreConfig = ConfigHelper::getConfig('core');
+        if ($gsc = $coreConfig->get('google_search_console')) {
+            HtmlHeader::addMetadata('google-site-verification', (string) $gsc);
+        }
+
         HtmlHeader::setSiteName(null);
         HtmlHeader::addMetadata('description', null);
         HtmlHeader::addOpenGraph('og:image', null);
