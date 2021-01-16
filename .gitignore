@@ -10,6 +10,7 @@
 !.circleci
 !.npmrc.dist
 !.eslintrc
+!.github
 
 # Libraries
 /vendor
