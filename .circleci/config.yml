@@ -6,11 +6,11 @@ version: 2
 jobs:
     build:
         environment:
-            VENDOR: /home/circleci/.composer/vendor
+            VENDOR: /home/circleci/.config/composer/vendor
 
         docker:
             # specify the version you desire here
-            - image: circleci/php:7.1.20-apache-stretch-node-browsers
+            - image: circleci/php:7.4-apache-node-browsers
 
             # Specify service dependencies here if necessary
             # CircleCI maintains a library of pre-built images
