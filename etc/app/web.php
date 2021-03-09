@@ -94,7 +94,10 @@ return Arr::mergeRecursive(include __DIR__ . '/windwalker.php', [
         2000 => Container::meta(
             ForceSslWebMiddleware::class,
             [
-                'enabled' => env('FORCE_SSL')
+                'options' => [
+                    'enabled' => (bool) env('FORCE_SSL'),
+                    'redirect_code' => (int) env('FORCE_SSL')
+                ]
             ]
         ),
         500 => SecurityHeaderMiddleware::class,
