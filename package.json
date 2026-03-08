@@ -10,7 +10,7 @@
         "upgrade": "yarn up '**' -R"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.0",
+        "@fortawesome/fontawesome-free": "^7.0",
         "@lyrasoft/luna": "portal:./vendor/lyrasoft/luna/assets",
         "@popperjs/core": "^2.11.8",
         "@windwalker-io/core": "^4.0",
@@ -19,7 +19,6 @@
         "@windwalker-io/unicorn-next": "^0.1.0",
         "bootstrap": "^5.0.0",
         "cross-env": "^7.0.3",
-        "vite": "^7.1.7"
         "vite": "^8.0.0-0"
     },
     "//": {
@@ -28,8 +27,5 @@
             "vendor/windwalker/core/assets/*"
         ]
     },
-    "packageManager": "yarn@4.9.4+sha512.7b1cb0b62abba6a537b3a2ce00811a843bea02bcf53138581a6ae5b1bf563f734872bd47de49ce32a9ca9dcaff995aa789577ffb16811da7c603dcf69e73750b",
-    "devDependencies": {
-        "vue": "^3.5.22"
-    }
+    "packageManager": "yarn@4.13.0+sha512.5c20ba010c99815433e5c8453112165e673f1c7948d8d2b267f4b5e52097538658388ebc9f9580656d9b75c5cc996f990f611f99304a2197d4c56d21eea370e7"
 }
