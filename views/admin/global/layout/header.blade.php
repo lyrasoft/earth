@@ -25,6 +25,12 @@ use Windwalker\Core\Router\SystemUri;
 $user = $app->service(\Lyrasoft\Luna\User\UserService::class)->getUser();
 ?>
 
+<script data-macro="admin.layout.header" lang="ts" type="module">
+    import { useFormSubmit, useMacro } from '@windwalker-io/unicorn-next';
+
+    useMacro({ useFormSubmit });
+</script>
+
 @section('header')
     <div class="navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
@@ -53,7 +59,7 @@ $user = $app->service(\Lyrasoft\Luna\User\UserService::class)->getUser();
                     @if ($user->isLogin())
                         <li class="nav-item">
                             <a href="javascript://"
-                                onclick="u.form().post('{{ $nav->to('logout') }}')"
+                                onclick="u.useFormSubmit({ url: '{{ $nav->to('logout') }}', method: 'POST' })"
                                 class="nav-link"
                                 title="Logout"
                                 data-bs-toggle="tooltip"
