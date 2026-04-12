@@ -21,6 +21,10 @@
         "cross-env": "^7.0.3",
         "vite": "^8.0"
     },
+    "workspaces": [
+        "vendor/windwalker/unicorn/*",
+        "vendor/windwalker/core/assets/*"
+    ],
     "//": {
         "workspaces": [
             "vendor/windwalker/unicorn/*",
