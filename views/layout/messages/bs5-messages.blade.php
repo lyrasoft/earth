@@ -31,11 +31,13 @@ $messageGroup = $app->getMessages();
 <div class="c-messages-container">
     @foreach ($messageGroup as $type => $messages)
         <div class="alert alert-{{ $type }} alert-dismissible fade show">
-            @foreach ($messages as $message)
-                <div>
-                    {!! $message !!}
-                </div>
-            @endforeach
+            <div class="d-flex flex-column gap-2">
+                @foreach ($messages as $message)
+                    <div>
+                        {!! $message !!}
+                    </div>
+                @endforeach
+            </div>
 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
