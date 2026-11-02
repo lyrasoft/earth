@@ -17,9 +17,11 @@ provides shared framework capabilities, including application/runtime
 services, routing, middleware, console commands, database and migration
 support, rendering, and package integration. Earth uses those capabilities;
 Earth-specific features belong in the app, not in the framework package. Make
-changes under [`vendor/windwalker/core`](../../vendor/windwalker/core/) only
-when the task is specifically about the framework, and treat them as changes
-to that separate package.
+changes under [`vendor/windwalker/core`](../../vendor/windwalker/core/) (and
+other `vendor/windwalker/*` or `vendor/lyrasoft/*` packages) only when the task
+is specifically about that package, including its tests, and treat them as
+changes to a separate package with its own `AGENTS.md` and test setup. Ask the
+user before editing any other `vendor/` package.
 
 ## Windwalker Core package layout
 
@@ -42,6 +44,35 @@ to that separate package.
   package test support and tests. The package uses its own
   [`composer.json`](../../vendor/windwalker/core/composer.json), autoload
   configuration, and validation commands.
+
+## How Earth plugs into Core
+
+Core's full description is in
+[`vendor/windwalker/core/.github/docs/architecture.md`](../../vendor/windwalker/core/.github/docs/architecture.md);
+only the points Earth code depends on are summarized here.
+
+- Entry points: [`www/index.php`](../../www/index.php) (web) and
+  [`windwalker`](../../windwalker) (CLI) boot `Core\Runtime\Runtime`, load
+  [`etc/runtime.config.php`](../../etc/runtime.config.php), and resolve the
+  apps from its `factories`. That file maps the `@root`, `@etc`, `@resources`
+  ... path aliases and builds `App\Web\Application` (extends Core's
+  `WebApplication`, configured by `etc/app/main.config.php`) and
+  `App\Console\Application`.
+- Config: `etc/app/*.config.php` select the app's `middlewares`, `listeners`,
+  and `commands`; [`etc/config.php`](../../etc/config.php) supplies the
+  shared sections and `etc/packages/*.config.php`. Core registers each section's
+  providers, bindings, and listeners.
+- Container layers: runtime, app, and per-request. Request-scoped services
+  (request, `AppContext`, `AppState`) are not shared across requests.
+- Request path: Core middleware chain → `RoutingMiddleware` → route-level
+  middleware (`front`/`admin` groups) → `ControllerDispatcher` → controller →
+  `#[ViewModel]` class rendering a Blade/Edge layout. Controller methods default
+  to `index` for GET and `save` for POST/PUT/PATCH, `delete` for DELETE.
+- Packages: Lyrasoft/Windwalker packages declare
+  `extra.windwalker.packages` in their `composer.json`; Core discovers them and
+  installs config, routes, migrations, and assets into Earth with
+  `php windwalker pkg:install`. Package routes are loaded from
+  `routes/packages/` and `etc/packages/`.
 
 ## Earth application layout
 
