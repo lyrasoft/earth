@@ -25,7 +25,8 @@ return array_merge(
                 'x-forwarded-proto',
                 'x-forwarded-port',
                 'x-forwarded-prefix',
-            ]
+            ],
+            'trusted_proxy_callback' => null,
         ],
     ],
     require __DIR__ . '/../config.php'

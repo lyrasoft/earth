@@ -22,7 +22,9 @@ return [
     'server_timezone' => env('APP_SERVER_TIMEZONE', 'UTC'),
 
     'dump_server' => [
-        'host' => env('DUMP_SERVER_HOST') ?: 'tcp://127.0.0.1:9912'
+        'host' => env('VAR_DUMP_SERVER_HOST')
+            ?: env('DUMP_SERVER_HOST')
+            ?: 'tcp://127.0.0.1:9912'
     ],
 
     'providers' => [

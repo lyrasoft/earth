@@ -33,7 +33,7 @@ return [
     'preparedev' => [
         'php windwalker run prepare',
         'php windwalker mig:reset --seed -f',
-        'php windwalker run sniffer',
+        // 'php windwalker run sniffer',
     ],
 
     // Update code and dependencies
