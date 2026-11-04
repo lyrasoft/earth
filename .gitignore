@@ -32,9 +32,21 @@ Thumbs.db
 .npmrc
 /theme
 
-#Test
-/phpunit.xml
-/phpunit.core.xml
+# Test #
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache
+.scannerwork
+
+# Code Style #
+.php-cs-fixer.cache
+.php-cs-fixer.php
+.php_cs.cache
+.php_cs
+
+# Docker #
+docker-compose.yml
+docker-compose.override.yml
 
 # Others
 
