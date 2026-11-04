@@ -6,6 +6,7 @@ Keep repository-wide guidance there concise and link to topic-specific requireme
 ## Contents
 
 - [instruction.instructions.md](instruction.instructions.md): routes content between instructions, skills, docs, and prompts
+- [fusion-assets.instructions.md](fusion-assets.instructions.md): Earth asset compilation with Vite, Windwalker Fusion, and Core processors
 - [test-common.instructions.md](test-common.instructions.md): PHPUnit test-writing conventions for PHP test files
 - [test-coverage.instructions.md](test-coverage.instructions.md): rules for `@codeCoverageIgnore` and untestable branches
 - [smoke-test.instructions.md](smoke-test.instructions.md): environment knowledge for smoke tests and temporary execution files outside unit tests

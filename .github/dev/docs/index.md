@@ -7,3 +7,4 @@ Add detailed, durable development references here when they need more context th
 [the development instructions](../copilot-instructions.md). Keep this index updated when adding a new reference.
 
 - [templates](templates/README.md): starting points for adding documentation to this guidance tree.
+- [AssetService and Vite](asset-service.md): runtime asset URL resolution, rendering, and behavior with or without Vite.

@@ -27,6 +27,7 @@ Runtime::boot(WINDWALKER_ROOT, __DIR__);
 Runtime::loadConfig(Runtime::getRootDir() . '/etc/runtime.config.php');
 
 $container = Runtime::getContainer();
+$container->options->lazy = true;
 
 /** @var HttpServer $server */
 /** @var WebApplication $app */

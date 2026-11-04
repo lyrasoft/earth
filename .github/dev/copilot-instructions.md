@@ -38,6 +38,7 @@ duplicating them.
 - Keep front-end and admin functionality in their respective module and route groups. Use each module's local `views/` and `assets/` for feature-specific presentation and scripts; use `resources/assets/` for shared assets.
 - Add schema changes as timestamp-prefixed migrations in `resources/migrations/`, following the returned anonymous `AbstractMigration` pattern with `#[MigrateUp]`/`#[MigrateDown]` methods and Windwalker `Schema` helpers.
 - `fusionfile.ts` is authoritative for shared asset entry points and build output. TypeScript aliases are mirrored in `tsconfig.json` and the Fusion configuration.
+- For the Vite/Fusion build flow, Core processors, and PHP runtime asset resolution, follow the [asset instructions](instructions/fusion-assets.instructions.md).
 - Edit frontend source files under `resources/assets/` or a module's `assets/`, not generated output under `www/assets/`.
 - Do not run database-reset or seeding commands against data that must be preserved.
 
