@@ -136,6 +136,8 @@ Without tags or `--all`, the command prompts for packages/resource tags; supplyi
 selection. For automation, specify the package and tags. `--all` requires explicit package names and publishes all
 resources for those packages.
 
+Use `--details=3` to list every copied file, which helps when debugging installs. Level 3 is the default; `--details` is not required for this output.
+
 Use `--dry-run` to preview file operations first. Existing destinations are normally preserved; `--force` allows
 overwrites and should be used only when intended. Review both copied files and callback-generated changes afterward,
 including registry entries. The `swoole_websocket` tag may also generate application code, not just a server file.

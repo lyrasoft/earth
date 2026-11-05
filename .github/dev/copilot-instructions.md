@@ -20,6 +20,7 @@ duplicating them.
 - CI checks PHP with PHP_CodeSniffer using PSR-12 on `src` and `resources`. Install it globally with `composer global require squizlabs/php_codesniffer`, then run `$(composer global config bin-dir --absolute)/phpcs src resources -n --extensions=php --standard=PSR12`. To check one file, pass its path instead of `src resources`.
 - Earth does not have a test suite or a configured test command yet. Add Earth-owned tests at the repository root only when a test suite is introduced.
 - Tests for code inside `vendor/<vendor>/<package>/` (such as `windwalker/core`) belong to that package: put them in the package's own `tests/` directory, use its namespace, `phpunit.xml`, and `vendor/bin/phpunit`, and run them from the package directory. For example, from `vendor/windwalker/core`, run `vendor/bin/phpunit tests/Core/Application`. Do not create root `tests/` or `phpunit.xml` for package tests. For test tiers, see Core's [testing architecture](../../vendor/windwalker/core/.github/docs/testing-architecture.md).
+- In development mode, packages under `vendor/` may be newer than the versions in `composer.lock`. When testing or debugging a vendor package, prefer the latest version recorded in its git history over the locked version.
 - `php windwalker run prepare` installs frontend dependencies and builds assets. `php windwalker run preparedev` also resets migrations and seeds the database; do not use it against data that must be preserved.
 
 ## Architecture
@@ -41,6 +42,8 @@ duplicating them.
 - For the Vite/Fusion build flow, Core processors, and PHP runtime asset resolution, follow the [asset instructions](instructions/fusion-assets.instructions.md).
 - Edit frontend source files under `resources/assets/` or a module's `assets/`, not generated output under `www/assets/`.
 - Do not run database-reset or seeding commands against data that must be preserved.
+- Do not inject the whole application only to read the debug flag or app secret. Inject `Windwalker\Core\Application\AppEnvironmentInterface` (`isDebug()`, `getMode()`, `getName()`, `getVerbosity()`, `isVerbose()`, `isCli()`) and `SecretKeeperInterface` (`getSecret(?string $deriveFor = null)`) instead. Similarly, prefer `PathResolver`, `Navigator`, `AppRequest`, `SystemUri`, and `MaintenanceManager` over the matching `$app->...()` helpers.
+- `AppProvider` registers the config-based `AppEnvironment` and `SecretKeeper` through `AppEnvironmentProvider`, which skips an interface that is already registered. To override them with an implementation that does not read config, register your own for the interface before the app boots. In unit tests, build `new AppEnvironment(new Config([...]))` directly. A test app factory that does not boot (for example `tests/Core/Application/Stub/TestWebAppFactory.php` in Core) must register `AppEnvironmentProvider` itself once a class injects these interfaces.
 
 ## Documentation links
 
