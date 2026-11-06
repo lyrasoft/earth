@@ -7,7 +7,8 @@ Keep repository-wide guidance there concise and link to topic-specific requireme
 
 - [instruction.instructions.md](instruction.instructions.md): routes content between instructions, skills, docs, and prompts
 - [fusion-assets.instructions.md](fusion-assets.instructions.md): Earth asset compilation with Vite, Windwalker Fusion, and Core processors
-- [unicorn-scripts.instructions.md](unicorn-scripts.instructions.md): Unicorn `*Script` PHP asset helpers and the `@windwalker-io/unicorn-next` frontend runtime
+- [unicorn-scripts.instructions.md](unicorn-scripts.instructions.md): Unicorn `*Script` PHP asset helpers, the `@windwalker-io/unicorn-next` frontend runtime, and how to dev/build package JS (workspaces or host node_modules)
+- [e2e-browser-test.instructions.md](e2e-browser-test.instructions.md): requires the Playwright browser-test skill for click-based front-end checks; login state in `tmp/test.auth.json`
 - [test-common.instructions.md](test-common.instructions.md): PHPUnit test-writing conventions for PHP test files
 - [test-coverage.instructions.md](test-coverage.instructions.md): rules for `@codeCoverageIgnore` and untestable branches
 - [smoke-test.instructions.md](smoke-test.instructions.md): environment knowledge for smoke tests and temporary execution files outside unit tests

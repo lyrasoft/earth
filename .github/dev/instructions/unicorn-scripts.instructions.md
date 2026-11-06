@@ -7,6 +7,17 @@
 - Earth uses **next mode** only (`unicorn.modules.next`). Legacy branches (SystemJS, jQuery, `@unicorn/field/*.js`, `bootstrap/*.min.css`) are not maintained or tested; do not extend them.
 - Tests for these classes belong to the package: `vendor/windwalker/unicorn/tests/Script/` (run `php ..\..\bin\phpunit tests\Script` from the package directory).
 
+## Building and testing package JS (unicorn-next / core assets)
+
+Edit TS under `vendor/windwalker/unicorn/assets/src/` (or `vendor/windwalker/core/assets/*`), then rebuild so `assets/dist/` and the host's `www/assets/` reflect it. Check the setup first:
+
+1. **Workspaces enabled?** Root `package.json` has a top-level `"workspaces"` array (`vendor/windwalker/unicorn/*`, `vendor/windwalker/core/assets/*`). If it is only under the `"//"` key, it is disabled. Confirm the link: `(Get-Item node_modules\@windwalker-io\unicorn-next).LinkType` is `Junction` (same for `@windwalker-io\core`, `@windwalker-io\fusion-next`).
+2. **If enabled**, the package `node_modules` are linked to the host's, so run directly inside the package (no separate install):
+   - `cd vendor\windwalker\unicorn\assets` → `yarn dev` (watch) or `yarn build` (one-off, writes `dist/`). Use `yarn build:assets` / `yarn dev:assets` for the `vite.assets.config.ts` build. Same for `vendor\windwalker\core\assets\<pkg>`.
+3. **If not enabled**, the host `node_modules` lacks the package's devDependencies (verified: `@vitejs/plugin-vue`, `rimraf`, `unplugin-dts`, `rollup-plugin-tree-shakeable`, `sprintf-js`, `punycode`, etc. are missing), so `..\..\..\..\node_modules\.bin\vite build` fails with `UNRESOLVED_IMPORT` / `ERR_MODULE_NOT_FOUND`. Do not edit `package.json` or install into vendor on your own. Stop and ask the user to enable `workspaces` in the root `package.json` (`"workspaces": ["vendor/windwalker/unicorn/*", "vendor/windwalker/core/assets/*"]`) and run `yarn install` at the repo root, then retry step 2. Only if the missing packages exist elsewhere (check with `Test-Path node_modules\<name>`) is the host-`node_modules` build worth trying.
+4. **Push the build to the host:** the host serves a copy under `www/assets/vendor/@windwalker-io/unicorn-next/` (a Junction to `node_modules\@windwalker-io\unicorn-next`, so it only reflects your package build when step 2's workspace link is in place; after adding `workspaces` the user must run `yarn install` once, check that `node_modules\@windwalker-io\unicorn-next` has `LinkType` `Junction`) plus chunks like `www/assets/chunks/`. Run `yarn build` from the repo root to rebuild host chunks. In PowerShell `yarn build -- install` does not reach Fusion (Vite treats `install` as the root dir and fails with `UNRESOLVED_ENTRY`); run the install task as `node node_modules\vite\bin\vite.js build --mode development -- install`. Then verify the changed code appears in `www/assets/vendor/@windwalker-io/unicorn-next/dist/` and in the new `www/assets/chunks/grid-*.js`.
+5. Verify the result by grepping the built `dist/` file for the changed code; a browser check is needed for real behavior. `vendor/windwalker/unicorn` is its own git repo: commit/PR changes there, and note host `www/assets/` is build output.
+
 ## How Script classes work
 
 - Base class `AbstractScript` (Core). Scripts are DI services; inject them and call methods in a view/controller. `$this->js()`/`$this->css()` proxy to `AssetService`.
