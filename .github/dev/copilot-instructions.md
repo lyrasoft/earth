@@ -26,6 +26,7 @@ duplicating them.
 ## Architecture
 
 - Earth is a Windwalker Core 4 application with Lyrasoft Luna. Composer maps the app's `App\` namespace to `src/`; app bootstrap helpers and aliases are loaded from `src/bootstrap.php`.
+- For Windwalker framework usage and API references, use the public documentation index at https://windwalker.io/llms.txt. Fetch only the linked `.md` pages the task needs.
 - `etc/config.php` combines app configuration, dependency-injection configuration, and package configurations. `routes/main.route.php` loads front-end, admin, and package route definitions.
 - Front-end and admin routes are separate groups (`routes/front.route.php`, `routes/admin.route.php`) with their own middleware and route namespaces. They load local, package, and `custom/` routes.
 - Feature code belongs in `src/Module/`, separated into `Front`, `Admin`, and other app feature directories. A module commonly keeps its controller, view model, Blade views, and assets together. Routes connect handlers and view models; view models declare layouts/assets with Windwalker attributes such as `#[ViewModel]` and prepare data via `#[ViewPrepare]`.
