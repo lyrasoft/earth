@@ -75,9 +75,9 @@ Use a session ID with `context.addCookies([{ name, value, domain: 'localhost', p
 
 Fields `#input-user-email`, `#input-user-password`; submit `#login-form .login-button`; success redirects to `/admin`. Other projects may differ, so inspect the page before reusing selectors.
 
-## Scratch front-end page (when no page is specified)
+## Scratch front-end page (when no existing page renders the target)
 
-If the user did not name a page to test, follow [frontend-scratch-page.instructions.md](../../instructions/frontend-scratch-page.instructions.md) to build and then delete a temporary scratch page.
+Use this whenever no existing page renders the target under test: the user named no page, or named something that is not a page (a PHP class, template, script, etc.). First identify what the named file is and does, including whether it has a PHP + JS cooperative setup (if so, read [php-js-script-pipeline](../../docs/php-js-script-pipeline.md)), check the existing instructions/docs under `.github/dev/` for that kind of thing to decide how to handle it, then find where it is used; if no real page uses it, build a scratch page. Never hand-write standalone HTML, and prefer building the test environment with the target itself (it may initialize and load its own scripts) over rewriting its templates, unless rewriting is necessary. Follow [frontend-scratch-page.instructions.md](../../instructions/frontend-scratch-page.instructions.md) to build and then delete a temporary scratch page.
 
 ## Example script
 

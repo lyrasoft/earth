@@ -22,6 +22,7 @@ Edit TS under `vendor/windwalker/unicorn/assets/src/` (or `vendor/windwalker/cor
 
 - Base class `AbstractScript` (Core). Scripts are DI services; inject them and call methods in a view/controller. `$this->js()`/`$this->css()` proxy to `AssetService`.
 - Every public registration method is guarded by `available()`, which de-duplicates by class, method and arguments, so calling a method repeatedly is safe and registers once.
+- A Blade layout calls its Script method when rendered, so rendering a php layout with js, it registers their own init code. `importMainThen()` only queues code; the root layout `views/global/html.blade.php` outputs it through `renderJS()`. Full chain, and how to rebuild or diagnose this environment: [PHP to browser script pipeline](../docs/php-js-script-pipeline.md). Prefer using the real Field/Script over hand-written markup.
 - Methods return `static` for chaining. Inline JS is emitted through `UnicornScript::importMainThen()` / `importThen()` / `addInitialise()`, so it runs after `unicorn.js` is loaded.
 - `data($name, $value)` passes PHP data to JS under dotted names (e.g. `unicorn.uri`); read it in JS via unicorn's data helpers. Arrays are merged by default.
 

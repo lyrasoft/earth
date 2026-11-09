@@ -8,4 +8,5 @@ Add detailed, durable development references here when they need more context th
 
 - [templates](templates/README.md): starting points for adding documentation to this guidance tree.
 - [AssetService and Vite](asset-service.md): runtime asset URL resolution, rendering, and behavior with or without Vite.
+- [PHP to browser script pipeline](php-js-script-pipeline.md): how Fields and Script classes register JS in PHP and reach the browser through the import map, `main.ts`, and `renderJS()`.
 - [Windwalker DI and injection](di-injection.md): how the container resolves services, constructor injection, and `#[Inject]` property injection.
