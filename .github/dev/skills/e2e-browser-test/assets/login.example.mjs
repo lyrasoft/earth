@@ -7,13 +7,27 @@ const BASE = 'http://localhost:8089';
 const STAGE = 'admin'; // 'admin' | 'front'
 const COOKIE = { admin: 'WINDWALKER_ADMIN_SESSID', front: 'WINDWALKER_SESSID' }[STAGE];
 const LOGIN_URL = { admin: '/admin/login', front: '/login' }[STAGE];
-const AUTH_FILE = 'tmp/test.auth.json';
+const ENV_FILE = '.env.agent.local';
 
-if (!existsSync(AUTH_FILE)) {
+if (!existsSync(ENV_FILE)) {
   // Ask the user for credentials or a session ID, then write the file (see SKILL.md).
-  throw new Error(`${AUTH_FILE} not found`);
+  throw new Error(`${ENV_FILE} not found`);
 }
-const auth = JSON.parse(readFileSync(AUTH_FILE, 'utf8'))[STAGE] ?? {};
+const env = Object.fromEntries(
+  readFileSync(ENV_FILE, 'utf8')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#') && line.includes('='))
+    .map((line) => {
+      const i = line.indexOf('=');
+      return [line.slice(0, i).trim(), line.slice(i + 1).trim()];
+    }),
+);
+const auth = {
+  session_id: env[`TEST_${STAGE.toUpperCase()}_SESSION_ID`] ?? '',
+  username: env[`TEST_${STAGE.toUpperCase()}_USERNAME`] ?? '',
+  password: env[`TEST_${STAGE.toUpperCase()}_PASSWORD`] ?? '',
+};
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const context = await browser.newContext();
@@ -28,13 +42,13 @@ if (auth.session_id) {
 
 await page.goto(`${BASE}/admin/article/list`);
 
-// Not logged in (session missing/expired): fall back to email + password.
+// Not logged in (session missing/expired): fall back to username + password.
 if (page.url().includes('/login')) {
-  if (!auth.email || !auth.password) {
-    throw new Error('Session invalid and no email/password in auth file; ask the user.');
+  if (!auth.username || !auth.password) {
+    throw new Error(`Session invalid and no USERNAME/PASSWORD for ${STAGE} in ${ENV_FILE}; ask the user.`);
   }
   await page.goto(`${BASE}${LOGIN_URL}`);
-  await page.fill('#input-user-email', auth.email);
+  await page.fill('#input-user-email', auth.username);
   await page.fill('#input-user-password', auth.password);
   await Promise.all([page.waitForLoadState('load'), page.click('#login-form .login-button')]);
   await page.goto(`${BASE}/admin/article/list`);
