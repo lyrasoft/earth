@@ -4,6 +4,9 @@ import { defineConfig } from 'vite';
 export default defineConfig(({ mode }) => {
   return {
     base: './',
+    resolve: {
+      dedupe: ['vue', '@windwalker-io/unicorn-next', '@windwalker-io/core', '@lyrasoft/luna']
+    },
     server: {
       watch: {
         ignored: ['**/.env*']
