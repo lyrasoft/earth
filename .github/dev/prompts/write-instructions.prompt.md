@@ -11,7 +11,7 @@ Before starting, read each package's `instruction.instructions.md`, including th
 
 Constraints:
 
-- Do not overwrite or revert existing uncommitted changes, such as `.github/dev/copilot-instructions.md`, `.github/dev/instructions/cli.instructions.md`, `composer.json`, `package.json`, and `vite.config.ts`.
+- Do not overwrite or revert existing uncommitted changes, such as `.github/dev/copilot-instructions.md`, `.github/dev/instructions/cli.instructions.md`, `composer.json`, `package.json`, and `../../../vite.config.mts`.
 - Only modify the packages or directories the content actually applies to. Ask the user before modifying any other vendor package.
 - Do not modify the root `AGENTS.md`.
 - Add comments only where clarification is needed.

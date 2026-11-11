@@ -3,7 +3,7 @@
         //
     ],
     "include": [
-        "./vite.config.ts",
+        "./vite.config.mts",
         "./fusionfile.ts"
     ],
     "types": ["reflect-metadata"],

@@ -2,7 +2,7 @@
 
 ## Build flow
 
-- The root `vite.config.ts` loads `fusionfile.ts` through `useFusion()`. Keep host build inputs, tasks, aliases, and output paths in `fusionfile.ts`; do not duplicate them as separate Vite inputs.
+- The root `../../../vite.config.mts` loads `fusionfile.ts` through `useFusion()`. Keep host build inputs, tasks, aliases, and output paths in `fusionfile.ts`; do not duplicate them as separate Vite inputs.
 - Fusion runs on top of Vite. Its default build configuration writes a manifest to `www/assets/manifest.json`, keeps the output directory, and places generated assets under `www/assets/`.
 - The default Fusion tasks are `js`, `css`, and `images`. `js()` builds the Front and Admin entries to `js/front/main.js` and `js/admin/main.js`; `css()` builds the shared Bootstrap stylesheet and Front/Admin stylesheets under `css/`. `images()` copies `resources/assets/images/` into `images/`.
 - To inspect compiled files, look under `www/assets/`. Files without an explicitly configured output path (such as dynamically imported modules and other generated chunks) are written under `www/assets/chunks/`; use `www/assets/manifest.json` to map build inputs to their emitted filenames.
@@ -35,6 +35,6 @@ When checking a missing output, first run `yarn build` (or `yarn build:prod` whe
 
 ## Core package boundary
 
-`vendor/windwalker/core/assets/fusion` implements the Vite Fusion plugin and task runner; `vendor/windwalker/core/assets/core/src/next/fusion` provides Core's Fusion processors. Treat these as package implementation, not host configuration: change Earth-owned build behavior in root `vite.config.ts` or `fusionfile.ts`, and follow the package guidance before changing vendor code.
+`vendor/windwalker/core/assets/fusion` implements the Vite Fusion plugin and task runner; `vendor/windwalker/core/assets/core/src/next/fusion` provides Core's Fusion processors. Treat these as package implementation, not host configuration: change Earth-owned build behavior in root `../../../vite.config.mts` or `fusionfile.ts`, and follow the package guidance before changing vendor code.
 
 For the runtime side—how Core's `AssetService` resolves and renders assets with or without Vite—see the [AssetService and Vite reference](../docs/asset-service.md).

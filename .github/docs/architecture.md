@@ -97,7 +97,7 @@ only the points Earth code depends on are summarized here.
   database migrations, seeders, menus, and runtime registries. Keep
   feature-specific presentation and scripts with their module where that is
   the existing pattern.
-- [`fusionfile.ts`](../../fusionfile.ts), [`vite.config.ts`](../../vite.config.ts),
+- [`fusionfile.ts`](../../fusionfile.ts), [`../../vite.config.mts`](../../vite.config.mts),
   and [`tsconfig.json`](../../tsconfig.json): frontend asset
   compilation inputs, output, and TypeScript configuration. Fusion builds
   shared assets from [`resources/assets/`](../../resources/assets/) and module
