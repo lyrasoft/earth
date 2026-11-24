@@ -29,7 +29,7 @@ class MergeComposerDev extends Console
         return [
             'windwalker/core',
             'windwalker/unicorn',
-            'lyrasoft/lyrasoft',
+            'lyrasoft/luna',
             'lyrasoft/toolkit',
         ];
     }

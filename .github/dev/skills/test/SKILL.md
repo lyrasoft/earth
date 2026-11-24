@@ -23,9 +23,12 @@ currently has no root test suite. Writing conventions live in the
 ### Run tests
 
 1. Identify the package and requested scope (a file, a suite, or the whole package).
-2. Read that package's guidance and use its own namespace, PHPUnit configuration, and `vendor/bin/phpunit`.
-3. Run the command from the package directory. For example, from `vendor/windwalker/core`, run
-   `vendor/bin/phpunit tests/Core/Application`.
+2. Read [vendor-packages](../../docs/vendor-packages.md#test-modes-all-three-packages) first, then that package's own
+   `AGENTS.md` / `.github/copilot-instructions.md`. Use its namespace and PHPUnit configuration.
+3. Run the command from the package directory, in standalone mode (default) or host app mode. Do not look for or
+   create a root `phpunit.xml`; the package's own `vendor/` may not exist, in which case use host app mode
+   (`../../bin/phpunit -c phpunit.app.xml`) or run `composer install` in the package. For example, from
+   `vendor/windwalker/core`, run `vendor/bin/phpunit tests/Core/Application`.
 4. Preserve any pre-existing local PHPUnit configuration. If the requested scope is disabled, do not treat tests that
    were not run as passing; use an appropriate temporary configuration or CLI option, then remove temporary files.
 

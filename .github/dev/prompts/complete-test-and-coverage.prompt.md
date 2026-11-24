@@ -4,10 +4,9 @@
 Inspect the specified package or relevant selected scope in this Windwalker Framework monorepo for meaningful
 missing tests, then add tests to cover the gaps.
 
-1. Identify the target package from the user's request, selected files, or tagged scope. Keep investigation and
+1. Identify the target package from the user's request, selected files or folders, or tagged scope. Keep investigation and
    changes within that package unless a directly related shared test helper must be used.
-2. Read the package source and neighboring tests, `.github/instructions/test.instructions.md`,
-   `.github/instructions/cs.instructions.md`, the `test` skill, and `.github/docs/testing.md`. Follow package test
+2. Read [test-common.instructions.md](../instructions/test-common.instructions.md), and [vendor-packages.md](../docs/vendor-packages.md) first, and follow their rules. Follow package test
    conventions and use PHPUnit attributes and the project's existing test traits and fixtures.
 3. Run the package's current test suite and capture a package-source-scoped coverage baseline using an available
    coverage driver. Inspect uncovered source lines and branches, then prioritize meaningful behaviors, edge cases,

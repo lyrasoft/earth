@@ -37,6 +37,7 @@ phpunit.xml
 .phpunit.result.cache
 .phpunit.cache
 .scannerwork
+/coverage
 
 # Code Style #
 .php-cs-fixer.cache

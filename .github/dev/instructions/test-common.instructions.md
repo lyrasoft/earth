@@ -8,6 +8,14 @@ For the full workflow of adding, updating, and running tests (including local PH
 coverage), see the [test skill](../skills/test/SKILL.md). For `@codeCoverageIgnore` rules, see the
 [coverage instructions](test-coverage.instructions.md).
 
+## Read this before running any test
+
+Tests under `vendor/windwalker/core`, `vendor/windwalker/unicorn` and `vendor/lyrasoft/luna` belong to those packages,
+not to Earth. Read [vendor-packages](../docs/vendor-packages.md#test-modes-all-three-packages) and the package's own
+`AGENTS.md` first. Run from the package directory; the package may have no `vendor/` of its own, so use host app mode
+(`../../bin/phpunit -c phpunit.app.xml`) or run `composer install` there. Never use Earth's root as the working
+directory, and never create a root `phpunit.xml`. Database tests drop and recreate the DB: use a disposable one.
+
 ## Prefer `#[Test]` for test methods
 
 Prefer the `#[Test]` attribute (`PHPUnit\Framework\Attributes\Test`) over the `test` method-name prefix, and give
