@@ -9,10 +9,6 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Extra #
-!.gitkeep
-/dist
-
 # Configuration #
 .env
 .env.local
@@ -48,6 +44,13 @@ phpunit.xml
 # Docker #
 docker-compose.yml
 docker-compose.override.yml
+
+# AI #
+.mcp.json
+
+# Extra #
+!.gitkeep
+/dist
 
 # Others
 
