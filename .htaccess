@@ -1,5 +1,16 @@
-# Protect .git
-RedirectMatch 404 /\.git
-
 # No index
 Options -Indexes
+
+RewriteEngine On
+
+# Block dot directories (one per line; other folders have their own .htaccess)
+RewriteRule ^(www/)?\.git(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.idea(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.github(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.vscode(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.svn(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.hg(/|$) - [R=404,L,NC]
+
+# Block existing files directly in the project root (directories stay accessible for local dev)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^[^/]+$ - [R=404,L]

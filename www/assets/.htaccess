@@ -1,2 +1,7 @@
-# Deny html/php files inside vendor
-RewriteRule ^vendor/.*.(html|php)$ - [F,NC]
+# Deny directory listing and CGI execution in assets
+Options -Indexes -ExecCGI
+
+# Deny executable, server-parsed, config and sensitive files (replaces the vendor-only rule)
+<FilesMatch "(?i)(\.(php[0-9]?|phtml|phar|pl|py|cgi|sh|asp|aspx|jsp|exe|inc|html?|config|ini|sql|bak|log)|^\.ht.*)$">
+    Require all denied
+</FilesMatch>

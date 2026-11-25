@@ -14,62 +14,80 @@
 ## Can be commented out if causes errors, see notes above.
 Options +FollowSymLinks
 
-## Mod_rewrite in use.
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+# No index
+Options -Indexes
 
-    ## Begin - Rewrite rules to block out some common exploits.
+RewriteEngine On
 
-    # Block out any script trying to base64_encode data within the URL.
-    RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
-    # Block out any script that includes a <script> tag in URL.
-    RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
-    # Block out any script trying to set a PHP GLOBALS variable via URL.
-    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
-    # Block out any script trying to modify a _REQUEST variable via URL.
-    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
-    # Return 403 Forbidden header and show the content of the root homepage
-    RewriteRule .* index.php [F]
+## Begin - Block dot directories (same lines as root .htaccess; (www/)? lets them work from either docroot)
+RewriteRule ^(www/)?\.git(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.idea(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.github(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.vscode(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.svn(/|$) - [R=404,L,NC]
+RewriteRule ^(www/)?\.hg(/|$) - [R=404,L,NC]
+## End - Block dot directories
 
-    ## End - Rewrite rules to block out some common exploits.
+## Begin - Rewrite rules to block out some common exploits.
 
-    ##
-    # If you need to redirect some pages, or set a canonical non-www to
-    # www redirect (or vice versa), place that code between Custom redirects block.
-    # Ensure those redirects use the correct RewriteRule syntax and the [R=301,L] flags.
-    #
-    # Begin - Custom redirects
-    #
-    # End - Custom redirects
-    ##
+# Block out any script trying to base64_encode data within the URL.
+RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+# Block out any script that includes a <script> tag in URL.
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL.
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL.
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Return 403 Forbidden for query strings matching the exploit patterns above
+RewriteRule ^ - [F]
 
-    ##
-    # Uncomment following line if your webserver's URL
-    # is not directly related to physical file paths.
-    ##
+## End - Rewrite rules to block out some common exploits.
 
-    # RewriteBase /
+##
+# If you need to redirect some pages, or set a canonical non-www to
+# www redirect (or vice versa), place that code between Custom redirects block.
+# Ensure those redirects use the correct RewriteRule syntax and the [R=301,L] flags.
+#
+# Begin - Custom redirects
+#
+# End - Custom redirects
+##
 
-    ## Begin - SEF Section.
+##
+# Uncomment following line if your webserver's URL
+# is not directly related to physical file paths.
+##
 
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# RewriteBase /
 
-    # If the requested path and file is not /index.php and the request
-    # has not already been internally rewritten to the index.php script
-    RewriteCond %{REQUEST_URI} !^/index\.php
-    # and the requested path and file doesn't directly match a physical file
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # and the requested path and file doesn't directly match a physical folder
-    RewriteCond %{REQUEST_FILENAME} !-d
-    # internally rewrite the request to the index.php script
-    RewriteRule .* index.php [L]
+## Begin - Allowlist: return 404 for any existing file that is not index.php or a known static asset
+# Match REQUEST_FILENAME (not REQUEST_URI): after the SEF rewrite to index.php, REQUEST_URI still holds the original path
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} !/(index|dev)\.php$
+RewriteCond %{REQUEST_FILENAME} !/robots\.txt$
+RewriteCond %{REQUEST_FILENAME} !/assets/manifest\.json$
+RewriteCond %{REQUEST_FILENAME} !\.(css|js|mjs|png|jpe?g|gif|webp|svg|ico|woff2?|ttf|eot|pdf)$ [NC]
+RewriteRule ^ - [R=404,L]
+## End - Allowlist
 
-    ## End - SEF Section.
+## Begin - SEF Section.
 
-    ## Security
-    <IfModule mod_headers.c>
-        Header setifempty X-XSS-Protection "1; mode=block"
-        Header setifempty X-Content-Type-Options "nosniff"
-        Header setifempty X-Frame-Options "SAMEORIGIN"
-    </IfModule>
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# If the requested path and file is not /index.php and the request
+# has not already been internally rewritten to the index.php script
+RewriteCond %{REQUEST_URI} !^/index\.php
+# and the requested path and file doesn't directly match a physical file
+RewriteCond %{REQUEST_FILENAME} !-f
+# and the requested path and file doesn't directly match a physical folder
+RewriteCond %{REQUEST_FILENAME} !-d
+# internally rewrite the request to the index.php script
+RewriteRule .* index.php [L]
+
+## End - SEF Section.
+
+## Security
+<IfModule mod_headers.c>
+    Header setifempty X-Content-Type-Options "nosniff"
+    Header setifempty X-Frame-Options "SAMEORIGIN"
 </IfModule>
