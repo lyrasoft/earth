@@ -3,3 +3,5 @@
 /.github/copilot-instructions.md export-ignore
 /.github/mcp.json export-ignore
 /bin/** export-ignore
+/AGENTS.md export-ignore
+/.php-cs-fixer.dist.php export-ignore
