@@ -12,6 +12,7 @@ This file is a routing guide: identify the task type, then read the listed files
 - Never run DB reset/seed commands (`php windwalker run preparedev`) against data that must be preserved.
 - Do not guess the site URL, login, or build flow; follow the files below and ask the user when they say to.
 - Ask before editing a `vendor/` package other than one the task targets.
+- Before starting any new task, look up the relevant docs first: the files listed in the table below, then, for Windwalker/Unicorn/Luna framework usage or API, the official docs via the `windwalker-docs-search` MCP tool or `https://windwalker.io/llms.txt` (fetch only the linked `.md` pages the task needs). Do not guess APIs, options, or conventions; read the vendor package code only if the docs do not answer.
 
 ## Read by task type
 

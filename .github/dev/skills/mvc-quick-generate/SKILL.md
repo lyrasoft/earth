@@ -31,6 +31,27 @@ php windwalker g unicorn:mvc-admin <Name> -y
 
 Options passed through: `--ns`, `--dir`, `--force`, `-y`, `--grid`, `--edit`.
 
+## Look up official docs first
+
+Before generating, or when options or behavior are unclear, check the official Windwalker docs instead of guessing. Use either source:
+
+- MCP tool `windwalker-docs-search`: natural-language query, for example `generator --pkg option`.
+- `https://windwalker.io/llms.txt`: index of doc pages (each page has a `.md` URL); fetch the relevant page.
+
+Fall back to reading generator code (`vendor/windwalker/core/src/Core/Generator/`, `vendor/windwalker/unicorn/src/Generator/`) only if the docs do not answer.
+
+## Generating into a vendor package (e.g. Luna)
+
+Confirmed in the official docs and in `AbstractGeneratorSubCommand`:
+
+- `-p, --pkg=<name>` makes a sub-command use that package's namespace and directory. The name comes from the package's `getName()` (the composer name unless `$name` is set), for example `lyrasoft/luna`. `g entity` and `unicorn:model` support it.
+- `unicorn:mvc-admin` and `unicorn:mvc-simple` do **not** accept `--pkg`. Use `-d, --dir` (relative to the host root) and `--ns` instead.
+- `--ns` changes only the module class namespace. Entity and repository imports in the templates still point to `App\Entity` and `App\Repository`; fix them by hand after generating into a package.
+- `mig:create` has `-d, --dir` only (no `--pkg`): pass the package's `resources/migrations` directory.
+- Generated files in a package belong to that package's git repo; commit there, not in Earth. See [vendor-packages](../../docs/vendor-packages.md).
+
+Generated output may differ from the examples above, so review it and run `php -l` on each file.
+
 ## Known behavior
 
 - The generator prints `Also generate model? [Y/n]` up to three times. It did not block, and exit code was 0 with `-y`.
