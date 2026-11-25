@@ -1,5 +1,5 @@
-/.github/dev/** export-ignore
-/.github/docs/** export-ignore
+/.github/dev export-ignore
+/.github/docs export-ignore
 /.github/copilot-instructions.md export-ignore
 /.github/mcp.json export-ignore
 /bin/** export-ignore
