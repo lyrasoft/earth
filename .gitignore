@@ -18,7 +18,9 @@ Thumbs.db
 .dsn.*
 
 # Libraries
-/vendor
+/vendor/*
+!/vendor/.htaccess
+!/vendor/web.config
 /node_modules
 /bower_components
 /yarn-error.log
