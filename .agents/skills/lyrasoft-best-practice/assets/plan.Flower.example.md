@@ -32,6 +32,8 @@
 
 ### Indexes
 
+<!-- agent: Use lists and a structured format as much as possible so the user can edit -->
+
 - Indexes
   - created
   - type,prefix
@@ -40,9 +42,11 @@
 
 ### Related Tables
 
-- (None / description)
+<!-- agent: Plan related tables according to the task requirements; each must still have an Entity, not just a plain-text table name -->
 
 ## Form Fields
+
+<!-- agent: Use lists and a structured format as much as possible so the user can edit -->
 
 List only the manually specified ones; other fields are generated automatically by the generator.
 

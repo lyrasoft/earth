@@ -29,7 +29,7 @@ Before creating an MVC, plan how the tables, models, controllers, routes, views,
   - The Edit View / Form Fields that correspond to the columns above.
   - The accompanying Services, how they work, access strategies, etc.
   - Any other code planning and flow required to complete this task
-- Create a Markdown plan document named `plan.<subject>.md` in the project's `tmp/plans/` directory
+- Create a Markdown plan document named `plan.<subject>.md` in the project's `.agents/plans/` directory (unless the user specifies another location).
   - Include everything planned above, keeping the section hierarchy clear and using plain text and lists so the user can make necessary edits.
   - After editing, the plan can be handed to an agent for direct execution.
   - For the plan template, see `../../assets/plan.Flower.example.md`; create the plan document following this template.
