@@ -1,9 +1,9 @@
-# Review 程式碼審查指引
+# Code review guidance
 
-## 審查規範文件
+## Review standards
 
-- PHP 程式碼審查指引 @../skills/lyrasoft-best-practice/references/review/review-php.md
+- PHP code review guidance @../skills/lyrasoft-best-practice/references/review/review-php.md
 
-## 輸出規則
+## Output rules
 
-- 以繁體中文撰寫審查內容。程式碼、識別字與檔案路徑保留原始形式。
+- Write review content in Traditional Chinese. Keep code, identifiers, and file paths in their original form.

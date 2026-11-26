@@ -5,29 +5,29 @@ description:
 
 # Skill: name
 
-## 目的
+## Purpose
 
-用一到兩句話描述這個可重用的 skill，說明它要解決的問題，以及適用的情境。
+Describe this reusable skill in one or two sentences, explaining the problem it solves and the situations it applies to.
 
-## 使用時機
+## When to use
 
-- 情境 1
-- 情境 2
-- 情境 3
+- Scenario 1
+- Scenario 2
+- Scenario 3
 
-## 範圍
+## Scope
 
-描述這個 skill 涵蓋的內容，以及刻意不涵蓋的部分。
+Describe what this skill covers and what it intentionally does not cover.
 
-## 預期行為
+## Expected behavior
 
-- 檢查相關檔案或repository 脈絡。
-- 確認明確的目標與限制。
-- 套用適當的工作流程或模式。
-- 讓結果保持簡潔、清楚，並符合專案慣例。
+- Inspect relevant files or repository context.
+- Confirm the explicit goal and constraints.
+- Apply an appropriate workflow or pattern.
+- Keep the result concise, clear, and consistent with project conventions.
 
-## 驗證
+## Validation
 
-- 結果符合要求的任務與 repository 脈絡
-- 沒有引入不必要或無關的變更
-- 指示內容保持簡潔且可重用
+- The result meets the task requirements and fits the repository context.
+- No unnecessary or unrelated changes have been introduced.
+- The instructions remain concise and reusable.

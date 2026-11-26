@@ -1,12 +1,12 @@
-# Bootstrap Dark Mode 最佳實踐
+# Bootstrap Dark Mode Best Practices
 
-Bootstrap 5.3.0 之後提供深色模式。請善用深色模式，不要手動把白色模式的背景與文字顏色逐一改成深色。
+Bootstrap 5.3.0 and later supports dark mode. Use the dark mode feature instead of manually changing every light-mode background and text color to dark colors.
 
-詳細說明：[Bootstrap 5.3 Color modes](https://getbootstrap.com/docs/5.3/customize/color-modes)
+For details, see [Bootstrap 5.3 Color modes](https://getbootstrap.com/docs/5.3/customize/color-modes).
 
-## 版本需求
+## Version requirement
 
-深色模式需要 Bootstrap 5.3.0 以後的版本。
+Dark mode requires Bootstrap 5.3.0 or later.
 
 ```json
 // Good
@@ -15,60 +15,60 @@ Bootstrap 5.3.0 之後提供深色模式。請善用深色模式，不要手動�
 }
 ```
 
-## 啟動 Dark Mode
+## Enable Dark Mode
 
 ```html
-<!-- Good: 在 html 加上 data-bs-theme，全站切換為深色 -->
+<!-- Good: add data-bs-theme to html to switch the whole site to dark mode -->
 <html data-bs-theme="dark">
 
-<!-- Good: 在任意區域加上 data-bs-theme，只讓該區域變為淺色或深色 -->
+<!-- Good: add data-bs-theme to any region to switch only that region to light or dark mode -->
 <div data-bs-theme="dark">...</div>
 ```
 
-## 按鈕文字顏色
+## Button text color
 
-若深色模式下按鈕的反白文字變黑，請依[修改 Bootstrap 變數、自定義顏色](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345/Bootstrap#%E6%8C%89%E9%88%95%E6%96%87%E5%AD%97%E8%AE%8A%E9%BB%91%E8%89%B2)處理。
+If inverse button text becomes black in dark mode, follow [Customize Bootstrap variables and colors](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345/Bootstrap#%E6%8C%89%E9%88%95%E6%96%87%E5%AD%97%E8%AE%8A%E9%BB%91%E8%89%B2).
 
-## 單區域反白
+## Invert a single region
 
-設計白底網站時，Footer 等區域需要黑底白字。
+On a white-background site, regions such as the Footer may need a dark background with white text.
 
 ```html
-<!-- Bad: 連結會變成死白或無法跟隨主題，調整困難 -->
+<!-- Bad: links become pure white or cannot follow the theme, making adjustments difficult -->
 <div class="l-footer bg-dark text-light">...</div>
 
-<!-- Good: 使用 text-bg-* 自動搭配對比文字顏色 -->
+<!-- Good: text-bg-* automatically pairs the background with a contrasting text color -->
 <div class="l-footer text-bg-dark">...</div>
 
-<!-- OK: 使用 data-bs-theme 與 text-body，整區切換為深色 -->
+<!-- OK: use data-bs-theme and text-body to switch the entire region to dark mode -->
 <div class="text-body" data-bs-theme="dark">...</div>
 ```
 
-**說明：**
+**Explanation:**
 
-- `text-bg-*` 會在更換背景色時一併設定對應的文字顏色，適用於 badge、card 等元件。
-- 使用 `data-bs-theme` 的方式，要求 `_variables.scss` 內不能停用 dark mode。
+- `text-bg-*` sets an appropriate text color when the background color changes; it is suitable for components such as badges and cards.
+- The `data-bs-theme` approach requires that dark mode has not been disabled in `_variables.scss`.
 
 ```html
-<!-- Bad: 依顏色用 if/else 判斷文字顏色 -->
+<!-- Bad: use if/else to determine the text color based on the color -->
 <span v-if="themeColor === 'warning' || themeColor === 'info'"
   :class="`badge bg-${ themeColor } text-dark`">{{ themeColor }}</span>
 <span v-else :class="`badge bg-${ themeColor }`">{{ themeColor }}</span>
 
-<!-- Good: 使用 text-bg-* 一行解決 -->
+<!-- Good: solve it in one line with text-bg-* -->
 <span class="badge" :class="`text-bg-${ themeColor }`">{{ themeColor }}</span>
 ```
 
-參考：[Color background](https://getbootstrap.com/docs/5.3/helpers/color-background/)
+Reference: [Color background](https://getbootstrap.com/docs/5.3/helpers/color-background/)
 
-## 連結變更顏色
+## Change link colors
 
 ```html
-<!-- Bad: text-primary 會失去 hover 變色效果 -->
+<!-- Bad: text-primary loses its hover color effect -->
 <a class="text-primary" href="#">Link</a>
 
-<!-- Good: link-primary 保留 hover 特效 -->
+<!-- Good: link-primary preserves the hover effect -->
 <a class="link-primary" href="#">Link</a>
 ```
 
-參考：[Colored links](https://getbootstrap.com/docs/5.3/helpers/colored-links/)
+Reference: [Colored links](https://getbootstrap.com/docs/5.3/helpers/colored-links/)

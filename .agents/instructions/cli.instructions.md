@@ -1,6 +1,7 @@
-# CLI 指引
+# CLI guidance
 
-執行或新增 Windwalker CLI 指令時適用。
+Applies when running or adding Windwalker CLI commands.
 
-- 可用指令與用法 @../skills/windwalker/references/knowledge/commands.md
-- MVC 產生器指令 @../skills/windwalker/references/development-app/mvc-generation.md
+- Available commands and usage @../skills/windwalker/references/knowledge/commands.md
+- MVC generator commands @../skills/windwalker/references/development-app/mvc-generation.md
+- Earth package boundaries and package-specific test modes @../docs/earth/vendor-packages.md

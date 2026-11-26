@@ -1,16 +1,16 @@
-# Windwalker 開發指引
+# Windwalker development guidance
 
-專案採用 PHP / Windwalker 框架時適用。開始開發前先載入 @../skills/windwalker/SKILL.md。
+Applies when a project uses PHP / the Windwalker framework. Load @../skills/windwalker/SKILL.md before starting development.
 
-- 官方文件：
-  - <https://windwalker.io/llms.txt> LLMS.txt
-  - <https://docs-search.windwalker.io/search> Search API - POST JSON: `{"messages": [{"role": "user","content": "Search text..."}]}`
+- Official documentation:
+  - LLMS.txt <https://windwalker.io/llms.txt>
+  - Search API <https://docs-search.windwalker.io/search> - POST JSON: `{"messages": [{"role": "user","content": "Search text..."}]}`
   - MCP tool `windwalker-docs-search`
   - Chat API <POST https://docs-search.windwalker.io/chat/completions> - OpenAI Chat Completions API
-  - @./skills-lookup.instructions.md 更多遠端文件搜尋管道
-- 優先閱讀 @../skills/windwalker/SKILL.md 了解 Windwalker 開發技能清單，並依照技能清單的分類與指引進行開發。
-- @../skills/windwalker/references/development-app/mvc-generation.md MVC 模組產生器
-- @../skills/windwalker/references/knowledge/commands.md CLI 指令
-- @../skills/windwalker/references/knowledge/di-injection.md DI 與服務註冊
-- @../skills/windwalker/references/knowledge/unicorn-js-script-pipeline.md Unicorn JS 與 PHP 協作
-- @../skills/windwalker/references/development-app/vue-development.md Vue 開發
+  - More remote documentation search channels @./skills-lookup.instructions.md
+- First read @../skills/windwalker/SKILL.md to understand the list of Windwalker development skills, then develop according to its categories and guidance.
+- @../skills/windwalker/references/development-app/mvc-generation.md MVC module generator
+- @../skills/windwalker/references/knowledge/commands.md CLI commands
+- @../skills/windwalker/references/knowledge/di-injection.md DI and service registration
+- @../skills/windwalker/references/knowledge/unicorn-js-script-pipeline.md Unicorn JS and PHP collaboration
+- @../skills/windwalker/references/development-app/vue-development.md Vue development

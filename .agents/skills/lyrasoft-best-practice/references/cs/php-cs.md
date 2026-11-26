@@ -1,46 +1,46 @@
 # PHP Code Style
 
-# 前言
+# Introduction
 
-LYRASOFT 採用 [PER](https://www.php-fig.org/per/coding-style/) 標準作為主要開發風格。
+LYRASOFT uses [PER](https://www.php-fig.org/per/coding-style/) as its primary coding standard.
 
-另外，本文件後續將補充一些 PER 中沒有規範，但我們另行規範的風格，所有未列出或出現衝突的規範皆以 PER 為準。
+The remainder of this document adds conventions that are not covered by PER. For any convention not listed here, or whenever this document conflicts with PER, follow PER.
 
-# 程式寫作規範
+# Coding conventions
 
-## 引入程式
+## Including files
 
-當手動直接載入程式檔案時，請用 `require` 與 `require_once`，若採用程式動態載入（例如使用 `Factory` 模式），則使用 `include` 與 `include_once`。
+When directly loading a file manually, use `require` or `require_once`. For dynamic file loading (for example, with the Factory pattern), use `include` or `include_once`.
 
-引入程式請以關鍵字寫法，不要用函式寫法。
+Use the keyword syntax for including files, not the function syntax.
 
-正確：
+Correct:
 
 ```php
 require_once 'foo.php';
 ```
 
-不應使用括號：
+Do not use parentheses:
 
 ```php
 require_once('foo.php');
 ```
 
-一般來說，我們應該盡量用絕對路徑，搭配 Joomla! 常數來引入檔案，避免位置變更時出錯：
+In general, prefer absolute paths with Joomla! constants to avoid errors if file locations change:
 
 ```php
 require_once JPATH_LIBRARIES . '/foo/bar.php';
 ```
 
-若要採用相對路徑，也應該使用 `__DIR__` 來當做路徑基礎：
+If you use a relative path, use `__DIR__` as the path base:
 
 ```php
 require_once __DIR__ . '/../bar.php';
 ```
 
-## 檔案宣告 strict types
+## Declare strict types in files
 
-每個 PHP 原始檔都必須以 `declare(strict_types=1);` 開頭：
+Every PHP source file must begin with `declare(strict_types=1);`:
 
 ```php
 <?php
@@ -50,46 +50,46 @@ declare(strict_types=1);
 namespace Windwalker\Foo;
 ```
 
-## 使用單引號
+## Use single quotes
 
-除非需要變數插值，字串一律使用單引號。
+Use single quotes for strings unless interpolation is needed.
 
-錯誤：
+Incorrect:
 
 ```php
 $name = "Simon";
 ```
 
-正確：
+Correct:
 
 ```php
 $name = 'Simon';
 $greet = "Hello, $name";
 ```
 
-## new 不加括號
+## Do not put parentheses after `new`
 
-PHP 8.4 以上可省略 `new` 表達式的括號，直接串接方法呼叫。
+In PHP 8.4 and later, parentheses can be omitted from a `new` expression when chaining a method call.
 
-錯誤：
+Incorrect:
 
 ```php
 (new FooBar())->run();
 ```
 
-正確：
+Correct:
 
 ```php
 new FooBar()->run();
 ```
 
-# 程式排版
+# Formatting
 
-## 換行
+## Line breaks
 
-### 控制結構
+### Control structures
 
-所有控制結構 `if`, `for`, `foreach` 等等，皆須在前後增加一行空行。
+Add a blank line before and after every control structure, such as `if`, `for`, and `foreach`.
 
 ```php
 $foo = 'bar';
@@ -101,9 +101,9 @@ if ($foo) {
 $baz = 123;
 ```
 
-### `return` 前空行
+### Blank line before `return`
 
-所有的 `return` 關鍵字上方必要空一行。
+Always leave a blank line before the `return` keyword.
 
 ```php
 $result = $db->loadObject();
@@ -111,13 +111,13 @@ $result = $db->loadObject();
 return $result;
 ```
 
-### 程式邏輯運作過程
+### Program logic
 
-編碼過程，建議每一行不同的邏輯控制皆空行，並且使用括號區隔的 Scope 空間上下也需要空行。
+During development, it is recommended to leave a blank line between different logical operations. Also leave blank lines immediately before and after a parenthesized scope.
 
-若連續變數賦值則不需空行。
+Do not add blank lines between consecutive variable assignments.
 
-範例：
+Example:
 
 ```php
 if ($avoid) {
@@ -134,28 +134,28 @@ if ($avoid) {
 }
 ```
 
-# 參照
+# References
 
-當使用變數參照時，參照符號應該距離等號一個空白字元，且跟後面的變數緊鄰，沒有空白。
+When using a variable reference, put one space between the equals sign and the reference operator, and no space between the reference operator and the variable.
 
-範例:
+Example:
 
 ```php
 $ref1 = &$this->sql;
 ```
 
-# 空白間距
+# Spacing
 
-## 字串連接
+## String concatenation
 
-當使用字串連接時， `.` 符號的左右兩旁應該要有一格空白。例如：
+When concatenating strings, put one space on each side of the `.` operator. For example:
 
 ```php
 $id = 1;
 echo 'index.php?option=com_foo&task=foo.edit&id=' . (int) $id;
 ```
 
-多行字串，串接符號應該要在下一行的開頭，左方除了縮排以外不需額外的空格：
+For multiline strings, put the concatenation operator at the beginning of the next line, with no extra space before it apart from indentation:
 
 ```php
 $id = 1
@@ -163,9 +163,9 @@ echo 'index.php?option=com_foo&task=foo.edit&id=' . (int) $id
     . '&layout=special';
 ```
 
-## 多行結尾逗號
+## Trailing commas on multiline constructs
 
-多行陣列、函式參數與參數宣告允許保留結尾逗號：
+Trailing commas are allowed in multiline arrays, function arguments, and parameter declarations:
 
 ```php
 $array = [
@@ -174,34 +174,33 @@ $array = [
 ];
 ```
 
-## 型別轉換
+## Type casting
 
-使用 `()` 語法進行型別轉換時一定要在後方加上一個空白
+When using `()` syntax for type casting, always add a space after the closing parenthesis:
 
 ```php
 $sql = (string) $query;
 ```
 
-# 判斷語法
+# Conditional syntax
 
-## 強行別判斷
+## Strict comparisons
 
-只要能確保型別不是變動的，我們皆以三等號 (`===` or `!==`) 來判斷，對效能有幫助，除非幫下判斷變數可能存在  
-型別的變動(例如 `'1'` 與 `1`)，才使用 `==` 或 `!=`。
+Use the triple-equals operators (`===` or `!==`) whenever the type is known to be stable; they are more performant. Use `==` or `!=` only when the variable being checked may have a changing type (for example, `'1'` versus `1`).
 
-可以用 `$var === null` 取代 `is_null()`，效能較好。
+Use `$var === null` instead of `is_null()` for better performance.
 
-確定是陣列時，可以用 `$var === []` 取代 `!count($var)` 或 `empty($var)` 來判斷空陣列 ，效能也較好。
+When you know a value is an array, use `$var === []` instead of `!count($var)` or `empty($var)` to check for an empty array; this is also more performant.
 
-其餘未列出的使用情境皆可用此規則來判斷。
+Use this rule for other cases not listed here.
 
-## 存在判斷
+## Existence checks
 
-當我們為了避免因變數或陣列元素未宣告而造成 Notice 時，可考慮用專用的判斷函式在 if 中。
+To avoid Notices caused by undeclared variables or array elements, consider using the dedicated checks in an `if` statement.
 
-### isset()
+### `isset()`
 
-用在判斷變數或陣列是否宣告過，且值不為 `null`：
+Use it to check whether a variable or array element is declared and its value is not `null`:
 
 ```php
 if (isset($array['eggs']) && $array['eggs'] == 5) {
@@ -209,7 +208,7 @@ if (isset($array['eggs']) && $array['eggs'] == 5) {
 }
 ```
 
-也可以用 Nullish 判斷符
+The nullish check can also be used:
 
 ```php
 if ($array['eggs'] ?? null) {
@@ -217,35 +216,35 @@ if ($array['eggs'] ?? null) {
 }
 ```
 
-或 Null Coalescing Operator
+Or use the Null Coalescing Operator:
 
 ```php
 $array['foo'] ??= 123;
 ```
 
-### empty()
+### `empty()`
 
-用在判斷變數或陣列元素是否被宣告過且值不為否（含 `null`, `false`, `0`, `''`, `[]`）等，一般作為布林值判斷，且內容是動態的，可能不曾被初始化時才用：
+Use it to check whether a variable or array element is declared and has a truthy value (that is, not `null`, `false`, `0`, `''`, `[]`, etc.). Generally, use it for boolean checks on dynamic content that may not have been initialized:
 
 ```php
 if (!empty($array['online'])) {
 }
 ```
 
-注意 `isset()` 在變數為 `null` 時會回傳否，因此判斷物件屬性是否被宣告過，應該用 `property_exists()`。
+Note: `isset()` returns false when a variable is `null`. Therefore, use `property_exists()` to check whether an object property has been declared.
 
-### 簡單易懂
+### Keep it simple
 
-避免多重否定寫法混淆使用者：
+Avoid confusing users with multiple negations:
 
 ```php
 if (!$allowNull && !(($value !== null) && ($value !== ''))) {
 }
 ```
 
-## Docblock
+## Docblocks
 
-Docblock 目前的 `@param` 與 `@return` 元素間空格為 2
+In Docblocks, use two spaces between the `@param` / `@return` elements and their values:
 
 ```php
 /**
@@ -255,9 +254,9 @@ Docblock 目前的 `@param` 與 `@return` 元素間空格為 2
  */
 ```
 
-## 換行
+## Line wrapping
 
-大多數的 function call, function 宣告等等，如果超過 120 個字元，建議換行，並且每一個參數都換行。
+For most function calls, function declarations, and similar constructs, it is recommended to wrap lines longer than 120 characters and put each argument on its own line.
 
 ```php
 $foo = $this->getFoo(
@@ -272,7 +271,7 @@ public function getFoo(
 ): string {}
 ```
 
-以下是 PER 允許的寫法與我們更偏好的寫法:
+PER allows the following style, but we prefer the version below:
 
 ```php
 // OK
@@ -283,8 +282,8 @@ foo($aLongParameter1, $aLongParameter2, [
 
 // Better
 foo(
-    $aLongParameter1, 
-    $aLongParameter2, 
+    $aLongParameter1,
+    $aLongParameter2,
     [
         'a' => 1,
         'b' => 2,
@@ -293,10 +292,9 @@ foo(
 );
 ```
 
-
 ## PHP-CS-Fixer
 
-我們的 PHP-CS-Fixer 設定檔可能會長這樣，這補充了一些 PER 不足的部分:
+Our PHP-CS-Fixer configuration may look like the following. It supplements conventions that PER does not cover:
 
 ```php
 return [
@@ -338,13 +336,13 @@ return [
 ];
 ```
 
-## 執行方式
+## Running the fixer
 
-指令依各專案 `composer.json` 的 scripts 而定。在專案根目錄執行，建議只檢查與修正變更過的 PHP 檔案，避免影響無關程式：
+The commands depend on each project's `composer.json` scripts. Run them from the project root. It is recommended to check and fix only changed PHP files to avoid affecting unrelated code:
 
 ```bash
 composer cs-check -- --path-mode=intersection packages/cache/src/CachePool.php
 composer cs-fix -- --path-mode=intersection packages/cache/src/CachePool.php
 ```
 
-`--path-mode=intersection` 會保留 Finder 的排除設定。修正後請再執行一次檢查並檢視 diff。直接執行 `composer cs-check` / `composer cs-fix` 會掃描整個設定範圍，僅在確定需要時使用。
+`--path-mode=intersection` preserves Finder's exclusion settings. After fixing, run the check again and inspect the diff. Running `composer cs-check` / `composer cs-fix` directly scans the entire configured scope; do so only when necessary.

@@ -1,26 +1,26 @@
-# 文件模板
+# Document templates
 
-這個目錄保存共用的文件模板，適合用於公司內部與跨專案的文件建立工作。
+This directory stores shared document templates for internal and cross-project documentation.
 
-## 使用情境
+## Use cases
 
-- onboarding 說明
-- 團隊慣例
-- 倉庫指引
-- 可重用的指示集合
+- Onboarding guidance
+- Team conventions
+- Repository guidance
+- Reusable sets of instructions
 
-## 建議結構
+## Suggested structure
 
 ```md
-# 標題
+# Title
 
-## 目的
+## Purpose
 
-## 範圍
+## Scope
 
-## 重點
+## Key points
 
-## 備註
+## Notes
 ```
 
-模板應保持清楚、通用，並方便直接套用到不同的倉庫與專案環境中。
+Templates should remain clear and generic, and be easy to apply across different repositories and project environments.

@@ -1,9 +1,9 @@
-# Repository guidance
+# Earth
 
-Until this file is excluded, read both instruction entry points:
+Earth is LYRASOFT's official website host application, built on Windwalker Core 4. It also hosts the editable `windwalker/core`, `windwalker/unicorn`, and `lyrasoft/luna` packages in `vendor/`.
 
-- [Host guidance](.github/copilot-instructions.md) for general-purpose tooling and user extensions.
-- [Earth development guidance](.github/dev/copilot-instructions.md) for application structure, workflows, and package boundaries.
-- This is a Windwalker 4 project, search Windwalker docs first for framework usage by `windwalker-docs-search` MCP tool of read the public documentation index at https://windwalker.io/llms.txt (fetch only the linked `.md` pages the task needs). Check vendor source only after the docs do not answer the question.
+- Main agent guidance: [Agent instructions](.agents/main.instructions.md)
+- Project structure: [Architecture](.agents/instructions/architecture.instructions.md)
+- Existing guidance retained: [Host guidance](.github/copilot-instructions.md) and [Earth development guidance](.github/dev/copilot-instructions.md)
 
-This root `AGENTS.md` is a temporary bridge to those two sources and may be excluded later.
+This is a Windwalker 4 project. Search Windwalker docs first for framework usage via the `windwalker-docs-search` MCP tool, or read the public index at https://windwalker.io/llms.txt (fetch only the linked `.md` pages the task needs). Check vendor source only after the docs do not answer the question.

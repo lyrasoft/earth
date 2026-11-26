@@ -1,49 +1,49 @@
 ---
 name: windwalker
-description: Windwalker 框架的技能，提供 Windwalker 專案開發相關的指令、文件與技能。
+description: A skill for the Windwalker framework, providing commands, documentation, and skills for Windwalker project development.
 ---
 
 # Skill: windwalker
 
-## 目的
+## Purpose
 
-當 agent 要開始開發新功能時，此 skill 提供 Windwalker 專案開發相關的指令、文件與技能，讓 agent 可以快速上手並遵循專案慣例。
+When an agent starts developing a new feature, this skill provides the commands, documentation, and guidance for Windwalker project development so the agent can get up to speed quickly and follow project conventions.
 
-## 使用時機
+## When to use
 
-- 替專案開發新功能或修正程式碼時。
-- 檢查或審查專案的程式碼、文件或指令時。
+- Developing a new feature or fixing code in a project.
+- Checking or reviewing a project's code, documentation, or instructions.
 
-## 範圍
+## Scope
 
-通常用於專案採用 PHP / Windwalker 框架開發時，可能是全 Windwalker Full-stack 專案，也可能是 Windwalker 作為後端，另外建立前端 app 時。一般來說專案根目錄會是 Windwalker 專案，並且有 `www/`、`assets/`、`composer.json`、`.env` 等檔案與資料夾。
+This skill generally applies to projects developed with PHP / the Windwalker framework. These may be full-stack Windwalker projects or projects that use Windwalker as a backend with a separate frontend app. Typically, the project root is a Windwalker project and contains files and directories such as `www/`, `assets/`, `composer.json`, and `.env`.
 
-## 預期行為
+## Expected behavior
 
-- 確認專案屬於 Windwalker 專案。
-- 查閱 instructions 中所有與 Windwalker 專案開發相關的指令與文件，並依照專案慣例執行。
-- 依照任務需求，使用本 skill 內的相關 references、文件與指令。
+- Confirm that the project uses Windwalker.
+- Read all instructions and documentation related to Windwalker project development, and follow the project's conventions.
+- Use the relevant references, documentation, and commands in this skill as required by the task.
 
-## 相關文件
+## Related documentation
 
-- Windwalker 官方文件: <https://windwalker.io/llms.txt>
+- Windwalker official documentation: <https://windwalker.io/llms.txt>
   - Windwalker Search API: <https://docs-search.windwalker.io/search> - POST JSON: `{"messages": [{"role": "user","content": "Search text..."}]}`
   - Chat API <POST https://docs-search.windwalker.io/chat/completions> - OpenAI Chat Completions API
-  - Search MCP Tools: `windwalker-docs-search`
-- 核心知識 @references/knowledge/
-  - 可用的 CLI 指令與使用方式: @references/knowledge/commands.md
-  - DI 容器與服務註冊: @references/knowledge/di-injection.md
-  - I18n 多國語言環境開發: @references/development-app/i18n.md
-  - Unicorn JS 與 PHP 的協作流程: @references/knowledge/unicorn-js-script-pipeline.md
-  - Vite／Fusion 建置與 AssetService 資產解析: @references/knowledge/frontend-and-assets.md
-- 應用開發 @references/development-app/
-  - 建立 MVC 模組的產生器指令與注意事項: @references/development-app/mvc-generation.md
-  - Vue 元件、掛載與外掛設定: @references/development-app/vue-development.md
-- 核心開發 @references/development-core/
-  - Package 開發與編輯: @references/development-core/package-development.md
-- 測試
-  - Windwalker 測試工作: @references/test/testing.md
+  - Search MCP tool: `windwalker-docs-search`
+- Core knowledge @references/knowledge/
+  - Available CLI commands and usage: @references/knowledge/commands.md
+  - DI container and service registration: @references/knowledge/di-injection.md
+  - I18n and multilingual development: @references/development-app/i18n.md
+  - Unicorn JS and PHP collaboration workflow: @references/knowledge/unicorn-js-script-pipeline.md
+  - Vite / Fusion build and AssetService asset resolution: @references/knowledge/frontend-and-assets.md
+- Application development @references/development-app/
+  - MVC module generator commands and notes: @references/development-app/mvc-generation.md
+  - Vue components, mounting, and plugin configuration: @references/development-app/vue-development.md
+- Core development @references/development-core/
+  - Package development and editing: @references/development-core/package-development.md
+- Testing
+  - Windwalker testing tasks: @references/test/testing.md
 
-## 驗證
+## Verification
 
-- 重新查閱 instructions 與 references，確認 agent 已經使用了 Windwalker 專案開發相關的指令與文件。沒有漏掉或未遵循的部分。
+- Revisit the instructions and references to confirm that the agent used the commands and documentation for Windwalker project development, without overlooking or failing to follow any relevant guidance.

@@ -1,44 +1,49 @@
-# Agent 主要指引入口
+# Main agent guidance entry
 
-## 目的
+## Purpose
 
-這個檔案是專案內的 Agent 指引，提供協作者與 AI agent 在專案內的操作規範與限制。
+This file provides in-repository agent guidance, including operating rules and constraints for contributors and AI agents.
 
-## 專案介紹
+## Project overview
 
-請見 @../AGENTS.md
+See @../AGENTS.md
 
-## 專案結構
+## Project structure
 
-請見 @instructions/architecture.instructions.md
+See @instructions/architecture.instructions.md
 
-## 指引文件目錄說明
+## Earth application development
 
-- @README.md：專案總覽與共用標準
-- @AGENTS.md：協作者與 AI agent 的基本指引
-- `instructions`：repository-level 規則與內容分流說明
-  - 盡可能簡短，條列式，指向任務內容到合適的文件
-  - 可能根據不同任務與適用的檔案路徑切割，並用 `applyTo:` front-matter 指定適用範圍
-  - 可能指向遠端文件或 MCP tools，盡可能再開始工作前搜尋並讀取任務相關的內容
-  - @./instructions/README.md：指引總覽與分段入口
-- `skills`：共用技能與模板
-  - 可拆裝組合的技能，包含多步驟的工作流程、範例、腳本與資源
-  - 可隨時根據需要從遠端安裝或複製貼上，用以啟動某一種能力
-  - 可能根據不同的任務類型適用不同的 skills
-  - @./skills/index.md：技能總覽與分段入口
-  - @./skills/<name>/references/：技能相關的參考資料
-- `docs`：長篇文件與範本
-  - 僅在需要時載入，可能是框架與函式庫說明文件、專案知識背景、操作流程 SOP 等等。
-  - @./docs/index.md：文件總覽與分段入口
-- `prompts`：AI 工作流程 prompts
+For Earth-specific development constraints and task routing, see @instructions/earth-development.instructions.md.
+Earth-specific long-form references are indexed in @docs/earth/README.md.
 
-### docs 段落與長文件載入規則
+## Guidance document directory
 
-`docs` 可能會包含較長的說明文件，請依「需要時才載入」的原則處理，不要一開始就一次讀完整個資料夾：
+- @README.md: Project overview and shared standards
+- @AGENTS.md: Basic guidance for contributors and AI agents
+- `instructions`: Repository-level rules and content-routing guidance
+  - Keep these as concise bullet points that direct tasks to the appropriate documents.
+  - They may be split by task type and file applicability, using `applyTo:` front matter to specify where they apply.
+  - They may point to remote documents or MCP tools; search for and read task-relevant material before starting whenever possible.
+  - @./instructions/README.md: Instructions overview and entry point
+- `skills`: Shared skills and templates
+  - Composable skills that include multi-step workflows, examples, and resources
+  - Can be installed or copied from remote sources as needed to enable a capability
+  - May include different skills for different task types
+  - @./skills/index.md: Skills overview and entry point
+  - @./skills/<name>/references/: References related to a skill
+- `docs`: Long-form documents and templates
+  - Load only when needed; may contain framework and library documentation, project knowledge, or operating procedure (SOP) material.
+  - @./docs/index.md: Documentation overview and entry point
+- `prompts`: AI workflow prompts
 
-- @docs/index.md：文件總覽與分段入口，先讀這個即可快速判斷需要看哪個文件。
-- `docs/templates/`：文件模板、文件架構與寫作方式，適合創建或修正文件時載入。
-- 新增 docs 類別時，請同步補充此處的段落說明，讓後續使用者知道該文件適合在哪個情境下載入。
-- 若不確定要看哪個 docs，先讀 @docs/index.md，再依主題定位到需要的長文件。
+### Docs sections and long-document loading rules
 
-這些段落需保持簡短、可擴充，方便未來新增新的 docs 分類而不必重寫整份指引。
+`docs` may contain longer reference documents. Follow a just-in-time loading approach; do not read the entire directory up front:
+
+- @docs/index.md: Start here for the document overview and section index to quickly determine what is relevant.
+- `docs/templates/`: Document templates, structure, and writing guidance; consult this when creating or revising documents.
+- When adding a docs category, update this section so future users know when to load it.
+- If unsure which document to read, start with @docs/index.md, then locate only the relevant long-form document for the topic.
+
+Keep these sections concise and extensible so new documentation categories can be added without rewriting the whole file.

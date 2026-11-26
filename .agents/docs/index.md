@@ -1,18 +1,20 @@
-# 文件索引
+# Documentation index
 
-這個目錄保存共用知識庫的通用文件，內容應保持簡潔、可重用，並聚焦於公司層級的共享標準與協作指南。
+This directory stores shared references and repository-specific documentation. Keep shared material reusable across projects; place Earth-only development references under `earth/` so their scope is explicit.
 
-## 範圍
+## Scope
 
-- 公司共用規範
-- 可重用的文件模板
-- onboarding 與協作說明
-- 未來內容的模板索引
+- Company-wide shared standards
+- Repository-specific architecture, development references, and operating procedures in named subdirectories
+- Reusable document templates
+- Onboarding and collaboration guidance
+- A template index for future content
 
-## 組織
+## Organization
 
-- `templates`: 共用的 Markdown 文件模板
+- `templates`: shared Markdown document templates
+- `earth`: Earth application and hosted-package development references
 
-## 維護
+## Maintenance
 
-只有在確實需要新增文件類別時，才更新此索引。維持文件的中性與跨專案可重用性，並維持一致的公司共用語境。
+Update this index when a genuinely new shared or repository-specific document category is added. Keep shared references reusable across projects, and keep project-specific material clearly scoped to its named subdirectory.

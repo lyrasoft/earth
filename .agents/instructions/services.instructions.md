@@ -1,7 +1,7 @@
-# Services 指引
+# Services guidance
 
-建立、拆分或注入 service 時適用。
+Applies when creating, splitting, or injecting services.
 
-- @../skills/windwalker/references/knowledge/di-injection.md DI 與服務註冊
-- @../skills/lyrasoft-best-practice/references/organizing/php-service-organizing.md PHP service 組織
-- @../skills/lyrasoft-best-practice/references/organizing/vue-service-organizing.md Vue service 組織
+- @../skills/windwalker/references/knowledge/di-injection.md DI and service registration
+- @../skills/lyrasoft-best-practice/references/organizing/php-service-organizing.md PHP service organization
+- @../skills/lyrasoft-best-practice/references/organizing/vue-service-organizing.md Vue service organization
