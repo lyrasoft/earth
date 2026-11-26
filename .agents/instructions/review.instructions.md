@@ -2,7 +2,7 @@
 
 ## Review standards
 
-- PHP code review guidance @../skills/lyrasoft-best-practice/references/review/review-php.md
+- PHP code review guidance `../skills/lyrasoft-best-practice/references/review/review-php.md`
 
 ## Output rules
 

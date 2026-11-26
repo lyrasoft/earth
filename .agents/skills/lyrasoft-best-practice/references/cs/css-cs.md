@@ -1,65 +1,65 @@
 # CSS / SCSS Code Style
 
-# Introduction
+# 前言
 
-LYRASOFT SCSS coding style follows the [Airbnb CSS/Sass Styleguide](https://github.com/airbnb/css).
+LYRASOFT SCSS 相關編碼風格遵循 [AirBnb CSS/Sass Styleguide](https://github.com/airbnb/css)
 
-The guidance below supplements the Airbnb rules. Since much of the second half of the Airbnb CSS/Sass Styleguide is advisory rather than mandatory, some of our additions may conflict with it.
+以下則針對 Airbnb 規範補充更多額外建議。由於 AirBnb CSS/Sass Styleguide 後半部大多為建議形式，並非強制規範，我們的補充內容，有部分會與其衝突。
 
-# Syntax and formatting
+# 語法與格式
 
-## Indentation
+## 縮排
 
-Use 2 spaces for indentation in all CSS, SASS, and LESS files.
+CSS, SASS, LESS 所有檔案統一之縮排為 2 spaces。
 
-Four spaces are acceptable when writing CSS in HTML or PHP, since our HTML / PHP uses four-space indentation. This follows the same rule as @php-cs.md.
+但寫在 HTML 或 PHP 內的可接受 4 spaces。 (因我們的 HTML / PHP 依然使用 4 spaces)，此部份規則同 `php-cs.md`
 
-## Rule declarations
+## 規則宣告
 
-Each rule declaration must be on its own line.
+每個規則宣告都必須獨自一行。
 
 ```css
-/* Correct */
+/* 正確 */
 .example {
   color: #000;
   visibility: hidden;
 }
 
-/* Incorrect - written on the same line */
+/* 錯誤 - 寫在同一行 */
 .example {color: #000; visibility: hidden;}
 ```
 
-## Alignment
+## 對齊
 
-### Selectors and declarations
+### 選擇器及宣告
 
-The opening brace must be on the same line as the selector and preceded by one space. The closing brace must appear on its own line after the last property, at the same indentation level as the opening brace.
+左大括號必須跟選擇器位於同一行，並前綴一空白字元。右大括號須存在於最後一個屬性規則之後並獨立於新的一行，且應與左大括號處於相同的縮排。
 
 ```css
-/* Correct */
+/* 正確 */
 .example {
   color: #fff;
 }
 
-/* Incorrect - closing brace is misplaced and incorrectly indented */
+/* 錯誤 - 右大括號的位置錯了，沒有正確縮排 */
 .example {
   color: #fff;
   }
 ```
 
-Put each selector on its own line, with the last selector on the same line as the opening brace:
+各個選擇器皆獨立在自己的一行，最後一個選擇器與左大括號位於同一行：
 
 ```css
-.foo,
+.foo, 
 .foo-bar,
 .baz {
   display: block;
 }
 ```
 
-### Prefix alignment
+### 前綴字對齊
 
-For cross-browser engine declarations, it is recommended (but not required) to use spaces to align indentation, for example:
+跨瀏覽器引擎的的樣式宣告，建議使用空白來縮排對齊 (非強制)，例如：
 
 ```css
 .foo {
@@ -69,43 +69,43 @@ For cross-browser engine declarations, it is recommended (but not required) to u
 }
 ```
 
-## HEX values
+## HEX 值
 
-HEX values should be lowercase and use the shortest possible notation:
+HEX 值應該使用小寫並以最小縮寫宣告：
 
 ```css
-/* Correct */
+/* 正確 */
 .example {
   color: #eee;
 }
 
-/* Incorrect */
+/* 錯誤 */
 .example {
   color: #EEEEEE;
 }
 ```
 
-## Units for zero values
+## 零值的單位
 
-Do not specify a unit for a zero value.
+零值不應該使用單位。
 
 ```css
-/* Correct */
+/* 正確 */
 .example {
    padding: 0;
 }
 
-/* Incorrect - uses a unit */
+/* 錯誤 - 使用單位 */
 .example {
    padding: 0px;
 }
 ```
 
-# Naming patterns
+# 命名模式
 
-Airbnb recommends BEM or OOCSS naming. Their implementation may differ as shown below, using `card` as an example:
+Airbnb 中建議命名規範可採用 BEM 或 OOCSS，其在實作上的差別可能是這樣，以 `card` 來舉例:
 
-BEM style:
+BEM 風格
 
 ```css
 .listing-card { }
@@ -114,7 +114,7 @@ BEM style:
 .listing-card__body { }
 ```
 
-OOCSS style:
+OOCSS 風格
 
 ```css
 .listing-card { }
@@ -123,13 +123,13 @@ OOCSS style:
 .listing-card .card-body { }
 ```
 
-We currently recommend BEM as the primary style and OOCSS when BEM cannot be used. See our BEM conventions: [\[CSS\] BEM Concepts and Conventions](https://lyrasoft.atlassian.net/wiki/spaces/MEG/pages/142213177/CSS+BEM)
+目前我們在編寫時，建議以 BEM 為主，無法採用 BEM 時則可以用 OOCSS。請見我們的 BEM 編寫規範 [\[CSS\] BEM 概念與規範](https://lyrasoft.atlassian.net/wiki/spaces/MEG/pages/142213177/CSS+BEM)
 
-# SCSS style
+# SCSS 風格
 
-Basic SCSS conventions follow Airbnb recommendations, but nesting beyond three levels is allowed. We primarily develop websites rather than reusable libraries; HTML in most large projects is extremely complex and deeply nested, and three nesting levels are insufficient for OOCSS/BEM styles. This can easily cause website elements to affect one another.
+基本 SCSS 規範遵循 Airbnb 建議，不過我們可以允許三層以上的嵌套。由於我們以開發網站為主，並非開發重用的含式庫，多數大型專案的 HTML 將極其複雜且深入，三層嵌套在 OOCSS/BEM 風格下不足以使用，容易讓網站元素之間相互影響。
 
-The following Bootstrap example uses multiple levels of child selectors (`>`) in some complex, deeply nested components (such as dropdowns) to ensure that the correct elements are selected.
+以下為 Bootstrap 的範例程式碼，某些複雜的多層次元件(例如下拉選單)需要用到多層的子代選擇器(`>`)來確保提取到正確的元素。
 
 ```css
 .navbar-expand {
@@ -161,9 +161,9 @@ The following Bootstrap example uses multiple levels of child selectors (`>`) in
 }
 ```
 
-Most ordinary components can be kept within five levels. Optimize hierarchy and structure as much as possible to keep the code readable. Consider the following rules:
+但多數一般元件都可控制在 5 層以內，盡可能優化你的層次與結構讓代碼易讀。可以考慮以下規則 :
 
-The first level is the component entry selector. A self-contained section that needs its own styles is called a component; all its styles should be nested inside it:
+第一層為元件入口選擇器，我們把一整個需要獨立風格的區塊稱為元件 (component)，所有它的樣式都要被包在裡面:
 
 ```scss
 header.main-header {
@@ -175,7 +175,7 @@ section.feature {
 }
 ```
 
-Within a component entry, class and element selectors should be no more than three levels deep:
+元件入口內的 class 與元素選擇器最高三層
 
 ```scss
 header.main-header {
@@ -189,7 +189,7 @@ header.main-header {
 }
 ```
 
-For subsequent selectors, use only pseudo-element selectors (`::`) or the `&` selector to change styles for different states.
+後續的選擇器僅使用偽類選擇器 (`::`) 或 `&`選擇器來更改不同狀態下的樣式。
 
 ```scss
 header.main-header {
@@ -213,16 +213,16 @@ header.main-header {
 }
 ```
 
-However, existing classes that change by hierarchy can reduce the number of levels needed. This is the improved structure provided by Bootstrap 4 and later:
+但若既有的 class 有根據層次變動，則可有效的降低必要層次，這是 Bootstrap 4 以後所提供的較佳結構。
 
 ```css
 header.main-header {
   .navbar-nav a.nav-link {
-    // Main menu item
+    // 主選單的項目
   }
 
   a.dropdown-item {
-    // Submenu item
+    // 子選單的項目
   }
 }
 ```

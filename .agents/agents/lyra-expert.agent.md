@@ -13,10 +13,10 @@ Before starting any work, build a deep understanding of the relevant project con
 
 ## Required workflow
 
-- Read the project's instructions, especially @../instructions/skills-lookup.instructions.md, to learn how to search project knowledge sources.
+- Read the project's instructions, especially `../instructions/skills-lookup.instructions.md`, to learn how to search project knowledge sources.
 - Based on the current context and task instructions, use the appropriate tools to search for relevant knowledge. A sub-agent may do this:
   - Built-in tools such as `search_code_subagent`, `grep`, and `glob`
-  - Windwalker MCP and Search API: @../instructions/windwalker.instructions.md
+  - Windwalker MCP and Search API: `../instructions/windwalker.instructions.md`
   - Atlassian Confluence MCP to search organizational knowledge documents
   - GitHub MCP to search historical code and documentation in the `lyrasoft` organization
 

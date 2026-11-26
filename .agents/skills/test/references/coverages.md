@@ -2,22 +2,22 @@
 applyTo: "**/{test,Test,tests,Tests}/**/*.php"
 ---
 
-# Coverage testing and guidelines
+# Coverage 測試與規範
 
-For the workflow to find and fill coverage gaps, see the [test skill](../SKILL.md).
+尋找並補齊 coverage 缺口的流程，請見 [test 技能](../SKILL.md)。
 
-## Generate a coverage report with PhpUnit
+## 使用 PhpUnit 產生 coverage 報告
 
-- By default, use PHPUnit + Xdebug to generate a coverage report under `tmp/coverage`. Ensure Xdebug is installed and enabled in `php.ini`.
-- If Xdebug is unavailable, use `--coverage-php` to generate a coverage data file, then use `phpdbg` or another tool to generate the report.
+- 預設使用 phpunit + Xdebug 產生 coverage 報告，並輸出到 `tmp/coverage`。請確保已安裝 Xdebug，並在 `php.ini` 中啟用。
+- 若沒有 Xdebug，請使用 `--coverage-php` 產生 coverage 資料檔，並使用 `phpdbg` 或其他工具產生報告。
 
-## Principles for deciding what to cover
+## 覆蓋與否的判斷原則
 
-### Getters/setters without logic or simple proxy methods do not need separate tests and should be excluded from code coverage
+### 無邏輯的 getter/setter 或單純代理方法不需獨立測試，並排除於 code coverage
 
-Do not write separate tests just to execute pure getters/setters (which only return or assign a property, optionally with `return $this`). If meaningful coverage for such a method cannot be
-obtained through other behavior tests, exclude it by adding `@codeCoverageIgnore` to the method's docblock. If logic is later added (validation, normalization, lazy initialization, side effects, etc.),
-**you must** remove the ignore annotation and test the behavior.
+不要只為了執行純 getter/setter（僅回傳或指派屬性，可選擇 `return $this`）而撰寫獨立測試。若此類方法無法透過其他行為測試
+取得有意義的覆蓋，請在方法 docblock 加上 `@codeCoverageIgnore` 排除。之後若加入邏輯（驗證、正規化、延遲初始化、副作用等），
+**必須**移除該忽略標籤，並以測試覆蓋其行為。
 
 ```php
 /**
@@ -31,7 +31,7 @@ public function setOptions(array $options): static
 }
 ```
 
-Simple proxy methods that only call another method or service without adding behavior may also be excluded. If parameters or return values are transformed, validated, or otherwise processed, their behavior must be tested.
+只呼叫其他方法或服務、沒有額外行為的單純代理方法也可排除。但若參數或回傳值經過轉換、驗證或其他處理，就必須以測試覆蓋其行為。
 
 ```php
 /**
@@ -43,11 +43,11 @@ public function createAnyInstance(array $options): static
 }
 ```
 
-### Do not ignore branches with logic or that throw errors
+### 含邏輯或會拋出錯誤的分支不得忽略
 
-`@codeCoverageIgnore` applies only to getters/setters without logic and simple proxy methods. Any branch with logic (conditions, transformations, fallbacks, side effects) or that throws an exception,
-even if it is only a few lines, **must** be tested. Do not ignore such branches to improve coverage. Only genuinely unexecutable code (for example, an unavailable external driver,
-or process-level `exit` / signal handling) may be ignored, and the reason must be stated in the annotation.
+`@codeCoverageIgnore` 僅適用於無邏輯的 getter/setter 與單純代理方法。任何包含邏輯（條件、轉換、fallback、副作用）或會拋出例外的分支，
+即使只有幾行，**都必須**測試。不可為了提高 coverage 而忽略這類分支。只有真正無法執行的程式碼（例如無法取得的外部 driver，
+或程序層級的 `exit`／signal 處理）才可忽略，並須在標籤中註明原因。
 
-A purely defensive or fallback branch may also be ignored if it has been shown to be unreachable through public behavior (for example, because the caller already guarantees the condition).
-Wrap it in `@codeCoverageIgnoreStart` / `End` (or mark the whole method) and explain why it is unreachable in a comment. Verify this claim first; if it is actually reachable, it must be tested.
+純防禦性或 fallback 分支，若已證明無法透過公開行為到達（例如呼叫端已保證該條件），也可忽略。請以 `@codeCoverageIgnoreStart` / `End`
+包住（或標記整個方法），並以註解說明無法到達的原因。請先驗證該說法；若實際可到達，就必須測試。

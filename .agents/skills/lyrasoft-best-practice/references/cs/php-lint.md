@@ -1,24 +1,24 @@
 # PHP Lint (PHP-CS-Fixer)
 
-## Introduction
+## 前言
 
-Windwalker projects typically use `php-cs-fixer` to check and fix code style.
+若是 Windwalker 專案，通常使用 `php-cs-fixer` 進行程式碼檢查與修正。
 
-Projects generally have `friendsofphp/php-cs-fixer` preinstalled, with a `.php-cs-fixer.dist.php` configuration file in the project root. Composer scripts are also typically preconfigured:
+一般來說專案會預裝 `friendsofphp/php-cs-fixer`，並在根目錄有 `.php-cs-fixer.dist.php` 設定檔案。Composer 也會遇先準備好指令：
 
 ```json
 "cs-check": "bash bin/php-cs-fixer check --diff",
 "cs-fix": "bash bin/php-cs-fixer fix",
 ```
 
-If these scripts are unavailable, try running `vendor/bin/php-cs-fixer` directly.
+如果沒有這兩個指令，可以嘗試用 `vendor/bin/php-cs-fixer` 來執行。
 
-LYRASOFT uses PER coding style. For details, see @./php-cs.md
+LYRASOFT 使用 PER Code Style，詳細請見 `./php-cs.md`
 
-## Usage
+## 執行方式
 
 ```bash
-# Check code style
+# 檢查程式碼
 composer cs-check
 
 # OR
@@ -26,9 +26,10 @@ php ./vendor/bin/php-cs-fixer check --diff
 
 # -------
 
-# Fix code style
+# 修正程式碼
 composer cs-fix
 
 # OR
 php ./vendor/bin/php-cs-fixer fix
 ```
+

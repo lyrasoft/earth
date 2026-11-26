@@ -1,38 +1,38 @@
-# Windwalker DI and Injection
+# Windwalker DI 與注入
 
-## Configuration location
+## 設定位置
 
-- Service bindings go in the `bindings`, `providers`, `aliases`, `extends`, `attributes`, and other sections of `etc/di.php` (the standalone DI configuration).
-- In an Earth project, DI configuration is loaded by `'di' => include __DIR__ . '/di.config.php'` in `etc/config.php`, and the `di` section is processed last.
-- Path aliases (`@temp`, `@logs`) are defined in `etc/define.php` and `etc/runtime.config.php`, and resolved by `PathResolver`.
+- 服務綁定放在 `etc/di.php`（獨立 DI 設定）的 `bindings`、`providers`、`aliases`、`extends`、`attributes` 等鍵。
+- 在 Earth 專案中，DI 設定由 `etc/config.php` 的 `'di' => include __DIR__ . '/di.config.php'` 載入，且 `di` 區段最後處理。
+- 路徑別名（`@temp`、`@logs`）定義於 `etc/define.php` 與 `etc/runtime.config.php`，由 `PathResolver` 解析。
 
-## Getting services
+## 取得服務
 
-- Get a service from the container by class name or alias with `$this->container->get(...)`, or use `$this->app->service(...)`.
-- Examples:
+- 以類別名稱或別名從容器取得：`$this->container->get(...)`，或 `$this->app->service(...)`。
+- 範例：
 
 ```php
-$path = $this->container->get(PathResolver::class)->resolve('@temp/cache');
+$path = $this->container->get(PathResolver::class)->resolve('`temp/`cache');
 $path = $this->app->service(PathResolver::class)->resolve('@migrations');
 ```
 
-- `AppProvider` registers `PathResolver::class` as shared with `prepareSharedObject(PathResolver::class)`, so each retrieval returns the same instance.
+- `AppProvider` 以 `prepareSharedObject(PathResolver::class)` 註冊為 shared，每次取得皆為同一實例。
 
-## Injection methods
+## 注入方式
 
-- **Constructor injection**: add a type hint to the constructor parameter; the container resolves it automatically.
-- **Property injection `#[Inject]`**: can be used on properties and parameters. Defined in `vendor/windwalker/framework/packages/di/src/Attributes/Inject.php`.
-  - `id`: service ID or alias.
-  - `forceNew`: create a new instance.
-  - `tag`: a string or enum value used to resolve a tagged service.
-- Resolution order: first the ID or first class/interface type, then a registered service for that tag, and finally instantiate a concrete class; interfaces are not instantiated automatically.
-- **`#[Autowire]`**: creates unresolved dependencies; can be used on classes, callables, and parameters.
-- **`#[NoAutowire]`**: skips automatic injection for a single parameter.
-- **`#[Service]`**: resolves a shared service; can be used on properties, parameters, and classes.
-  - `shared: false`: not shared.
-  - `tag`: resolve a tagged service.
-  - `providedIn`: restrict the container level where the service is available.
-- Only objects created by the container are injected; objects created with `new` are not.
+- **建構子注入**：在建構子參數加上型別提示，容器自動解析。
+- **屬性注入 `#[Inject]`**：可用於屬性與參數。定義位於 `vendor/windwalker/framework/packages/di/src/Attributes/Inject.php`。
+  - `id`：服務 ID 或別名。
+  - `forceNew`：建立新實例。
+  - `tag`：字串或列舉值，用於解析帶標籤的服務。
+- 解析順序：先 id 或第一個類別／介面型別，再找該 tag 的已註冊服務，最後才建立具體類別；介面不會自動建立。
+- **`#[Autowire]`**：建立未解析的依賴，可用於類別、可呼叫物件與參數。
+- **`#[NoAutowire]`**：略過單一參數的自動注入。
+- **`#[Service]`**：解析共享服務，可用於屬性、參數與類別。
+  - `shared: false`：非共享。
+  - `tag`：帶標籤解析。
+  - `providedIn`：限制服務所在的容器層級。
+- 只有容器建立的物件會被注入；`new` 建立的物件不會。
 
 ```php
 use Windwalker\DI\Attributes\Inject;
@@ -44,13 +44,13 @@ abstract class AbstractModule implements ModuleInterface
 }
 ```
 
-## Binding services by tag with a function
+## 以函式依標籤綁定服務
 
-- Put a closure that accepts `?string $tag` in `bindings` and return different implementations based on the tag.
-- The caller specifies a variant with `tag`; when no tag is supplied, use the `default` branch.
+- 在 `bindings` 放一個接收 `?string $tag` 的 closure，依標籤回傳不同實作。
+- 呼叫端以 `tag` 指定變體，預設不帶標籤時走 `default`。
 
 ```php
-// etc/di.config.php, inside the returned array
+// etc/di.config.php，在回傳陣列內
 'bindings' => [
     ChatModelInterface::class => function (
         Container $container,
@@ -69,26 +69,26 @@ $gpt = $app->retrieve(ChatModelInterface::class);
 $claude = $app->retrieve(ChatModelInterface::class, tag: 'claude');
 ```
 
-- A closure binding creates a new object for each retrieval. To share one instance per tag, use `bindShared()` in a provider instead.
-- Using an enum as a tag helps prevent typos: change the parameter type to `?ChatModelDriver $tag`. To accept both strings and enums, use `string|\UnitEnum|null` and convert with the rich enum's `wrap()`.
-- For untrusted input, use `tryWrap()` (returns `null` for unknown values) instead of `wrap()` (throws `ValueError` for unknown values).
-- Tags are case-sensitive; `'SMS'` and `'sms'` are different tags.
+- 以 closure 綁定時每次取得都會建立新物件；需要每個標籤共用一個實例時，改在 provider 以 `bindShared()` 綁定。
+- 使用列舉作為標籤可避免拼字錯誤：參數型別改為 `?ChatModelDriver $tag`。若要同時接受字串，參數型別用 `string|\UnitEnum|null`，並以 rich enum 的 `wrap()` 轉換。
+- 對不可信輸入，使用 `tryWrap()`（未知值回傳 `null`），而非 `wrap()`（未知值拋出 `ValueError`）。
+- 標籤區分大小寫，`'SMS'` 與 `'sms'` 是不同標籤。
 
-## Provider lifecycle
+## Provider 生命週期
 
-- A provider implements `register()` and may optionally implement `bootDeferred()`, `bootBeforeRequest()`, and `releaseAfterRequest()`.
-- Multiple container levels and `providedIn` relate to request / application levels.
+- Provider 實作 `register()`，可選擇實作 `bootDeferred()`、`bootBeforeRequest()`、`releaseAfterRequest()`。
+- 多層容器與 `providedIn` 與 request／application 層級相關。
 
-## Note
+## 注意
 
-- If a class cannot access the container, do not create a global variable; ask how the dependency should be passed in.
+- 類別若無法取得容器，請勿建立全域變數，應詢問如何傳入依賴。
 
-## References
+## 參考連結
 
-- [Dependency Injection concepts](https://windwalker.io/documentation/framework/core-concepts/dependency-injection/dependency-injection.md)
-- [Service Variants](https://windwalker.io/documentation/framework/core-concepts/dependency-injection/service-variants.md)
-- [DI overview](https://windwalker.io/documentation/components/di/index.md)
-- [Basic usage](https://windwalker.io/documentation/components/di/basic-usage.md)
-- [Attributes](https://windwalker.io/documentation/components/di/attributes.md)
-- [Parameters](https://windwalker.io/documentation/components/di/parameters.md)
-- [Multiple containers](https://windwalker.io/documentation/components/di/multi-levels.md)
+- [依賴注入概念](https://windwalker.io/documentation/framework/core-concepts/dependency-injection/dependency-injection.md)
+- [服務變體](https://windwalker.io/documentation/framework/core-concepts/dependency-injection/service-variants.md)
+- [DI 概覽](https://windwalker.io/documentation/components/di/index.md)
+- [基本用法](https://windwalker.io/documentation/components/di/basic-usage.md)
+- [屬性](https://windwalker.io/documentation/components/di/attributes.md)
+- [參數](https://windwalker.io/documentation/components/di/parameters.md)
+- [多層容器](https://windwalker.io/documentation/components/di/multi-levels.md)

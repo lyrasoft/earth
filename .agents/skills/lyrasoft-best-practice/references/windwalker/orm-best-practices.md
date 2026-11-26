@@ -1,10 +1,10 @@
-# ORM and Database Operation Best Practices
+# ORM 與 DB 操作最佳實務
 
-## Grouping and typing query results
+## 查詢結果群組與型別化
 
-### Prefer automatic grouping
+### 盡量使用自動群組
 
-Prefer using the ORM's `groupByJoins()` to group all joined columns into child objects.
+盡量使用 ORM 的 `groupByJoins()` 將所有 joins 欄位群組成子物件
 
 ```php
 $items = $orm->from(Item::class)
@@ -13,25 +13,25 @@ $items = $orm->from(Item::class)
     ->all(Item::class);
 
 foreach ($items as $item) {
-    $foo = $item->foo; // Foo object (Collection::class)
+    $foo = $item->foo; // Foo 物件 (Collection::class)
 }
 ```
 
-Documentation: [ORM Querying](https://windwalker.io/documentation/components/orm/querying.md)
+文件 [ORM Querying](https://windwalker.io/documentation/components/orm/querying.md)
 
-### Convert objects to Entities or declare their types where possible
+### 盡量將物件轉成 Entity 或宣告型別
 
-Hydrate grouped child objects as Entities inside the loop:
+群組的子物件可以在迴圈內 hydrate 成 Entity
 
 ````php
 foreach ($items as $item) {
-    $foo = $item->foo; // Foo object (Collection::class)
+    $foo = $item->foo; // Foo 物件 (Collection::class)
     $foo = $orm->toEntity($foo, Foo::class); // Foo Entity
     $foo = $orm->tryEntity($foo, Foo::class); // Foo Entity or NULL
 }
 ````
 
-When referencing an object from a template, declare its type in advance so the IDE can track it:
+從模版引用時，預先宣告型別，讓 IDE 未來可追蹤：
 
 ```blade
 <?php
@@ -40,37 +40,37 @@ When referencing an object from a template, declare its type in advance so the I
 {{ $foo->id }}
 ```
 
-Documentation: [ORM Entities](https://windwalker.io/documentation/components/orm/entities.md)
+文件 [ORM Entities](https://windwalker.io/documentation/components/orm/entities.md)
 
-## Best practices for join queries
+## Join 查詢最佳實務
 
-### Avoid N+1 queries in loops
+### 避免迴圈 N+1 查詢
 
-When each Item on a list page needs multiple Foos, **fetch them in a batch** instead of querying one item at a time.
+列表頁每個 Item 需要多筆 Foo 時，**批次撈取**，不要逐筆查詢。
 
 ```php
-// Bad: dynamically add a property or query each item in a loop (N+1)
+// Bad：動態插入屬性，或在迴圈內逐筆查詢（N+1）
 foreach ($items as $item) {
     $item->foos = $this->orm->from(Foo::class)->where('item_id', $item->id)->all(Foo::class)->dump();
 }
 
-// OK: provide a getter in the ViewModel; suitable only for small amounts of data
+// OK：ViewModel 提供取值方法，僅適合少量資料
 // ViewModel::getFoos(Item $item): array
 //   $this->orm->from(Foo::class)->where('item_id', $item->id)->all(Foo::class)->dump()
-// Blade: call $vm->getFoos($item) inside @foreach ($items as $item)
+// Blade：@foreach ($items as $item) 內呼叫 $vm->getFoos($item)
 
-// Good: collect IDs, fetch all at once, and group by itemId (a page should have no more than 50 items)
+// Good：收集 ids 一次撈出，依 itemId 分組（一頁建議不超過 50 筆）
 $ids = $items->column('id')->dump();
 
 $fooGroup = $this->orm->from(Foo::class)
-    ->where('item_id', $ids, [0]) // Prevent an empty array from generating IN ()
+    ->where('item_id', $ids, [0]) // 避免空陣列產生 IN ()
     ->order('foo.ordering', 'ASC')
     ->groupByJoins()
     ->all(Foo::class)
     ->groupBy('itemId');
 ```
 
-Use them directly in Blade:
+Blade 中直接取用：
 
 ```html
 <?php $foos = $fooGroup[$item->getId()] ?? []; ?>
@@ -79,16 +79,16 @@ Use them directly in Blade:
 @endforeach
 ```
 
-Note: Batch fetching requires all items to be available first, so it does not apply to iterators.
+注意：批次撈取需要事先取得全部 items，不適用於 iterator。
 
-## Avoid duplicate data
+## 避免重複資料
 
-Priority order: database Unique Key (most reliable and best performance) > Entity `beforeSave` check (can add extra conditions).
+優先順序：資料庫 Unique Key（最可靠、效能最高）> Entity `beforeSave` 檢查（可加入額外條件）。
 
-- If a Unique Key allows nulls, the column must be NULLABLE; do not use an empty string (NULL is not treated as a duplicate).
-- For many-to-many mapping tables, use a composite PRIMARY KEY (such as `user_id` + `org_id`).
-- If one column is queried independently, create an Index for that column as well.
-- SQL is the last line of defense; do not rely only on application checks.
+- Unique Key 允許空值時，欄位要設為 NULLABLE，不可用空字串（NULL 不會被視為重複）。
+- 多對多 mapping 表：使用聯合 PRIMARY KEY（如 `user_id` + `org_id`）。
+- 單獨查詢其中一個欄位時，另外為該欄位建立 Index。
+- SQL 是最後防線，不能只依賴程式檢查。
 
 ```php
 #[BeforeSaveEvent]
@@ -97,18 +97,18 @@ public static function beforeSave(BeforeSaveEvent $event): void
     $data = $event->data;
     $orm = $event->orm;
 
-    // Bad: does not exclude itself (id != x), so existing items can never be saved
+    // Bad：沒有排除自己（id != x），已存在的項目永遠無法儲存
     $exists = $orm->from(static::class)
         ->where('alias', $data['alias'])
         ->get();
 
-    // OK: excludes itself but has no Unique Key, so concurrent inserts can still create duplicates
+    // OK：有排除自己，但沒有 Unique Key，併發新增時仍可能重複
     $exists = $orm->from(static::class)
         ->where('alias', $data['alias'])
         ->where('id', '!=', $data['id'] ?? 0)
         ->get();
 
-    // Good: excludes itself and adds a condition (alias must be unique within the same category), with a Unique Key to prevent races
+    // Good：排除自己，並加入條件（同分類下 alias 不重複），搭配 Unique Key 防併發
     $exists = $orm->from(static::class)
         ->where('alias', $data['alias'])
         ->where('category_id', $data['category_id'])
@@ -121,7 +121,11 @@ public static function beforeSave(BeforeSaveEvent $event): void
 }
 ```
 
-## Detailed references
+## 詳細參考
 
-- Querying and grouping details: see `references/knowledge/` and `references/development-app/`
-- Testing database behavior: see `references/test/testing.md`
+- 查詢與分組細節：參見 `references/knowledge/` 與 `references/development-app/`
+- 測試資料庫行為：參見 `references/test/testing.md`
+
+
+
+

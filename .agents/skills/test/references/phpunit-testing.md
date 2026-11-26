@@ -1,20 +1,20 @@
-# PhpUnit testing guidelines and best practices
+# PhpUnit 測試規範與最佳寫法
 
-## PhpUnit version
+## PhpUnit 版本
 
-This project uses PHPUnit 13 or later. Refer to the official documentation: https://docs.phpunit.de/
+本專案使用 PHPUnit 13 以上，請參考官方文件： https://docs.phpunit.de/
 
-## Guidelines and best practices
+## 規範與最佳寫法
 
-### Avoid deprecated syntax where possible
+### 盡可能避免使用過期語法
 
-- If PhpStorm MCP or another tool reports that an API is deprecated, use the officially recommended alternative where possible.
-- If you have an opportunity to read PhpUnit source code, avoid methods marked deprecated.
+- 若有 PhpStorm MCP 或其他工具提示某個 API 已過期，請盡量改用官方建議的替代方案。
+- 若有機會閱讀到 PhpUnit 原始碼，請避開被標註 deprecated 的方法。
 
-### Prefer `#[Test]` for test methods
+### 測試方法優先使用 `#[Test]`
 
-Prefer the `#[Test]` attribute (`PHPUnit\Framework\Attributes\Test`) over the `test` method-name prefix, and use descriptive names for the behavior under test.
-Do not use the `@test` docblock annotation.
+優先使用 `#[Test]` attribute（`PHPUnit\Framework\Attributes\Test`），而非 `test` 方法名稱前綴，並以描述性名稱說明被測行為。
+不要使用 `@test` docblock annotation。
 
 ```php
 // Bad
@@ -25,59 +25,58 @@ public function testFindReturnsNullWhenMissing(): void
 public function findReturnsNullWhenMissing(): void
 ```
 
-If you are only changing a few methods in a file that consistently uses the `test` prefix, keep the existing style.
+若只是修改一個一致使用 `test` 前綴的檔案中的少數方法，請維持既有風格。
 
-### Prefer attributes for lifecycle hooks
+### 生命週期 hook 優先使用 attribute
 
-Prefer `#[Before]` / `#[After]`, `#[BeforeClass]` / `#[AfterClass]`, and `#[PreCondition]` / `#[PostCondition]`
-over traditional hooks (`setUp()`, `tearDown()`, etc.). Import them from `PHPUnit\Framework\Attributes`; use descriptive method names with `void` return types,
-and make class-level hooks static. Avoid empty hooks. When migrating, preserve parent class/trait behavior and execution order.
+優先使用 `#[Before]` / `#[After]`、`#[BeforeClass]` / `#[AfterClass]`、`#[PreCondition]` / `#[PostCondition]`，
+而非傳統 hook（`setUp()`、`tearDown()` 等）。請從 `PHPUnit\Framework\Attributes` 匯入；使用描述性方法名稱、`void` 回傳，
+類別層級 hook 使用 static 方法。避免空的 hook，遷移時須保留父類別／trait 的行為與執行順序。
 
-### Document test fixtures and integration targets
+### 為測試 fixture 與整合目標加上說明
 
-Add a class docblock to fixtures and integration targets used only for testing. Describe their role and the behavior or tests that depend on them. Also state when they can be removed
-(for example, when the behavior they cover has been removed and no tests reference them), so future maintainers can distinguish intentional test support code from dead code.
+為僅供測試使用的 fixture 與整合目標加上類別 docblock，說明其角色，以及依賴它的行為或測試。並註明何時可以移除
+（例如被覆蓋的行為已移除且沒有測試再引用它），讓後續維護者能分辨刻意保留的測試支援程式碼與無用程式碼。
 
-### Reading and writing environment variables in tests
+### 在測試中讀寫環境變數
 
-- Read with `Windwalker\Utilities\Env::get()`; do not read `$_SERVER` / `$_ENV` directly.
-- Prefer `Env::set()` for writing (it synchronizes `$_SERVER`, `$_ENV`, and `putenv()`); if the version does not support it, set `$_SERVER` manually (and `$_ENV` if needed).
-- The host app's `.env` may leak variables (such as `MAIL_ENABLED=1`) and interfere with defaults.
-- In `#[Before]`, save the original value with `Env::get()` before overriding it; restore it in `#[After]`.
+- 讀取：用 `Windwalker\Utilities\Env::get()`，不直接讀 `$_SERVER`/`$_ENV`。
+- 寫入：優先用 `Env::set()`（同步 `$_SERVER`、`$_ENV`、`putenv()`）；版本不支援時手動設 `$_SERVER`（必要時 `$_ENV`）。
+- host app 的 `.env` 可能洩漏變數（如 `MAIL_ENABLED=1`）而干擾預設值。
+- 在 `#[Before]` 用 `Env::get()` 保存原值再覆寫，在 `#[After]` 還原。
 
-### Filesystem tests
+### 檔案系統測試
 
-- Real filesystem: use `Windwalker\Filesystem\Test\FilesystemTestTrait` (`packages/filesystem/test/`).
-  - `assertPathEquals()`: compares paths using `Path::clean()`.
-  - `assertRealpathEquals()`: compares paths using `Path::normalize()` (does not call `realpath()`).
-  - Do not compare raw path strings when separators do not affect behavior.
-- If real filesystem or OS behavior is not needed: use vfsStream (`org\bovigo\vfs\vfsStream`, `vfs://`); reuse `AbstractVfsTestCase` (`packages/filesystem/test/`).
-- If the API does not support stream wrappers or native semantics are needed: use real temporary files and clean them up after testing; see @windwalker-testing.md for their location.
+- 真實檔案系統：用 `Windwalker\Filesystem\Test\FilesystemTestTrait`（`packages/filesystem/test/`）。
+  - `assertPathEquals()`：以 `Path::clean()` 比較。
+  - `assertRealpathEquals()`：以 `Path::normalize()` 比較（不呼叫 `realpath()`）。
+  - 分隔符不影響行為時，不直接比較原始路徑字串。
+- 不需真實檔案系統或 OS 行為：用 vfsStream（`org\bovigo\vfs\vfsStream`、`vfs://`），可重用 `AbstractVfsTestCase`（`packages/filesystem/test/`）。
+- API 不支援 stream wrapper 或需原生語意：用真實暫存檔，並於測試後清除；位置見 `windwalker-testing.md`。
 
-## No separate tests are needed for getters/setters without logic or simple proxy methods
+## 無邏輯的 getter/setter 或單純代理方法不需獨立測試
 
-Do not write separate tests just to execute pure getters/setters (which only return or assign a property, optionally with `return $this`). If meaningful coverage for such a method cannot be
-obtained through other behavior tests, exclude it by adding `@codeCoverageIgnore` to the method's docblock. If logic is later added (validation, normalization, lazy initialization, side effects, etc.),
-remove the ignore annotation and test the behavior.
+不要只為了執行純 getter/setter（僅回傳或指派屬性，可選擇 `return $this`）而撰寫獨立測試。若此類方法無法透過其他行為測試
+取得有意義的覆蓋，請在方法 docblock 加上 `@codeCoverageIgnore` 排除。之後若加入邏輯（驗證、正規化、延遲初始化、副作用等），
 
-For details, see @coverages.md.
+詳細請見 `coverages.md`
 
-## Deprecated / recommended APIs (quick reference)
+## 已棄用／建議使用的 API（快速規則）
 
-Add new “use / do not use” rules here as bullet points for easy scanning.
+新的「使用／不要使用」規則請以條列方式加在這裡，方便快速掃讀。
 
-### Exception message assertions
+### 例外訊息比對
 
-Do not use `expectExceptionMessage()` (deprecated in PHPUnit 13).
+不要使用 `expectExceptionMessage()`（PHPUnit 13 已棄用）。
 
-- For exact or substring matches, use `expectExceptionMessageIsOrContains()`.
-- For an exact match, use `expectExceptionMessageIs()`.
-- For a regular expression, use `expectExceptionMessageMatches()`.
+- 完全符合或子字串比對，使用 `expectExceptionMessageIsOrContains()`。
+- 完全符合，使用 `expectExceptionMessageIs()`。
+- 正規表示式比對，使用 `expectExceptionMessageMatches()`。
 
-### PHPUnit mock: invocation count matchers
+### PHPUnit Mock：呼叫次數 matcher
 
-For invocation count matchers on PHPUnit mocks, use `$this->`, not `self::`
-(applies to `once()`, `never()`, `any()`, `exactly($n)`, `atLeastOnce()`, `atMost($n)`).
+PHPUnit mock 的呼叫次數 matcher 不要使用 `self::`，請使用 `$this->`
+（適用於 `once()`、`never()`、`any()`、`exactly($n)`、`atLeastOnce()`、`atMost($n)`）。
 
 ```php
 // Bad
@@ -87,27 +86,28 @@ $mock->expects(self::once())->method('foo');
 $mock->expects($this->once())->method('foo');
 ```
 
-### Test doubles (mocks / stubs)
+### Test Double（Mock / Stub）
 
-When the subject under test calls many other objects or services, isolate it with test doubles instead of creating real data or connecting to real dependencies for every test.
-Use real fixtures / databases only when the behavior under test is itself an integration.
+當受測對象會呼叫許多其他物件或服務時，請用 test double 隔離，而不是為每個測試建立真實資料或接上真實依賴。
+只有在被測行為本身就是整合時，才使用真實 fixture／資料庫。
 
-Use the PHPUnit 13 API:
+使用 PHPUnit 13 API：
 
-- For a double that only provides return values (no expectations), use `$this->createStub(Foo::class)` and configure it with `->method('x')->willReturn(...)`.
-  Do not call `expects()` on a stub.
-- Use `$this->createMock(Foo::class)` only when the test verifies interactions (such as `expects($this->once())`). A mock without `expects()` will produce a notice; use `createStub()` instead.
-- For a double implementing multiple interfaces, use `createStubForIntersectionOfInterfaces()` / `createMockForIntersectionOfInterfaces()`.
-- Use `willReturnCallback()`, `willReturnOnConsecutiveCalls()`, or `willReturnMap()`; `withConsecutive()` no longer exists.
-- Do not use `setMethods()`, `addMethods()`, or `onlyMethods()`; mock an interface or extract a collaborator instead.
-- For simple value objects, prefer an anonymous class or a small named test stub.
+- 只提供回傳值（沒有 expectation）的 double，使用 `$this->createStub(Foo::class)`，以 `->method('x')->willReturn(...)` 設定。
+  不要對 stub 呼叫 `expects()`。
+- 只有在測試要驗證互動（如 `expects($this->once())`）時，才使用 `$this->createMock(Foo::class)`。沒有 `expects()` 的 mock
+  會被回報為 notice，請改用 `createStub()`。
+- 多介面 double 使用 `createStubForIntersectionOfInterfaces()` / `createMockForIntersectionOfInterfaces()`。
+- 使用 `willReturnCallback()`、`willReturnOnConsecutiveCalls()` 或 `willReturnMap()`；`withConsecutive()` 已不存在。
+- 不要使用 `setMethods()`、`addMethods()` 或 `onlyMethods()`；請改為 mock 介面或抽出協作者。
+- 單純的值物件優先使用匿名類別或小型具名測試 stub。
 
 ```php
-// Good: only a return value is needed
+// Good: 只需要回傳值
 $repo = $this->createStub(UserRepository::class);
 $repo->method('find')->willReturn($user);
 
-// Good: verify an interaction
+// Good: 驗證互動
 $logger = $this->createMock(LoggerInterface::class);
 $logger->expects($this->once())->method('error');
 ```

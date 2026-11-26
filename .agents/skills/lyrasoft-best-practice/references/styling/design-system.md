@@ -1,34 +1,34 @@
-# Design System Implementation Standards
+# Design System 切版標準規範
 
-Before creating project pages, complete the Design System page (`/design-system`) and make it the first item in the main menu (if that is not possible, put it in the Footer). See the standard template examples for PHP (`entries/design-system.blade.php`) and Vue (`resources/vue/DesignSystem.vue`).
+所有專案編寫頁面之前，必須先完成 Design System 頁面（`/design-system`），並設為主選單第一項（無法放置時改放 Footer）。範例見公版：PHP（`entries/design-system.blade.php`）與 Vue（`resources/vue/DesignSystem.vue`）。
 
-Adjust component styles to match the Figma Design System, and ensure the following are true at handoff:
+依 Figma Design System 調整元件樣式，並確認交件時符合以下項目：
 
-- Use Bootstrap 5 SCSS variables for adjustments (see [Customize Bootstrap variables and colors](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345)).
-- Do not change the Design System layout.
-- Leave unmodified components exactly as they are.
-- Add any special, project-specific components in a new section at the bottom.
-- Preserve the SCSS files.
+- 使用 Bootstrap 5 SCSS 變數調整（見 [修改 Bootstrap 變數、自定義顏色](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345)）
+- 不變動 Design System 版面
+- 未修改的元件原封不動保留
+- 專屬特殊元件建立在最下方的新區塊
+- 保留 SCSS 檔案
 
-## Layout and components
-
-```text
-Bad: Make the layout look nicer and remove unused components
-Good: Keep the original layout and modify only components covered by the design
-```
-
-**Why?** Future team members need to see which components have been handled and which have not. Changing the layout invalidates that assessment.
+## 版面與元件
 
 ```text
-Bad: Delete or rewrite unmodified BS components
-Good: Keep unmodified BS components exactly where they are; if they break, the SCSS was changed incorrectly
+Bad: 把版面改得漂亮，並移除沒用到的元件
+Good: 保留原版面，只修改設計稿有處理的元件
 ```
 
-**Why?** A website may have a second or third phase of changes; removing components causes rework.
+**為什麼？** 後續人員需要看出哪些元件已處理、哪些未處理，版面變動會讓這份判斷失效。
 
 ```text
-Bad: Directly override Bootstrap component styles or delete existing BS components
-Good: Inherit and modify additional styles (see the link above); create a separate section for project-specific components
+Bad: 未修改的 BS 元件被刪除或改寫
+Good: 未修改的 BS 元件原封不動留在原處；若壞掉，表示 SCSS 被改錯
 ```
 
-If the design is missing something during implementation (for example, pagination is not designed), ask the design team. If a component is not meant to be handled, leave it as is.
+**為什麼？** 網站可能會有第二期、第三期修改，移除元件會造成重工。
+
+```text
+Bad: 直接覆蓋 Bootstrap 元件樣式，或刪除原有 BS 元件
+Good: 繼承並修改額外樣式（見上方連結），專屬元件另建新區塊
+```
+
+製作時若發現設計稿缺漏（例如 pagination 未設計），請向設計端提出；若該元件本來就不處理，讓它保持原樣。

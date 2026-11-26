@@ -1,66 +1,67 @@
-# CSS BEM Concepts and Conventions
+# CSS BEM 概念與規範
 
-# Scope
+# 適用範圍
 
-Use BEM for class naming in projects that use traditional CSS or SCSS, such as projects combining Bootstrap with handwritten CSS.
+當專案採用傳統 CSS 或 SCSS，屬於 Bootstrap 搭配手寫 CSS 的專案，則使用 BEM 來命名 class。
 
-BEM does not apply when the current environment uses Tailwind CSS or another CSS-in-JS approach.
+若當下的環境是 Taiwindcss 或其他 CSS-in-JS 的專案，則不適用 BEM。
 
-# Basic concepts
+# 基本概念
 
-The basic BEM concepts are:
+BEM 基本概念
 
 - Block `.block`
 - Element `.block__element`
 - Modifier `.block__element--modifier`
 
-Use these three levels to compose the HTML class structure.
+用這三個層次來組合 HTML class 結構
 
-For longer words, use a single `-` as a separator; for example, `main-block` is treated as one block name.
+若單字較長，用單一 `-` 區隔，例如 `main-block` 視為一個 block name
 
-## When to use a block
+## 什麼時候用 block
 
-Any clearly defined functional section can begin with a block. A block can contain more blocks without depending on them.
+任何一個功能明確的大區塊都可以用 block 開頭，block 下面可以有更多 block 且不必有相依關係。
 
-## When to use an element
+## 什麼時候用 element
 
-Use elements to distinguish the purposes of content within a block.
+block 區塊內的內容元素都可以用 element 來區隔其目的
 
-For example:
+例如
 
 ```html
 <div class="card">
   <div class="card__header">
-
+  
   </div>
-
+  
   <div class="card__body">
-
+  
   </div>
 </div>
 ```
 
-## When to use a modifier
+## 什麼時候用 Modifier
 
-Use a modifier on the same element as a block or element class to represent a state or type variation.
+相同的元素但是有狀態或類型區隔的時候，可與 block 或 element class 在同一個元素上
 
-A block and an element must not exist on the same element.
+（block 與 element）不能存在同一個元素
 
-State example:
+狀態範例
 
 ```
 <a href="#" class="c-button c-button--active"></a>
 ```
 
-Type example:
+類型範例
 
 ```
 <button class="c-button c-button--primary"></button>
 ```
 
-# Do not nest elements
 
-Try to keep the hierarchy flat. The following is not recommended:
+# 不要巢狀 element
+
+要儘量維持扁平的層次，例如以下是不建議的寫法
 
 ```
 <div class="card">
@@ -72,7 +73,7 @@ Try to keep the hierarchy flat. The following is not recommended:
 </div>
 ```
 
-Recommended:
+建議的寫法
 
 ```
 <div class="card">
@@ -84,9 +85,9 @@ Recommended:
 </div>
 ```
 
-# When to split out a new block
+# 何時切分新的 block
 
-There is no fixed rule, but when necessary, use a longer name for a new, lower-level block. In general, avoid double-nested elements.
+沒有固定標準，但是若有必要，可以用較長的名稱做下一層 block，總之儘量不要出現雙層 element
 
 ```
 <div class="header">
@@ -98,7 +99,7 @@ There is no fixed rule, but when necessary, use a longer name for a new, lower-l
 </div>
 ```
 
-You can also consider treating an element as a new block at the next level:
+也可以考慮把某個 element 視為下一層的新 block
 
 ```
 <div class="header">
@@ -110,13 +111,13 @@ You can also consider treating an element as a new block at the next level:
 </div>
 ```
 
-If you are concerned about block name collisions, see the Namespace section below.
+若擔心 block 命名容易衝突，可以參考後面的 Namespace
 
-## Do not use an element across blocks
+## 不要跨 block 使用 element
 
-Do not let the hierarchies of two blocks overlap.
+不要讓兩個 block 的層級交錯
 
-Bad:
+不好
 
 ```html
 <div class="main-section">
@@ -129,7 +130,7 @@ Bad:
 </div>
 ```
 
-Good:
+好
 
 ```html
 <div class="main-section">
@@ -142,11 +143,11 @@ Good:
 </div>
 ```
 
-## Do not reach down into loops
+## 不要向下伸進迴圈
 
-This makes it difficult to restructure the page.
+這樣會造成頁面重購時的困難
 
-Bad:
+不好
 
 ```html
 <div class="l-lesson-list">
@@ -159,7 +160,7 @@ Bad:
 </div>
 ```
 
-Good:
+好
 
 ```html
 <div class="l-lesson-list">
@@ -174,23 +175,25 @@ Good:
 
 # Namespace
 
-Use Namespace abbreviations to quickly distinguish block characteristics. Common namespaces include:
+我們可以用 Namespace 簡寫，來快速區隔 block 的屬性，例如以下常用 Namespace
 
 | Type | Prefix | Examples | Description |
 | --- | --- | --- | --- |
-| Component | `c-` | `c-card` `c-checklist` | A component or important section. A Component is an independently encapsulated small utility, such as a button, link, card, or input. It may be reused, but does not have to be. |
-| Layout | `l-` | `l-grid` `l-product-page` | Layout and page composition. Usually not reused; used simply to divide a page into sections. |
-| Helper | `h-` | `h-show` `h-hide` | Helper classes for quickly applying CSS styles. |
-| States | `is-` `has-` | `is-active` `has-loaded` | Used to express state differences. |
-| Javascript Hooks | `js-` | `js-select2` | Classes used specifically by JS or jQuery selectors. |
+| Component | `c-` | `c-card` `c-checklist` | 某個元件或重要區塊。Component 的意思就是一個獨立的封裝小工具，例如 button, link, card, input 等等。可能會被重複使用，但並非一定要重複使用。 |
+| Layout | `l-` | `l-grid` `l-product-page` | 版面、排版相關。大多數時候不會重複使用，單純用來切割版面各個區塊用的 |
+| Helper | `h-` | `h-show` `h-hide` | 用來快速加上 css 樣式的幫手類別 |
+| States | `is-` `has-` | `is-active` `has-loaded` | 表現狀態差異用 |
+| Javascript Hooks | `js-` | `js-select2` | 專門給 JS 或 jQuery 抓取的 class |
 
-An element can belong to both a Layout and a Component, for example:
+
+一個元素也可以同時屬於 Layout 與 Component，例如
 
 ```
 <div class="l-product-intro c-product-intro"
 ```
 
-## A more complete example
+
+## 一個較為完整的範例
 
 ```
 <div class="l-product-page">
@@ -226,26 +229,30 @@ An element can belong to both a Layout and a Component, for example:
 </div>
 ```
 
-To understand Components and Layouts, see this article: [\[Frontend\] What are Components & Layouts?](https://lyrasoft.atlassian.net/wiki/spaces/MEG/pages/1684701573/Component+Layout)
 
-# Hierarchy and order
+如果要弄清楚什麼是 Component & Layout，可以看這篇文章
+[\[前端\] 什麼是 Component & Layout](https://lyrasoft.atlassian.net/wiki/spaces/MEG/pages/1684701573/Component+Layout)
 
-Because we use BEM, a block name must always be at the top level. HTML sometimes needs several levels to achieve a visual effect, so we define common naming patterns to keep these levels consistent.
+
+# 層次與順序
+
+由於採用 BEM ，block 名稱一定要在最上層。而寫 HTML 時有時候需要多個層次來製作樣式效果，因此我們規範一些常見的命名規則讓大家定的層次一致
 
 ## Wrapper
 
-When a block needs an inner element to define spacing, name it `__wrapper`, followed by `__inner`.
+當 block 下面需要一個用來指定間距的內部元素時，我們以 `__wrapper` 命名，其次 `__inner`
 
-For deeper hierarchies, you can add `__body` to wrap the main elements at a lower level, and `__content` at the innermost level to wrap the actual content. The order should be as follows. Not every level is required, but the order must not be changed.
+
+若層次較多，可以再加一個 `__body` 用在下層包裹主要元素，也可以再最內層用 `__content` 來包裹實際內容，故其順序會是這樣，不一定每層都要，但順序不能錯亂。
 
 ```
 <div class="l-footer">
 
-    <!-- Outer layer -->
+    <!-- 外層 -->
     <div class="l-footer__wrapper">
         <div class="l-footer__inner">
 
-            <!-- Inner layer -->
+            <!-- 內層 -->
             <div class="l-footer__body">
                 <div class="l-footer__content">
 
@@ -256,9 +263,11 @@ For deeper hierarchies, you can add `__body` to wrap the main elements at a lowe
 </div>
 ```
 
+
 ## Container
 
-If a Wrapper is used alongside a Bootstrap container, name it `__container` instead.
+若 Wrapper 會與 Bootstrap container 同時用的時候，則改叫 `__container`
+
 
 ```
 <div class="l-footer">
@@ -268,7 +277,8 @@ If a Wrapper is used alongside a Bootstrap container, name it `__container` inst
 </div>
 ```
 
-If a Wrapper is still needed as well, the container goes outside the wrapper:
+若同時還是需要 Wrapper，則 container 大於 wrapper
+
 
 ```
 <div class="l-footer">
@@ -279,3 +289,4 @@ If a Wrapper is still needed as well, the container goes outside the wrapper:
     </div>
 </div>
 ```
+

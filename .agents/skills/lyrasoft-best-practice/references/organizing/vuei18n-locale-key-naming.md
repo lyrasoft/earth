@@ -1,14 +1,14 @@
-# VueI18n Locale Key Naming Conventions
+# VueI18n 語系鍵名命名規則
 
-## Namespaces and scope
+## 命名空間與範圍（Scope）
 
-Organize translation keys into top-level, domain-based namespaces such as `app.*`, `ui.*`, `form.*`, and `project.*`.
-Within each namespace, group keys into sections by feature or page.
+翻譯鍵依頂層、以領域劃分的命名空間組織，例如 `app.*`、`ui.*`、`form.*` 與 `project.*`。
+在每個命名空間內，依功能或頁面再以區段（section）分組。
 
-Each namespace and section forms a scope. Within a scope, group keys by purpose, such as `message.*`, `text.*`, `field.*`, and `button.*`.
-For example, the `geo.*` namespace covers the platform's GEO feature, with sections such as `geo.visibility.*`, `geo.prompt_list.*`, and `geo.compare.*`.
+每個命名空間與區段構成一個範圍（scope），範圍內的鍵依用途分組，例如 `message.*`、`text.*`、`field.*` 與 `button.*`。
+例如，`geo.*` 命名空間涵蓋平台的 GEO 功能，其區段包括 `geo.visibility.*`、`geo.prompt_list.*` 與 `geo.compare.*`。
 
-Example:
+範例：
 
 ```yaml
 app:
@@ -39,22 +39,22 @@ geo:
             add_prompt: "Add Prompt"
 ```
 
-Any level can form its own scope, but it is recommended not to exceed three levels:
+任一層級都可以形成自己的範圍，但建議不超過三層：
 
-1. Namespace: the broadest scope, organized by domain.
-2. Page / feature: the intermediate scope for a page or feature.
-3. Shared layout: a large layout or component with complete page-level functionality that can be reused by multiple pages.
+1. 命名空間：最廣的範圍，依領域組織。
+2. 頁面／功能：頁面或功能的中間範圍。
+3. 共用版面（Shared Layout）：可被多個頁面重用的大型版面或元件範圍；這類元件通常提供完整的頁面級功能。
 
-Each scope can define its own keys such as `message.*`, `text.*`, `field.*`, and `button.*` for use within that scope.
+每個範圍都可以定義自己的 `message.*`、`text.*`、`field.*`、`button.*` 等鍵，供該範圍內使用。
 
-## Naming shared terms (fields, headers, metrics, etc.)
+## 共用術語命名（欄位、表頭、指標等）
 
-Important terms in each namespace may appear in charts, tables, reports, icons, buttons, hints, and descriptions.
-Use shared `field.*` keys in that namespace rather than creating separate keys for each component.
-Put the primary field text in `field.*.label` and explanatory or hint text in `field.*.desc`.
-Reusing the same key across components keeps terminology consistent and easy to maintain.
+每個命名空間中的重要術語可能出現在圖表、表格、報表、圖示、按鈕、提示與說明中。
+請在該命名空間下使用共用的 `field.*` 鍵，而不是為每個元件各建一組鍵。
+欄位的主要文字放在 `field.*.label`，說明或提示文字放在 `field.*.desc`。
+跨元件重用同一鍵，可保持用語一致並方便維護。
 
-Bad example:
+不良範例：
 
 ```yaml
 geo:
@@ -73,7 +73,7 @@ geo:
             label: "Share of Voice"
 ```
 
-Good example:
+良好範例：
 
 ```yaml
 geo:
@@ -85,40 +85,40 @@ geo:
 
 ui:
     table:
-        # Shared table UI controls can use a component-specific namespace.
+        # 共用的表格 UI 控制項可使用元件專屬的命名空間。
         header:
             toggle_all: "Toggle All"
 ```
 
-This keeps terms used across multiple contexts together under a single `field.*` key.
+如此可將跨多個情境使用的術語集中在同一個 `field.*` 鍵下。
 
-## Grouping UI components and shared strings by purpose
+## 依用途分組 UI 元件與共用字串
 
-In addition to shared terms and fields, group keys into shared sections by purpose so translators can understand each string's use and context.
+除了共用術語與欄位，請將鍵依用途歸入共用區段，讓譯者能理解每個字串的用法與脈絡。
 
-These sections include, but are not limited to:
+這些區段包括但不限於：
 
-- `meta.*`: page titles, layout titles, metadata, descriptions, subtitles, breadcrumbs, and other page-level or layout-level text
-- `message.*`: alerts, messages, toasts, and other notifications
-- `text.*`: notes, help text, hints, yes/no, and other standalone text
-- `button.*`: common button action labels, including multiple interaction states (text, tooltip, loading)
-- `action.*`: common action labels (save, cancel, submit, etc.)
-- `field.*`: form field labels, descriptions, placeholders, and validation messages
+- `meta.*`：頁面標題、版面標題、metadata、描述、副標題、麵包屑等頁面級或版面級文字
+- `message.*`：提示框、訊息、toast 與其他通知
+- `text.*`：註解、說明文字、提示、是／否，以及其他獨立文字
+- `button.*`：常用按鈕動作標籤，可包含多種互動狀態（文字、tooltip、載入中）
+- `action.*`：常用動作標籤（save、cancel、submit 等）
+- `field.*`：表單欄位的標籤、描述、placeholder 與驗證訊息
 
-Group keys by purpose, not by component; otherwise the translation hierarchy becomes too deep and fragmented.
+請依用途分組，而非為每個元件建立獨立區段；否則翻譯階層會過深且零散。
 
-Examples of key reuse:
+重用鍵的實際範例：
 
-- Headers, lists, cards, and tooltips in page components can often reuse keys under `text.*`, `field.*`, or `message.*`.
-- Common controls such as select all, deselect all, clear all, and reset all can reuse keys under `app.*` or `ui.*`.
-- Form labels, headers, and chart labels can often reuse terms under `field.*`.
-- Help text, warnings, hints, and status messages can use `message.*` or `text.*`. Put standalone text that does not fit another category under `text.*`.
+- 頁面元件中的表頭、列表、卡片與 tooltip 文字，通常可重用 `text.*`、`field.*` 或 `message.*` 下的鍵。
+- 全選、取消全選、清除全部、重設全部等常見控制項，可重用 `app.*` 或 `ui.*` 下的鍵。
+- 表單標籤、表頭與圖表標籤通常可重用 `field.*` 下的術語。
+- 頁面上的說明、警告、提示與狀態訊息可使用 `message.*` 或 `text.*`。不屬於其他類別的獨立文字通常放在 `text.*`。
 
-### Derived keys
+### 衍生鍵
 
-When a UI component or feature needs multiple strings derived from one primary name / key, put the derived suffix after the primary key.
+當 UI 元件或功能需要從一個主要名稱／鍵衍生出多個不同名稱時，請將衍生後綴放在主鍵之後。
 
-Forms are the most common case. For example, the `project.settings.field.title` field may need a label, description, placeholder, and error messages, all derived from the primary key:
+最常見的情況是表單。例如欄位 `project.settings.field.title` 可能需要標籤、描述、placeholder、錯誤訊息等，都從主鍵衍生，例如：
 
 ```yaml
 project:
@@ -133,11 +133,11 @@ project:
                     invalid: "Project title is invalid"
 ```
 
-The shared prefix or suffix makes related keys easy to recognize and helps translators find them quickly.
+這種做法的好處是共同的前綴或後綴讓鍵容易辨識為同一組，翻譯時也能快速找到相關的鍵。
 
-### Variants and abbreviations
+### 變體與縮寫
 
-Terms may have many forms, long names, or multiple variants and abbreviations. When storing them under `field.*`, keep these forms together under the same key as in the example below, making them easier for translators to understand and maintain.
+術語可能數量多、名稱長，或有多種變體與縮寫。存放於 `field.*` 時，請如上例將這些形式放在同一個鍵下，方便譯者理解與維護。
 
 ```yaml
 geo:
@@ -151,26 +151,26 @@ geo:
             full: "AI Engine Response Share of Voice"
 ```
 
-### Naming by meaning and component context
+### 依語意與元件脈絡命名
 
-The same word can mean different things in English and other languages. For example, `Mentions` may mean the number of mentions in one chart, the times something has been mentioned in another, “mention” in a form, or the entities mentioned in a list or query history.
+英文等語言中，同一個字可能在不同情境下有不同意義。例如 `Mentions` 在一張圖表中可能指「被提及次數」，在另一張圖表中可能指「被提及的次數」，在表單中可能是「提及」，在列表或查詢歷史中可能是「被提及的實體」。
 
-`Cited` may mean “has been cited” or “number of citations.”
+`Cited` 可能表示「已被引用」，也可能表示「被引用次數」。
 
-The English word `Music` has no plural form, but other languages may; therefore, the plural key (`music_list`) must be extracted separately for translation.
+`Music` 清單在英文中沒有複數形式，但其他語言可能有，因此複數鍵（`music_list`）需要獨立提取以利翻譯。
 
-When you encounter a noun in a component that needs to be extracted for translation, first check the component context and surrounding code, for example:
+因此，當你在元件中看到需要提取翻譯的名詞時，請先檢查元件的脈絡與周圍程式碼，例如：
 
-- Table header: check the data displayed in the corresponding cell or `td`.
-- Chart: check the purpose of the chart tooltip, legend, and axis.
-- Form: check the expected response content for the field's label, placeholder, and description.
-- Title: check singular / plural forms and the application context of the page, or the content and API documentation shown in that section.
+- 表頭：請檢查該欄位在 cell 或 td 中顯示的資料。
+- 圖表：請檢查圖表 tooltip、legend 與 axis 的用途。
+- 表單：請檢查此欄位 label、placeholder 與描述所預期的回應內容。
+- 標題：請檢查此頁面的單複數形式與應用脈絡，或該區段呈現的內容、取得的 API 文件。
 
-This prevents same-named keys from being used incorrectly. Also consult any surrounding comments or explanatory text.
+這是為了避免同名鍵被誤用。若周圍有註解或說明文字，請一併參考。
 
-### Enum values
+### 列舉值（Enum）
 
-Since all enums are shared globally, put them under `app.enum.*`. Likewise, put each case's keys under subkeys such as `title`, `desc`, `short`, and `full`, as with `field.*`.
+由於所有列舉都是全域共用，請放在 `app.enum.*` 下。同樣地，每個 case 的鍵應放在 `title`、`desc`、`short`、`full` 等子鍵下，與 `field.*` 相同。
 
 ```yaml
 app:
@@ -187,51 +187,51 @@ app:
                 desc: "The sentiment is neutral."
 ```
 
-## Existing namespaces
+## 既有命名空間
 
-- `app.*`: shared UI strings and globally shared enum values. **Always prefer `app.*` keys; do not redefine common strings in feature namespaces.**
-- `form.*`: form field hints, validation messages, multiselect attributes, and file uploader strings
-- `ui.*`: general UI framework elements such as pagination, navigation sidebar, table controls, and language settings
-- `project.*`: project lists, creation wizard, overview, settings, sharing, and date ranges; use `project.overview.*` for overview page strings
-- `onboarding.*`: setup steps, project preview, and trial checkout; use `onboarding.button.*` for shared step actions
-- `auth.*`: authentication / login
-- `bill.*`: billing and subscription domain. `bill.usage.*`, `bill.addon.*`, `bill.currency.*`, and `bill.field.*` contain shared usage, quota, and currency terms; `bill.billing.*` is the billing / invoice history page scope (receipt table, download / preview); `bill.plan.*` is the plan overview page scope (current plan card, pricing cards, tracked-unit add-ons, plan change / cancellation dialogs)
-- `seo.*`: rank tracking and keywords
-- `geo.*`: GEO, AI visibility, and prompts
-- `unified.*`: shared SEO / GEO terminology; cross-channel and SERP metrics use `unified.field.*`, including `label` / `abbr` / `desc` variants. AI-specific metrics remain under `geo.field.*`.
+- `app.*`：共用 UI 字串與全域共用的列舉值。**一律優先使用 `app.*` 鍵，不要在功能命名空間中重複定義常用字串。**
+- `form.*`：表單欄位提示、驗證訊息、multiselect 屬性、檔案上傳器字串
+- `ui.*`：一般 UI 框架元素：分頁、導覽側邊欄、表格控制項、語言設定
+- `project.*`：專案列表、建立精靈、總覽、設定、分享、日期範圍；總覽頁字串使用 `project.overview.*`
+- `onboarding.*`：設定步驟、專案預覽與試用結帳；共用的步驟動作使用 `onboarding.button.*`
+- `auth.*`：驗證／登入
+- `bill.*`：帳務與訂閱領域。`bill.usage.*`、`bill.addon.*`、`bill.currency.*`、`bill.field.*` 為共用的用量、配額與幣別術語；`bill.billing.*` 為帳務／發票歷史頁面範圍（收據表格、下載／預覽）；`bill.plan.*` 為方案總覽頁面範圍（目前方案卡、定價卡、追蹤單位附加項目、方案變更／取消對話框）
+- `seo.*`：排名追蹤與關鍵字
+- `geo.*`：GEO、AI 能見度與提示詞
+- `unified.*`：共用的 SEO／GEO 術語；跨通路與 SERP 指標使用 `unified.field.*`，含 `label`／`abbr`／`desc` 變體。AI 專屬指標仍放在 `geo.field.*`。
 
-When adding keys or a feature namespace, update both locale YAML files. No Nuxt configuration change is needed. When adding a language, create `app/i18n/locales/{locale}.yaml` with the same key structure and register it in `nuxt.config.ts → i18n.locales[]`.
+新增鍵或功能命名空間時，請同時更新兩份語系 YAML 檔；不需修改 Nuxt 設定。新增語言時，建立 `app/i18n/locales/{locale}.yaml`，保持相同的鍵結構，並在 `nuxt.config.ts → i18n.locales[]` 中註冊。
 
-### `app.*` keys
+### `app.*` 鍵
 
-`app.*` contains the following subnamespaces:
+`app.*` 包含以下子命名空間：
 
-- `app.action.*`: common button labels (save, save_settings, submit, cancel, add, edit, update, close, back, next, previous, search, clear, reset, refresh, view, import, export, upload, download, back_to_top)
-- `app.status.*`: status and feedback messages (loading, saving, processing, success, error, done, saved, deleted, no_data, coming_soon, beta, not_available)
-- `app.confirm.*`: confirmation dialog text (unsaved_changes, leave, leave_desc)
-- `app.enum.*`: globally shared translations for enum cases, including `title` / `desc` variants
-- `app.footer.*`: footer links and copyright
+- `app.action.*`：常用按鈕標籤（save、save_settings、submit、cancel、add、edit、update、close、back、next、previous、search、clear、reset、refresh、view、import、export、upload、download、back_to_top）
+- `app.status.*`：狀態與回饋訊息（loading、saving、processing、success、error、done、saved、deleted、no_data、coming_soon、beta、not_available）
+- `app.confirm.*`：確認對話框文字（unsaved_changes、leave、leave_desc）
+- `app.enum.*`：全域共用的列舉 case 翻譯，含 `title`／`desc` 變體
+- `app.footer.*`：頁尾連結與版權
 
-### `auth.*` keys
+### `auth.*` 鍵
 
-`auth.login.meta.title`, `auth.register.meta.title`, and `auth.logout.meta.title` are page titles.
-Login, logout, and ticket progress text belongs in the respective `message.*` groups.
-Keep user menu navigation and actions in the existing `auth.user_menu.*` group.
+`auth.login.meta.title`、`auth.register.meta.title` 與 `auth.logout.meta.title` 為頁面標題。
+登入、登出與票券進度文字歸入其 `message.*` 群組。
+使用者選單的導覽與動作保留既有的 `auth.user_menu.*` 群組。
 
-### `form.*` keys
+### `form.*` 鍵
 
-`form.*` covers all form- and input-related UI strings:
+`form.*` 涵蓋所有表單與輸入相關的 UI 字串：
 
-- `form.field.*`: shared field placeholders and validation messages (such as `url.error.invalid`, `error.required`, and `select.placeholder`).
-- `form.text.*`: shared required / optional labels and hints.
-- `form.multiselect.*`: shared control strings, grouped under `button.*`, `field.*`, `message.*`, and `text.*`.
-- `form.uploader.*`: file uploader actions, status messages, and hints, grouped under `button.*`, `message.*`, and `text.*`.
+- `form.field.*`：共用的欄位 placeholder 與驗證訊息（如 `url.error.invalid`、`error.required`、`select.placeholder`）。
+- `form.text.*`：共用的必填／選填標籤與提示。
+- `form.multiselect.*`：共用的控制項字串，分組於 `button.*`、`field.*`、`message.*` 與 `text.*` 下。
+- `form.uploader.*`：檔案上傳器的動作、狀態訊息與提示，分組於 `button.*`、`message.*` 與 `text.*` 下。
 
-### `ui.*` keys
+### `ui.*` 鍵
 
-`ui.*` covers general UI framework elements that are not specific to a particular feature:
+`ui.*` 涵蓋不屬於特定功能的一般 UI 框架元素：
 
-- `ui.pagination.*`: `prev`, `next`, `page`, `of`
-- `ui.nav.*`: sidebar navigation labels: `my_keywords`, `my_projects`, `billing`, `guide`, `create_project`
-- `ui.table.*`: table controls: `per_page`
-- `ui.settings.*`: language settings panel: `language_title`, `language_label`
+- `ui.pagination.*`：`prev`、`next`、`page`、`of`
+- `ui.nav.*`：側邊導覽標籤：`my_keywords`、`my_projects`、`billing`、`guide`、`create_project`
+- `ui.table.*`：表格控制項：`per_page`
+- `ui.settings.*`：語言設定面板：`language_title`、`language_label`

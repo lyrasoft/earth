@@ -1,8 +1,8 @@
-# Command-Line Interface (CLI)
+# 命令列介面（CLI）
 
-## All commands
+## 所有指令
 
-The following are the commands available by default in an installed host app.
+以下列出 host app 安裝起來預設的指令。
 
 ```shell
 Options:
@@ -92,70 +92,70 @@ Available commands:
   type:enum           Generate typescript enum file.
 ```
 
-To see more commands available in a project, run `php windwalker list` or check `resources/registry/commands.php`.
+若有需要查看專案更多專案指令，請使用 `php windwalker list` 或者查看 `resources/registry/commands.php` 。
 
-## Basic usage
+## 基本用法
 
-- Entry point: `windwalker` in the repository root (`php windwalker`)
-- List commands: `php windwalker list`
-- Show help: `php windwalker help <command>`
-- Diagnostic output: `-v`, `-vv`, `-vvv`
-- Automation: `--no-interaction` (provide all required arguments first)
-- Requirements: PHP and Composer dependencies (loads `vendor/autoload.php`)
+- 入口：repository 根目錄的 `windwalker`（`php windwalker`）
+- 列出指令：`php windwalker list`
+- 查看說明：`php windwalker help <command>`
+- 診斷輸出：`-v`、`-vv`、`-vvv`
+- 自動化：`--no-interaction`（需先提供所有必要參數）
+- 需求：PHP 與 Composer 相依套件（載入 `vendor/autoload.php`）
 
-## Configuration and startup
+## 設定與啟動
 
-- Startup files: `windwalker` → `etc/define.php` → `etc/runtime.config.php` → `etc/app/console.config.php`
-- Command registration: `resources/registry/commands.php`
-- Named scripts: `resources/registry/scripts.php` (`php windwalker run <script>`)
-- Environment file order: `.env.base`, `.env`, `.env.local`, `.env.<APP_ENV>`, `.env.<APP_ENV>.local` (default `APP_ENV` is `prod`)
-- Path aliases: `etc/runtime.config.php` (for example, `@public` → `www/`, `@temp` → `tmp/`)
-- The Framework and packages may also provide commands; confirm with `list`.
+- 啟動檔：`windwalker` → `etc/define.php` → `etc/runtime.config.php` → `etc/app/console.config.php`
+- 指令註冊：`resources/registry/commands.php`
+- 具名腳本：`resources/registry/scripts.php`（`php windwalker run <script>`）
+- 環境檔順序：`.env.base`、`.env`、`.env.local`、`.env.<APP_ENV>`、`.env.<APP_ENV>.local`（預設 `APP_ENV` 為 `prod`）
+- 路徑別名：`etc/runtime.config.php`（例如 `@public` → `www/`、`@temp` → `tmp/`）
+- Framework 與 package 也可能提供指令，以 `list` 確認
 
-## Named scripts
+## 具名腳本
 
-- Example: `php windwalker run prepare` (installs frontend dependencies and builds assets)
-- Read a script's definition before running it; some scripts modify dependencies, generate files, or change the database.
-- `preparedev` resets migrations and imports seed data; do not use it when data must be retained.
+- 範例：`php windwalker run prepare`（安裝前端相依套件並建置資產）
+- 執行前先閱讀腳本定義，部分會修改相依套件、產生檔或資料庫
+- `preparedev` 會重設 migration 並匯入種子資料，勿用於需保留的資料
 
-## Code generation (`g`)
+## 程式碼產生（`g`）
 
-- List tasks: `php windwalker g`
-- Show task details: `--about` (do not use `-h`, which shows help for the outer command)
-- Common tasks: `command`, `controller`, `view`, `model`, `entity`, `form`, `route`; packages may add more.
-- Register additional tasks in `resources/registry/generator.php`.
-- Default output for commands: `src/Command/`; use `--ns` to change the namespace and `--dir` to change the output directory.
-- Register a command with `--auto-register <name>` to add it to `resources/registry/commands.php` (optional).
-- Avoid `--force` unless you explicitly intend to overwrite existing files.
-- Migrations are not part of `g`; use `mig:create` (`php windwalker help mig:create`). Migration files are in `resources/migrations/`.
+- 列出任務：`php windwalker g`
+- 任務說明：`--about`（勿用 `-h`，那是外層指令的說明）
+- 常見任務：`command`、`controller`、`view`、`model`、`entity`、`form`、`route`，package 可能新增
+- 額外任務註冊：`resources/registry/generator.php`
+- command 預設輸出：`src/Command/`；`--ns` 改 namespace，`--dir` 改輸出目錄
+- 註冊 command：`--auto-register <name>`，寫入 `resources/registry/commands.php`（選用）
+- 避免使用 `--force`，除非明確要覆寫既有檔案
+- Migration 不屬於 `g`，使用 `mig:create`（`php windwalker help mig:create`），檔案位於 `resources/migrations/`
 
-## Development server
+## 開發伺服器
 
-- Commands: `server:start` (alias `server:run`) and `server:stop` (currently supports Swoole only)
-- Format: `engine:name`, default `php:main`; engines are `php` or `swoole`.
-- Named servers: `resources/registry/servers.php` (`php` and `swoole` are currently empty)
-- `--main <file>`: directly specifies the main file and does not select an engine; explicitly specify `engine:name`.
-- PHP built-in server: serves `www/` by default; `--docroot` overrides it. The default host is `localhost`; if no port is specified, it finds an available port starting at `8000`.
-- The PHP server runs `php -S` and is for local development only, not production deployment.
-- Swoole: requires the Swoole extension and `windwalker/reactor`; options include `--app`, `--workers`, `--task-workers`, `--max-requests`, and `--watch`; process state is stored in `@temp/servers/`.
-- Reactor templates: `vendor/windwalker/framework/packages/reactor/resources/servers/` (can be published with the `swoole_website` / `swoole_websocket` tags)
-- After startup, send an actual request to confirm the server responds.
+- 指令：`server:start`（別名 `server:run`）、`server:stop`（目前僅支援 Swoole）
+- 格式：`engine:name`，預設 `php:main`；engine 為 `php` 或 `swoole`
+- 具名伺服器：`resources/registry/servers.php`（`php` 與 `swoole` 目前為空）
+- `--main <file>`：直接指定 main 檔，不會選擇 engine，需明確指定 `engine:name`
+- PHP 內建伺服器：預設服務 `www/`，`--docroot` 可覆寫；預設 host `localhost`，未指定 port 時從 `8000` 起找可用 port
+- PHP 伺服器會呼叫 `php -S`，僅供本機開發，非正式部署
+- Swoole：需要 Swoole 擴充套件與 `windwalker/reactor`；選項含 `--app`、`--workers`、`--task-workers`、`--max-requests`、`--watch`；程序狀態存於 `@temp/servers/`
+- Reactor 範本：`vendor/windwalker/framework/packages/reactor/resources/servers/`（可用 `swoole_website` / `swoole_websocket` tag 發布）
+- 啟動後以實際請求確認伺服器有回應
 
-## Package resources (`pkg:install`)
+## Package 資源（`pkg:install`）
 
-- Purpose: publish resources from an installed package into this project (does not download Composer dependencies)
-- Help: `php windwalker help pkg:install`
-- Specify a package and tag: `php windwalker pkg:install windwalker/reactor --tag swoole_website`
-- Preview: add `--dry-run`
-- `--details=3` lists every copied file (level 3 is the default)
-- `--all` must be used with an explicit package name.
-- Overwrite existing files with `--force` only when you are certain.
-- After completion, inspect copied files and changes made by callbacks (including registry files); `swoole_websocket` may generate application code.
-- When modifying a package implementation, follow the instructions for application / package boundaries.
+- 用途：將已安裝 package 的資源發布到本專案（不下載 Composer 相依套件）
+- 說明：`php windwalker help pkg:install`
+- 指定 package 與 tag：`php windwalker pkg:install windwalker/reactor --tag swoole_website`
+- 預覽：加上 `--dry-run`
+- 除錯：`--details=3` 列出每個複製的檔案（預設即為 level 3）
+- `--all` 需搭配明確的 package 名稱
+- 覆寫既有檔案：`--force`，僅在確定需要時使用
+- 完成後檢查複製的檔案與 callback 產生的變更（包括 registry）；`swoole_websocket` 可能產生應用程式程式碼
+- 修改 package 實作時，遵循 instructions 的應用程式／package 邊界
 
-## References
+## 參考連結
 
-- [Basic Commands](https://windwalker.io/documentation/framework/console/basic-commands.md)
-- [Console Basics](https://windwalker.io/documentation/framework/console/console-basics.md)
-- [Server Basics](https://windwalker.io/documentation/framework/cli-servers/server-basics.md)
-- [Environment component](https://windwalker.io/documentation/components/environment/index.md)
+- [內建指令（Basic Commands）](https://windwalker.io/documentation/framework/console/basic-commands.md)
+- [Console 基礎（Console Basics）](https://windwalker.io/documentation/framework/console/console-basics.md)
+- [伺服器基礎（Server Basics）](https://windwalker.io/documentation/framework/cli-servers/server-basics.md)
+- [Environment 元件](https://windwalker.io/documentation/components/environment/index.md)

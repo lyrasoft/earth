@@ -1,27 +1,27 @@
-# Locale Key Naming Conventions
+# 語系鍵命名規範
 
-> **Required reading.** Before adding, renaming, or reusing any translation key (`resources/languages/**/*.ini`, PHP `trans()`, or frontend `__()`), read this document first. It is the standard naming strategy for all locale keys; do not invent a different structure.
+> **必讀。** 新增、改名或重用任何翻譯鍵前（`resources/languages/**/*.ini`、PHP `trans()`、前端 `__()`），都必須先閱讀本文件。這是所有語系鍵的標準命名策略，不得自行發明其他結構。
 
-## Flat INI format
+## 扁平 INI 格式
 
-Windwalker language files are flat `.ini` files with no nesting. Represent hierarchy with dot-separated segments in a single key, and always enclose values in double quotes.
+Windwalker 語言檔是扁平的 `.ini` 檔，沒有巢狀結構。層級以點分段寫在同一個鍵中，值一律以雙引號包住。
 
 ```ini
 flower.message.delete.confirm="Are you sure you want to delete?"
 flower.field.created.by="Created By"
 ```
 
-Because all keys are normalized (characters other than `A-Za-z0-9` become `.` and letters become lowercase), **dots are also the separators between words**. `visibility_score`, `visibility-score`, and `visibility.score` are the same key. Separate multiple words with dots (`flower.field.created.by`, `flower.prompt.list.action.add`). Do not rely on `_`, `-`, or letter case to distinguish keys.
+因為所有鍵都會被正規化（`A-Za-z0-9` 以外的字元轉為 `.` 並小寫），**單字間的分隔也是點**。`visibility_score`、`visibility-score` 與 `visibility.score` 是同一個鍵。多個單字請以點分隔（`flower.field.created.by`、`flower.prompt.list.action.add`）。不要依賴 `_`、`-` 或大小寫來區分兩個鍵。
 
-A key can be both a leaf and a prefix of another key (`sakura.field.created` and `sakura.field.created.by`); this cannot be represented in a nested YAML structure. When a term has derived keys, prefer the `.label` pattern described below.
+同一個鍵可以同時是葉節點，又是其他鍵的前綴（`sakura.field.created` 與 `sakura.field.created.by`），這是 YAML 巢狀結構無法表達的。當某個詞彙有衍生鍵時，優先使用下文的 `.label` 形式。
 
-Keep related keys adjacent and sort them by key name so translators can recognize groups at a glance.
+相關鍵請相鄰排列，並依鍵名排序，讓譯者能一眼看出同一組。
 
-## Namespaces and scope
+## 命名空間與範圍
 
-Keys begin with a top-level domain-based namespace, such as `app.*`, `ui.*`, `form.*`, and `project.*`.
+鍵以頂層、依領域劃分的命名空間開頭，例如 `app.*`、`ui.*`、`form.*`、`project.*`、`geo.*`。
 
-Under a namespace, group sections by feature or page. Each namespace and section forms a **scope**, and keys within a scope are grouped by purpose: `message.*`, `text.*`, `field.*`, `button.*`, `action.*`, and `meta.*`.
+在命名空間之下，區段依功能或頁面分組。每個命名空間與區段構成一個**範圍（scope）**，範圍內的鍵再依用途分組：`message.*`、`text.*`、`field.*`、`button.*`、`action.*`、`meta.*`。
 
 ```ini
 ; app scope
@@ -42,17 +42,17 @@ geo.prompt.list.message.error="Failed to load prompts."
 geo.prompt.list.action.add.prompt="Add Prompt"
 ```
 
-Any level may be an independent scope, but use **no more than three levels before a purpose section**:
+任何層級都可以成為獨立範圍，但在用途區段之前，**最多使用三層**：
 
-1. **Namespace**: the broadest scope, organized by domain.
-2. **Page / feature**: the intermediate scope for a page or feature.
-3. **Shared layout**: a large layout or component reused by multiple pages.
+1. **命名空間**：最寬的範圍，依領域劃分。
+2. **頁面 / 功能**：單一頁面或功能的中間範圍。
+3. **共用版面**：被多個頁面重用、提供完整頁面功能的大型版面或元件。
 
-## Shared terms (fields, headers, metrics)
+## 共用詞彙（欄位、表頭、指標）
 
-An important term may appear in charts, tables, reports, icons, buttons, tooltips, and descriptions. Define it **only once** under `field.*` in the namespace, then reuse it everywhere. Put the main text in `field.<term>.label` and descriptions or tooltips in `field.<term>.desc`.
+一個重要詞彙可能同時出現在圖表、表格、報表、圖示、按鈕、工具提示與說明中。請在命名空間的 `field.*` 下**只定義一次**，並到處重用。主要文字放在 `field.<term>.label`；說明或工具提示放在 `field.<term>.desc`。
 
-Bad practice (a key for each component):
+不良做法（每個元件各一個鍵）：
 
 ```ini
 geo.metric.sov="Share of Voice"
@@ -63,7 +63,7 @@ geo.charts.tooltip.sov.desc="..."
 geo.input.sov.label="Share of Voice"
 ```
 
-Good practice:
+良好做法：
 
 ```ini
 geo.field.sov.label="Share of Voice"
@@ -74,29 +74,29 @@ geo.field.sov.any.other.usage="..."
 ui.table.header.toggle.all="Toggle All"
 ```
 
-## Purpose sections
+## 用途區段
 
-Group keys by purpose, not by component. A separate section for each component makes the hierarchy too deep and fragmented.
+依用途分組，而不是依元件分組。每個元件各自一個區段會讓層級過深、過於零碎。
 
-| Section | Use |
+| 區段 | 用於 |
 |------|------|
-| `meta.*` | Page titles, layout headers, metadata, descriptions, subtitles, breadcrumbs, and other page- or layout-level text |
-| `message.*` | Alerts, messages, Toasts, and notifications |
-| `text.*` | Notes, help text, hints, yes/no, and other standalone text |
-| `button.*` | Button labels; may include multiple states (text, tooltip, loading) |
-| `action.*` | Common action labels (save, cancel, submit) |
-| `field.*` | Form field labels, descriptions, placeholders, and validation messages |
+| `meta.*` | 頁面標題、版面標頭、中繼資料、描述、副標題、麵包屑，以及其他頁面或版面層級的文字 |
+| `message.*` | 警示、訊息、Toast、通知 |
+| `text.*` | 註記、說明文字、提示、是／否，以及其他獨立文字 |
+| `button.*` | 按鈕標籤；可包含多種狀態（文字、工具提示、載入中） |
+| `action.*` | 常用動作標籤（儲存、取消、送出） |
+| `field.*` | 表單欄位的標籤、說明、placeholder、驗證訊息 |
 
-Examples of reuse:
+重用範例：
 
-- Reuse `text.*`, `field.*`, or `message.*` for table headers, lists, cards, and tooltips.
-- Reuse `app.*` / `ui.*` for common controls (select all, clear all, reset all). In this package, use `unicorn.core.*`.
-- Reuse `field.*` for form labels, table headers, and chart labels.
-- Use `message.*` or `text.*` for help, warnings, hints, and status messages; place standalone text that has no other category under `text.*`.
+- 表格表頭、清單、卡片、工具提示重用 `text.*`、`field.*` 或 `message.*`。
+- 常見控制項（全選、全部清除、全部重設）重用 `app.*` / `ui.*`（本套件為 `unicorn.core.*`）。
+- 表單標籤、表格表頭、圖表標籤重用 `field.*`。
+- 說明、警告、提示與狀態訊息使用 `message.*` 或 `text.*`；無處可歸的獨立文字放在 `text.*`。
 
-## Derived keys
+## 衍生鍵
 
-When one primary name needs multiple derived strings, append the derived suffix to the primary key. Form fields commonly need labels, descriptions, placeholders, and error messages:
+當一個主要名稱需要多個衍生字串時，將衍生後綴附加在主鍵之後。表單欄位通常需要標籤、說明、placeholder 與錯誤訊息：
 
 ```ini
 project.settings.field.title.label="Project Title"
@@ -106,11 +106,11 @@ project.settings.field.title.error.required="Project title is required"
 project.settings.field.title.error.invalid="Project title is invalid"
 ```
 
-The shared prefix identifies the group and helps translators find related keys quickly. Be consistent with suffixes such as `label`, `desc` (or `description`), `placeholder`, and `error.*` within the same scope; do not mix `desc` and `description` for the same purpose.
+共同前綴標示所屬群組，讓譯者能快速找到相關鍵。在同一範圍內請一致使用後綴 `label`、`desc`（或 `description`）、`placeholder`、`error.*`；同一用途不要混用 `desc` 與 `description`。
 
-## Variants and abbreviations
+## 變體與縮寫
 
-Keep terms with a long form, abbreviation, or variant together under the same `field.*` key:
+有長形式、縮寫或變體的詞彙，都放在同一個 `field.*` 鍵下：
 
 ```ini
 geo.field.sov.label="Share of Voice"
@@ -120,15 +120,15 @@ geo.field.aer.sov.abbr="AI SoV"
 geo.field.aer.sov.full="AI Engine Response Share of Voice"
 ```
 
-## Naming by meaning and component context
+## 依語意與元件情境命名
 
-The same English word may have different meanings. `Mentions` might mean the number of mentions in one chart, the times something has been mentioned elsewhere, a form field, or the entities mentioned in a list. `Cited` might mean “has been cited” or “number of citations.” A noun such as `Music` has no plural in English but may have one in other languages, so extract a separate plural key (`music.list`).
+同一個英文單字可能代表不同意思。`Mentions` 在某張圖表中可能是提及次數，在另一處可能是被提及的次數、表單欄位，或清單中被提及的實體。`Cited` 可能是「已被引用」，也可能是「引用次數」。`Music` 這類名詞在英文沒有複數，但其他語言有，因此必須抽出複數鍵（`music.list`）。
 
-Before extracting a noun, check the component and surrounding code:
+在抽出名詞之前，先檢查元件與周邊程式碼：
 
-- **Table header**: inspect the data displayed in the corresponding `td`.
-- **Chart**: inspect the purpose of the tooltip, legend, and axis.
-- **Form**: inspect the expected label, placeholder, and description for the field.
-- **Title**: inspect the singular / plural form and context of the page, section, or API documentation being presented.
+- **表格表頭**：該欄儲存格（`td`）中顯示的資料。
+- **圖表**：工具提示、圖例與座標軸的用途。
+- **表單**：欄位預期的標籤、placeholder 與說明。
+- **標題**：所呈現頁面、區段或 API 文件的單數／複數形式與情境。
 
-Do not reuse a key just because the English text is the same; reuse it only when the **meaning and context** match. Follow any surrounding comments or explanatory text. For true plurals, use `choice()` (see [plural rules](https://windwalker.io/documentation/components/language/plurals.md) in the Windwalker Language documentation).
+不要因為英文文字相同就重用鍵；只有在**語意與情境**相符時才重用。有周邊註解或說明文字時，請依其指示。真正的複數形式請使用 `choice()`（參見 Windwalker Language 文件的 [複數規則](https://windwalker.io/documentation/components/language/plurals.md)）。

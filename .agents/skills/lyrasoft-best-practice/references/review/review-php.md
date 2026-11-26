@@ -1,24 +1,24 @@
-# PHP Code Review Guidance
+# PHP 程式碼審查指引
 
-When reviewing code changes, PRs, or diffs, follow these rules.
+審查程式碼變更、PR 或 diff 時，請遵守以下規則。
 
-## Review priorities
+## 審查優先順序
 
-Review in this order:
+依下列順序檢查：
 
-1. Correctness: logic errors, edge cases, null / empty value handling, off-by-one errors, race conditions.
-2. Security: input validation, authorization checks, SQL / XSS / injection risks, sensitive information exposure.
-3. Project conventions: patterns in `.github/instructions/` (PHP DDD structure, Nuxt structure, routes, DTOs, enums).
-4. Tests: new behavior has tests under `tests/`; existing tests still reflect behavior after the changes.
-5. Style: PHP follows PSR-12; frontend follows Airbnb ESLint.
+1. 正確性：邏輯錯誤、邊界條件、null／空值處理、off-by-one、競態條件。
+2. 安全性：輸入驗證、授權檢查、SQL／XSS／注入風險、機敏資訊外洩。
+3. 專案規範：`.github/instructions/` 內的模式（PHP DDD 結構、Nuxt 結構、路由、DTO、enum）。
+4. 測試：新行為有 `tests/` 下的測試；既有測試仍符合變更後的行為。
+5. 風格：PHP 遵循 PSR-12，前端遵循 Airbnb ESLint。
 
-## PHP type reflection
+## PHP 型別反射性
 
-Check whether PHP code loses type information. Recommend a correction if the IDE or static analysis cannot infer a type.
+檢查 PHP 程式碼是否遺失型別資訊。若 IDE 或靜態分析無法推斷型別，請建議修正。
 
-### Complex arrays, objects, and `json_decode` results
+### 複雜陣列、物件與 `json_decode` 結果
 
-When data is a multi-field array, an object, or decoded JSON, recommend adding a shape to `@param`, `@return`, or `@var`.
+當資料為多欄位陣列、物件或解碼後的 JSON 時，建議補上 `@param`、`@return` 或 `@var` 的 shape。
 
 ```php
 /**
@@ -45,9 +45,9 @@ function decodeUser(string $json): ?array
 }
 ```
 
-### `mixed` and `array` in function signatures
+### 函式簽名中的 `mixed` 與 `array`
 
-Recommend concrete type declarations or generics instead of `mixed` or a bare `array`.
+建議改用具體的型別宣告或 generics，取代 `mixed` 或單純的 `array`。
 
 ```php
 /**
@@ -76,9 +76,9 @@ function mapUserNames(array $users): array
 }
 ```
 
-### Entities passed between variables
+### 跨變數傳遞的 Entity
 
-When an Entity loses its type as it passes through an array, `compact()`, serialization, or an untyped variable, recommend declaring its shape in a class-level PHPDoc.
+當 Entity 經由陣列、`compact()`、序列化或無型別變數傳遞而遺失型別時，建議在類別層級加上 PHPDoc 宣告其結構。
 
 ```php
 /** @var Keyword $item */
@@ -91,32 +91,33 @@ $category = $orm->tryEntity($item->category);
 // OR
 
 /** @var Tag[] $tags */
-$tags = array_maps($orm->toEntity(...), $item->tags);
+$tags = array_maps($orm->toEntity(...), $item->tags); 
 ```
 
-## Project-specific checks
+## 專案專屬檢查
 
-- Flag any changes that modify, delete, or commit `.env`; these are blockers.
-- Flag committed credentials, API keys, or tokens (for example, `CLERK_SECRET_KEY`).
-- Flag unrelated changes mixed into the diff.
-- Flag comments that merely restate obvious code. Comments should explain only non-obvious logic.
-- Flag new frontend code that depends on Nuxt auto-import, because this project does not use it.
+- 任何修改、刪除或提交 `.env` 的變更都要標記，屬於阻擋問題。
+- 標記已提交的憑證、API key 或 token（例如 `CLERK_SECRET_KEY`）。
+- 標記混入 diff 的無關變更。
+- 標記重述明顯程式碼的註解。註解只應說明不明顯的邏輯。
+- 標記新的前端程式碼依賴 Nuxt auto-import，因為本專案不使用該功能。
 
-## SQL review
+## SQL 審查
 
-Review SQL performance in code and migrations. Before recommending a new index, inspect indexes and keys in `resources/migrations/`.
+審查程式碼與 migration 中的 SQL 效能。建議新增索引前，先檢查 `resources/migrations/` 內的索引與鍵。
 
-- Confirm that the column is not already covered by an existing index, primary key, or unique key. Index prefixes count too (for example, `addIndex(['user_id', 'role_id'])` already covers `user_id`).
-- When a query uses both `WHERE` and `ORDER BY`, recommend a composite index with equality-condition columns first and range or sorting columns afterward.
-- Flag `SELECT *` on large tables and unbounded queries without `LIMIT`.
-- Flag functions applied to indexed columns in `WHERE` (for example, `DATE(created)`), because they prevent index use.
-- Flag leading-wildcard `LIKE '%x'` and `OR` across different columns; these patterns usually cannot use indexes.
-- Flag N+1 query patterns inside loops.
-- When an index is needed, identify the migration file to update and follow the project's `$schema->addIndex()` or `$schema->addUniqueKey()` pattern.
-- Mark performance issues with Low severity, since indexes can be added later. Use High or Medium for logic errors or data integrity issues.
+- 確認該欄位尚未被既有索引、主鍵或唯一鍵涵蓋。索引前綴也算數（例如 `addIndex(['user_id', 'role_id'])` 已涵蓋 `user_id`）。
+- 當查詢同時使用 `WHERE` 與 `ORDER BY` 時，建議複合索引：等值條件欄位在前，範圍或排序欄位在後。
+- 標記大表上的 `SELECT *`，以及沒有 `LIMIT` 的無上限查詢。
+- 標記在 `WHERE` 中對索引欄位套用函數（例如 `DATE(created)`），因為會導致無法使用索引。
+- 標記前導萬用字元的 `LIKE '%x'`，以及跨不同欄位的 `OR`，這類寫法通常無法使用索引。
+- 標記迴圈中的 N+1 查詢模式。
+- 需要新增索引時，指出應修改的 migration 檔案，並沿用專案的 `$schema->addIndex()` 或 `$schema->addUniqueKey()` 寫法。
+- 效能問題用 Low 的嚴重度標記，因為索引可以後續補上。若是邏輯錯誤或資料完整性問題，則使用 High 或 Medium。
 
 ```php
 // Existing: addUniqueKey(['user_id', 'org_id'])
 // Query: WHERE org_id = ? AND user_id = ? ORDER BY created DESC
 // Suggest: addIndex(['org_id', 'user_id', 'created'])
 ```
+
