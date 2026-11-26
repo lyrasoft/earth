@@ -1,6 +1,6 @@
-# Windwalker 測試工作
+# Windwalker Testing Tasks
 
-測試相關的指令、文件與規範統一由 test 技能入口提供，請先參考：
+Testing-related commands, documentation, and conventions are consolidated under the test skill. Start with:
 
-- 測試技能入口: `../../../test/SKILL.md`
-- PHP / Windwalker 測試規範: `../../../test/references/windwalker-testing.md`
+- Test skill entry point: `../../../test/SKILL.md`
+- PHP / Windwalker testing conventions: `../../../test/references/windwalker-testing.md`

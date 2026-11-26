@@ -1,19 +1,19 @@
-# Bootstrap SCSS Best Practice
+# Bootstrap SCSS Best Practices
 
-使用 Bootstrap 時，優先透過 SCSS 變數與 Sass 函式客製化，再重新編譯，而非覆蓋編譯後的 CSS。
+When using Bootstrap, customize it through SCSS variables and Sass functions, then recompile, rather than overriding the compiled CSS.
 
-詳細說明：[修改 Bootstrap 變數、自定義顏色](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345/Bootstrap)
+For details, see [Customize Bootstrap variables and colors](https://simular-outsourcing.atlassian.net/wiki/spaces/layout/pages/852345/Bootstrap).
 
-## 修改變數
+## Modify variables
 
-變數需寫在 `@import "bootstrap/scss/..."` 之前；Bootstrap 的預設變數可在 `bootstrap/scss/_variables.scss` 搜尋。
+Variables must be declared before `@import "bootstrap/scss/..."`. Search `bootstrap/scss/_variables.scss` for Bootstrap's default variables.
 
 ```scss
-// Bad: 變數寫在 Bootstrap import 之後，不會生效
+// Bad: the variable is declared after the Bootstrap import and has no effect
 @import "bootstrap/scss/variables";
 $primary: #d96ed9;
 
-// Good: 變數寫在 import 之前
+// Good: declare variables before the import
 $primary: #d96ed9;
 
 @import "bootstrap/scss/functions";
@@ -23,19 +23,19 @@ $primary: #d96ed9;
 @import "bootstrap/scss/maps";
 ```
 
-## 新增主色與顏色變數
+## Add theme colors and color variables
 
-加入 `$theme-colors` 會自動產生 `text-*`、`bg-*`、`btn-*` class；合併 `$colors` 則輸出為 CSS 變數（如 `--bs-golden`）。
+Adding a color to `$theme-colors` automatically generates `text-*`, `bg-*`, and `btn-*` classes. Merging `$colors` outputs CSS variables (such as `--bs-golden`).
 
 ```scss
-// Bad: 寫死色碼，沒有對應的 Bootstrap class 或 CSS 變數
+// Bad: hardcoded color with no corresponding Bootstrap class or CSS variable
 .text-facebook { color: #4267B2; }
 
-// OK: 只加入 theme-colors，無法使用 rgba 工具 class
+// OK: add only to theme-colors; rgba utility classes will not be available
 $facebook: #4267B2;
 $theme-colors: map-merge($theme-colors, ("facebook": $facebook));
 
-// Good: 加入 theme-colors 並補齊 rgb 與工具 class
+// Good: add to theme-colors and include rgb and utility classes
 $facebook: #4267B2;
 $custom-theme-colors: ("facebook": $facebook);
 
@@ -45,18 +45,18 @@ $utilities-colors: map-merge($theme-colors-rgb, $utilities-colors);
 $utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
 $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
-// Good: 合併 $colors 產生 CSS 變數
+// Good: merge $colors to generate CSS variables
 $colors: map-merge($colors, ("golden": #D4A017));
 ```
 
-## 調整元件參數
+## Adjust component parameters
 
 ```scss
-// Bad: 在元件內寫死圓角，之後難以統一調整
+// Bad: hardcode border radius in components, making it difficult to change consistently later
 .card { border-radius: 15px; }
 .btn { border-radius: 5px; }
 
-// Good: 透過變數統一調整
+// Good: adjust consistently through variables
 $link-decoration: none;
 $card-border-radius: 15px;
 $btn-border-radius: 5px;
@@ -66,13 +66,13 @@ $input-border-width: 0;
 @import "bootstrap/scss/variables";
 ```
 
-## 自訂專案變數
+## Custom project variables
 
 ```scss
-// Bad: 同一字型重複寫死在各處
+// Bad: repeat the same hardcoded font in multiple places
 .card-title { font-family: 'Roboto', 'PingFang TC', sans-serif; }
 
-// Good: 定義變數後統一使用
+// Good: define a variable and use it consistently
 $title-font: 'Roboto', 'PingFang TC', 'Heiti TC', '微軟正黑體', sans-serif;
 
 .card {
@@ -83,13 +83,13 @@ $title-font: 'Roboto', 'PingFang TC', 'Heiti TC', '微軟正黑體', sans-serif;
 }
 ```
 
-## 善用 Sass 與 Bootstrap 函式
+## Make use of Sass and Bootstrap functions
 
 ```scss
-// Bad: 手動寫死 hover 色碼，與主色脫鉤
+// Bad: hardcoded hover color is disconnected from the primary color
 a:hover { color: #b35a5a; }
 
-// Good: 用 darken() 從變數推導
+// Good: derive the color from a variable with darken()
 a {
   color: $primary;
 
@@ -98,32 +98,32 @@ a {
   }
 }
 
-// Good: 使用 button-variant mixin 快速產生按鈕樣式
+// Good: quickly generate button styles with the button-variant mixin
 .btn-custom {
   @include button-variant(#581493);
 }
 ```
 
-參考：[Sass 函式](https://sass-lang.com/documentation/at-rules/function)
+Reference: [Sass functions](https://sass-lang.com/documentation/at-rules/function)
 
-## 修改 class 樣式
+## Modify class styles
 
-變數無法調整、且全站共用的樣式才覆蓋內建 class；區塊特殊樣式請使用獨立 class。
+Override built-in classes only for site-wide styles that cannot be adjusted with variables. Use a separate class for styles specific to a section.
 
 ```scss
-// Bad: 在頁面內覆蓋 Bootstrap class，影響範圍不明確
+// Bad: override Bootstrap classes inside a page; the scope is unclear
 .about-page {
   .btn {
     transition: ...;
   }
 }
 
-// Good: 全站共用的樣式，覆蓋內建 class
+// Good: override a built-in class for a site-wide style
 .btn {
   transition: ...;
 }
 
-// Good: 區塊特殊樣式，使用獨立 class
+// Good: use a separate class for a section-specific style
 .about-page {
   .btn--more {
     transition: ...;
@@ -131,17 +131,17 @@ a {
 }
 ```
 
-## 自訂實用 class
+## Custom utility classes
 
-擴充 spacers 或用 `$utilities` 新增 class 時，需合併既有值，不要覆寫。
+When extending spacers or adding classes with `$utilities`, merge with existing values instead of overwriting them.
 
 ```scss
-// Bad: 直接覆寫，會丟失 Bootstrap 預設的 utilities
+// Bad: overwrite the map and lose Bootstrap's default utilities
 $utilities: (
   "ft": (property: font-size, class: ft, values: (58: 3.6rem, 64: 4rem))
 );
 
-// Good: 合併既有 map
+// Good: merge with the existing map
 $spacers: map-merge((6: ($spacer * 6), 7: ($spacer * 12)), $spacers);
 
 $utilities: map-merge(
@@ -152,20 +152,20 @@ $utilities: map-merge(
 );
 ```
 
-## 善用 CSS 變數
+## Make use of CSS variables
 
 ```scss
-// Good: 直接使用 CSS 變數
+// Good: use CSS variables directly
 .foo { color: var(--bs-primary); }
 
-// Bad: rgba() 不接受整組顏色變數
+// Bad: rgba() does not accept a complete color variable
 .foo { background-color: rgba(var(--bs-primary), .5); }
 
-// Good: 使用 -rgb 版本做半透明
+// Good: use the -rgb version for transparency
 .foo { background-color: rgba(var(--bs-primary-rgb), .5); }
 ```
 
-自訂 CSS 變數：
+Custom CSS variables:
 
 ```scss
 $special-color: #D18B3B;
@@ -178,11 +178,11 @@ $special-color: #D18B3B;
 }
 ```
 
-## 常見問題
+## Common issue
 
-### 按鈕文字變黑色
+### Button text turns black
 
-設計主色較淺時，Bootstrap 會自動把文字轉為黑色。可在 `_variables.scss` 於 Bootstrap import 前降低對比門檻（常用 2.7–3 之間）：
+When the design's primary color is light, Bootstrap automatically changes the text to black. Lower the contrast threshold in `_variables.scss` before importing Bootstrap (commonly to a value between 2.7 and 3):
 
 ```scss
 $min-contrast-ratio: 2.8;

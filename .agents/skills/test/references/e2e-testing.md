@@ -1,33 +1,33 @@
-# E2E / Playwright 測試指引
+# E2E / Playwright testing guide
 
-## 目的
+## Purpose
 
-在真實瀏覽器中，針對本機開發伺服器驗證需要實際互動的前端行為（表格工具列按鈕、對話框、表單）。
+Use a real browser to verify frontend behavior that requires interaction (table toolbar buttons, dialogs, forms) against a local development server.
 
-需要登入的 Windwalker 流程（認證檔案、session cookie、session 橋接等）請見 `e2e-windwalker-auth.md`。
+For Windwalker flows that require login (credential file, session cookie, session bridge, etc.), see `e2e-windwalker-auth.md`.
 
-## 前置條件
+## Prerequisites
 
-- 使用 `playwright-core` 直行測試。它不會下載瀏覽器；請以 `channel: 'chrome'` 啟動已安裝的 Chrome（Edge 則使用 `channel: 'msedge'`）。若缺少套件，請提示使用者。
-- 腳本與日誌放在 `tmp/e2e/`（已被 git 忽略）。請在 repo 根目錄執行：`node tmp/e2e/<script>.mjs`。
-- 如果在開始測試前，需要啟動 PHP dev server or JS dev server，或者需要 build js (`yarn build`)，請搜尋 instructions 尋找專案內的執行方式。
+- Run tests with `playwright-core`. It does not download browsers; launch an installed Chrome with `channel: 'chrome'` (or Edge with `channel: 'msedge'`). If the package is missing, notify the user.
+- Put scripts and logs in `tmp/e2e/` (ignored by Git). Run from the repository root: `node tmp/e2e/<script>.mjs`.
+- If a PHP dev server or JS dev server must be started, or JS must be built (`yarn build`) before testing, search the instructions for the project's procedure.
 
-## 工作流程
+## Workflow
 
-- **以明確的連接埠啟動 PHP 伺服器**，並記錄其 PID：
+- **Start the PHP server on an explicit port** and record its PID:
 
    ```bash
    php windwalker server:start php:main --host localhost --port 8089 \
      > tmp/e2e/server.out 2> tmp/e2e/server.err &
-   echo $!                                                        # 伺服器 PID
+   echo $!                                                        # server PID
    curl -s -o /dev/null -w "%{http_code}" http://localhost:8089/  # expect 200
    ```
 
-   回傳的 PID 可能是啟動器而非實際監聽的程序。請用 `Get-NetTCPConnection -LocalPort 8089 -State Listen` 找出真正的 PID，並只停止該程序（`Stop-Process -Id <PID>`）。
-- **準備登入（若測試需要）**：見 `e2e-windwalker-auth.md`。
-- **複製並調整腳本**：將 `../assets` 複製到 `tmp/e2e/`，依專案與測試情境調整後執行。
-- **清理**：刪除 `.mjs` 腳本與日誌，並只停止你自己啟動的伺服器。保留 `.env.agent.local`。
+   The returned PID may belong to a launcher rather than the process actually listening. Use `Get-NetTCPConnection -LocalPort 8089 -State Listen` to find the real PID, and stop only that process (`Stop-Process -Id <PID>`).
+- **Prepare login (if needed)**: see `e2e-windwalker-auth.md`.
+- **Copy and adjust the script**: copy `../assets` to `tmp/e2e/`, adjust it for the project and test scenario, then run it.
+- **Cleanup**: delete the `.mjs` script and logs, and stop only the server you started. Keep `.env.agent.local`.
 
-## 範例腳本
+## Example script
 
-`../assets` 會登入（使用 `.env.agent.local` 中的 Session ID 或憑證）、開啟後台列表頁、在未勾選任何項目時點擊刪除工具列按鈕，並輸出原生對話框內容。**這只是範例：請依專案與測試情境調整網址、選擇器與斷言。**
+`../assets` logs in (using a Session ID or credentials from `.env.agent.local`), opens a backend list page, clicks the delete toolbar button without selecting any items, and outputs the native dialog content. **This is only an example: adjust the URL, selectors, and assertions for the project and test scenario.**

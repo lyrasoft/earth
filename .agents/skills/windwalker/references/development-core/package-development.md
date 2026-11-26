@@ -1,16 +1,16 @@
-# Windwalker Package 開發基礎
+# Windwalker Package Development Basics
 
-Windwalker Package 是一個 Composer 套件（`type` 為 `windwalker-package`），可把 MVC 類別、Entity、路由、Migration、設定檔等可重用部分安裝進宿主應用程式。
+A Windwalker Package is a Composer package (with `type` set to `windwalker-package`) that can install reusable parts—such as MVC classes, entities, routes, migrations, and configuration files—into a host application.
 
-完整說明請參考官方文件：https://windwalker.io/documentation/framework/packages/package-development.md
+For complete details, see the official documentation: https://windwalker.io/documentation/framework/packages/package-development.md
 
-## 基本結構
+## Basic structure
 
 ```
 acme/portfolio
 ├── composer.json
 ├── README.md
-├── resources/          # pkg:install 會複製的檔案
+├── resources/          # Files copied by pkg:install
 │   ├── config/
 │   ├── routes/
 │   ├── migrations/
@@ -21,9 +21,9 @@ acme/portfolio
 
 ## composer.json
 
-- `type` 設為 `windwalker-package`。
-- 在 `autoload.psr-4` 宣告命名空間。
-- 在 `extra.windwalker.packages` 註冊 Package 類別。
+- Set `type` to `windwalker-package`.
+- Declare the namespace in `autoload.psr-4`.
+- Register the Package class in `extra.windwalker.packages`.
 
 ```json
 {
@@ -40,11 +40,11 @@ acme/portfolio
 }
 ```
 
-## Package 類別
+## Package class
 
-- 繼承 `Windwalker\Core\Package\AbstractPackage`。
-- 實作 `install(PackageInstaller $installer): void`，呼叫安裝方法複製資源。
-- 資源路徑使用 `static::path()` 建立。
+- Extend `Windwalker\Core\Package\AbstractPackage`.
+- Implement `install(PackageInstaller $installer): void` and call installer methods to copy resources.
+- Build resource paths with `static::path()`.
 
 ```php
 class PortfolioPackage extends AbstractPackage
@@ -57,32 +57,32 @@ class PortfolioPackage extends AbstractPackage
 }
 ```
 
-常用安裝方法包括 `installConfig()`、`installRoutes()`、`installMigrations()`、`installLanguages()`、`installViews()`、`installSeeders()`、`installFiles()`、`installModules()`、`installMVCModules()`。每個方法都可傳入 tag，讓使用者只安裝部分資源。各方法的參數與細節請見官方文件。
+Common installer methods include `installConfig()`, `installRoutes()`, `installMigrations()`, `installLanguages()`, `installViews()`, `installSeeders()`, `installFiles()`, `installModules()`, and `installMVCModules()`. Each method can accept a tag so users can install only some resources. See the official documentation for method parameters and details.
 
-## 在宿主應用程式中研發
+## Developing in a host application
 
-1. 宿主應用程式的 `composer.json` 加入 `path` repository 指向本地 Package 資料夾，並 `require` 該套件。
-2. 執行 `composer update acme/portfolio`。
-3. 執行 `php windwalker pkg:install acme/portfolio --all` 安裝資源。
-4. 修改會被 `pkg:install` 複製的檔案後，需要重新安裝。加上 `--force` 會覆寫既有檔案，執行前請先 commit 宿主應用程式。
+1. Add a `path` repository to the host application's `composer.json` pointing to the local Package directory, then `require` the package.
+2. Run `composer update acme/portfolio`.
+3. Run `php windwalker pkg:install acme/portfolio --all` to install resources.
+4. After modifying files copied by `pkg:install`, reinstall them. Passing `--force` overwrites existing files, so commit the host application before running it.
 
-### 新專案在 Host App 啟動時
+### Starting a new project from the host app
 
-使用者提出首次開發指令時，先詢問使用者**要建立的套件名稱與命名空間**，再詢問希望放在外部目錄還是 `vendor/` 內。
+When a user gives the initial development instruction, first ask for the **package name and namespace**, then ask whether they want it in an external directory or inside `vendor/`.
 
-若是希望放在 `vendor/` 內，可以先放到專案的 `vendor/{namespace}/{name}` 內，若是希望放在外部目錄，則依照使用者指定的目錄先存放。
+If they want it inside `vendor/`, it can initially be placed in the project at `vendor/{namespace}/{name}`. If they want an external directory, store it in the directory they specify.
 
-接著使用 `composer.json` 加入 `path` repository 指向該資料夾，然後 require 套件名稱。
+Then add a `path` repository to `composer.json` pointing to that directory, and require the package by name.
 
-## 注意事項
+## Notes
 
-- 設定檔不要寫入明文密鑰或密碼，請用 `env()` 讀取。
-- `installModules()` 會以文字方式讀寫檔案，二進位檔（圖片、字型）請使用 `installFiles()`。
-- 開發初期就 `git init` 並定期 commit，方便回復失敗的變更。
+- Do not put plaintext keys or passwords in configuration files; read them with `env()`.
+- `installModules()` reads and writes files as text; use `installFiles()` for binary files (images, fonts).
+- Run `git init` early in development and commit regularly to make it easier to revert failed changes.
 
-## 相關文件
+## Related documentation
 
-- 設定檔與 `ConfigModule`：<https://windwalker.io/documentation/framework/getting-started/configuration.md>
-- Package Migration：<https://windwalker.io/documentation/framework/packages/package-migration.md>
-- Package JavaScript：<https://windwalker.io/documentation/framework/packages/package-javascript.md>
-- 修改既有 Package 或 Framework 原始碼（`composer install --prefer-source`）：參考官方文件「Modifying an Existing Package」段落。
+- Configuration files and `ConfigModule`: <https://windwalker.io/documentation/framework/getting-started/configuration.md>
+- Package Migration: <https://windwalker.io/documentation/framework/packages/package-migration.md>
+- Package JavaScript: <https://windwalker.io/documentation/framework/packages/package-javascript.md>
+- To modify an existing Package or Framework source (`composer install --prefer-source`), see the “Modifying an Existing Package” section in the official documentation.

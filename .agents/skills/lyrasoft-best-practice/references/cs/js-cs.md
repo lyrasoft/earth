@@ -1,57 +1,57 @@
 # JS / TypeScript Code Style
 
-# 前言
+# Introduction
 
-LYRASOFT 以 [AirBnb Javascript Style](https://github.com/airbnb/javascript) 為主要開發規範。
+LYRASOFT uses the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) as its primary development standard.
 
-本文件主要針對 AirBnb 標準作額外風格建議，請先熟讀上方的 AirBnb 風格。
+This document adds style recommendations to the Airbnb standard. Read the Airbnb guide above first.
 
-# 程式縮排
+# Code indentation
 
-與設參考 AirBnb 為2格縮進。
+Follow Airbnb's two-space indentation.
 
-在 PHP 專案內時，若是寫在單一 js / ts 檔案內，必須也是 2 格。
+In PHP projects, standalone JS / TS files must also use two spaces.
 
-但可允許 HTML 內的 inline JS 使用 4 spaces， LYRASOFT 的 PHP 規範以 4 spaces 為縮排，當 JS 不得已必須寫在 PHP / HTML 檔案內時則不在此限，不過應避免混用的情形發生。
+Four spaces are acceptable for inline JS in HTML. LYRASOFT's PHP convention uses four-space indentation, so this exception applies when JS must be written inside PHP / HTML files; however, avoid mixing these cases.
 
-## 命名
+## Naming
 
-使用駝峰式命名，但開頭小寫，例如： `fooBar`。
+Use lower camelCase, for example: `fooBar`.
 
-請讓變數命名語意化，易於理解。
+Use meaningful variable names that are easy to understand.
 
 ```js
 var element = document.getElementById('elementId');
 ```
 
-迴圈中的索引則不在此限，允許使用 `i`, `j`, `k` 作為索引變數。
+Loop indexes are an exception; `i`, `j`, and `k` are acceptable index variables.
 
-## 類型檢查
+## Type checking
 
-以下提供一些常見的方法來判斷型別。
+Here are some common ways to check types:
 
-- 字串: `typeof object === 'string'`
-- 數字: `typeof object === 'number'`
-- 布林: `typeof object === 'boolean'`
-- 物件: `typeof object === 'object'`
-- 空白物件: `jQuery.isPlainObject( object )`
-- 函式: `jQuery.isFunction( object )`
-- 陣列: `jQuery.isArray( object )`
-- HTML元素: `object.nodeType`
+- String: `typeof object === 'string'`
+- Number: `typeof object === 'number'`
+- Boolean: `typeof object === 'boolean'`
+- Object: `typeof object === 'object'`
+- Plain object: `jQuery.isPlainObject( object )`
+- Function: `jQuery.isFunction( object )`
+- Array: `jQuery.isArray( object )`
+- HTML element: `object.nodeType`
 - null: `object === null`
 - null or undefined: `object == null`
 
-**判斷 Undefined:**
+**Checking for undefined:**
 
-- 全域變數: `typeof variable === 'undefined'`
-- 區域變數: `variable === undefined`
-- 屬性: `object.prop === undefined`
+- Global variable: `typeof variable === 'undefined'`
+- Local variable: `variable === undefined`
+- Property: `object.prop === undefined`
 
-# 類別
+# Classes
 
-## 類別式宣告
+## Class declarations
 
-若沒有其他特殊需求，統一用 ES class 語法宣告類別
+Unless there is a specific requirement, always declare classes with ES class syntax.
 
 ```js
 class MyClass {
@@ -64,7 +64,7 @@ class MyClass {
 const newObject = new MyClass(params);
 ```
 
-單次使用的 class 可以用靜態宣告
+A class used once can be declared with a static method:
 
 ```js
 class MyClass {
@@ -76,7 +76,7 @@ class MyClass {
 MyClass.foo();
 ```
 
-Vue 環境內，優先用 composable 取代 class。
+In Vue environments, prefer composables over classes.
 
 ```ts
 export function useFoo() {
@@ -90,25 +90,25 @@ export function useFoo() {
 }
 ```
 
-# 函式
+# Functions
 
-## 匿名函式
+## Anonymous functions
 
-除非有隔離需求，否則匿名函式優先使用箭頭函式
+Unless isolation is required, prefer arrow functions for anonymous functions.
 
 ```ts
-// 優先
+// Preferred
 const foo = () => { ... };
 
-// 需要隔離 this 時
+// When `this` needs to be isolated
 const foo = function () {
   console.log(this);
 };
 ```
 
-## 一般函式宣告
+## Regular function declarations
 
-除非有必要用變數裝載函數，否則全域函式盡量直接宣告成 function，這樣的好處是可以先使用，後宣告。
+Unless a function must be assigned to a variable, declare global functions directly with `function`. This allows them to be used before their declarations.
 
 ```typescript
 foo();
@@ -118,7 +118,7 @@ function foo() {
 }
 ```
 
-下方是用變數裝載函式，無法後宣告，盡量用在無法正常宣告函式或有需要環境隔離時才這樣做
+The following assigns a function to a variable, so it cannot be used before its declaration. Use this only when a function cannot be declared normally or when environment isolation is needed.
 
 ```typescript
 (function () {
@@ -128,18 +128,17 @@ function foo() {
 })();
 ```
 
-
-使用變數裝載函式時，。內部的函式會變成匿名函式，可以考慮給他一個名字，除錯時會更容易
+When assigning a function to a variable, the inner function becomes anonymous. Consider giving it a name to make debugging easier.
 
 ```typescript
 const foo = function foo() { ... };
 
-console.log(foo); // <-- 這樣可以印出函數名稱
+console.log(foo); // <-- This prints the function name
 ```
 
-# 事件
+# Events
 
-無論是 JS 還是 jQuery，我們優先用事件名稱優於事件函式或屬性，以下為範例
+In both JS and jQuery, prefer event names over event handler functions or properties. For example:
 
 ```js
 // Good
@@ -151,22 +150,22 @@ el.onclick = function (e) { ... };
 window.onload = (e) => { ... };
 ```
 
-# 註解
+# Comments
 
-**單行**
+**Single-line comments**
 
-- 註解放置在程式碼上方
-- 雙斜線與註解之間應空一格
+- Put comments above the code.
+- Leave one space between the double slash and the comment.
 
 ```
 // I am a single line comment.
 ```
 
-**多行註解**
+**Multiline comments**
 
-- 多行註解應放置在說明的目標程式碼上方
-- 註解起始字元 `/*` 應放在第一行註解上方，註解結束字元 `*/` 應放在最後一行註解下方，
-- 每一行註解應加上 1 個星號後綴一個空白
+- Put multiline comments above the code they describe.
+- Put the opening `/*` on the line before the first comment line and the closing `*/` on the line after the last comment line.
+- Prefix each comment line with one asterisk followed by a space.
 
 ```
 /*
@@ -176,16 +175,16 @@ window.onload = (e) => { ... };
  */
 ```
 
-# 區塊註解 (Docblock)
+# Docblocks
 
-- 在 TS 環境內，優先用型別宣告取代 JsDoc，除非是純 JS 環境或是需要給 IDE 解析的情況。
-- 區塊註解應用於描述函式、物件與變數時。
-- 註解起始字元應有兩個星號 `/**` 並放在第一行註解上方，註解結束字元 `*/` 應放在最後一行註解下方。
-- 每一行註解應加上 1 個星號，星號前後各加綴一個空白
-- 註解最少應包含敘述、參數與回傳值三種內容並依照這個順序排列。若該函式無參數，則可以省略 `@params`。
-- 敘述與其他內容之間應該要有一空行
+- In TS environments, prefer type declarations over JSDoc, except in pure JS environments or when the IDE needs to parse it.
+- Use docblocks to describe functions, objects, and variables.
+- Start the block with `/**` on the line above the description and close it with `*/` on the line below the last line.
+- Prefix each comment line with one asterisk and a space on either side of the text.
+- Include at least a description, parameters, and return value, in that order. Omit `@params` if the function has no parameters.
+- Leave a blank line between the description and the other content.
 
-範例：
+Example:
 
 ```js
 /**
@@ -197,25 +196,24 @@ window.onload = (e) => { ... };
  */
 ```
 
-## 型別宣告
+## Type declarations
 
-目前我們統一採用 TypeScript，可依照 TypeScript 的要求預先宣告型別
+We currently standardize on TypeScript; declare types in advance as required by TypeScript.
 
 ```typescript
-// 預宣告型別
+// Declare the type explicitly
 const foo: string = str.toString();
 
-// Ionic 專案可能會要求明確的型別不用重複宣告，這是可接受的
-let foo = ''; // <-- 會自動推定
-let foo: number | string = ''; // <-- 聯合型別必須宣告
+// Ionic projects may require an explicit type, but inferring it is also acceptable
+let foo = ''; // <-- inferred automatically
+let foo: number | string = ''; // <-- union types must be declared
 
-// 使用函式提供的泛型參數宣告
+// Declare the type with a function's generic parameter
 const el = document.querySelector<HTMLInputElement>('.foo');
 const el = u.selectOne<HTMLInputElement>('.foo');
 ```
 
-
-如果是純 JS 環境，可以用 JsDoc 宣告
+In a pure JS environment, use JSDoc to declare the type.
 
 ```js
 /** @type {HTMLInputElement} */

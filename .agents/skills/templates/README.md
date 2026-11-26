@@ -1,23 +1,23 @@
-# 技能模板
+# Skill templates
 
-這個資料夾包含共用的起始模板，用於建立未來的技能與操作指引。
+This folder contains shared starter templates for creating skills and operational guidance.
 
-## 範本格式
+## Template format
 
-若這是「技能本身」，請使用 `SKILL.md`；若這是資料夾或目錄總覽，則使用 `README.md`。
+If this is the skill itself, use `SKILL.md`; if it is a folder or directory overview, use `README.md`.
 
 ```md
-# 技能標題
+# Skill title
 
-## 目的
+## Purpose
 
-## 適用時機
+## When to use
 
-## 範圍
+## Scope
 
-## 預期行為
+## Expected behavior
 
-## 驗證
+## Validation
 ```
 
-模板應保持通用、簡潔，並能輕鬆適配到不同的專案與工作流程中。
+Templates should remain generic, concise, and easy to adapt to different projects and workflows.

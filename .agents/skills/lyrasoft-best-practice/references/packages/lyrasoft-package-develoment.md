@@ -1,22 +1,19 @@
-# LYRASOFT Package 開發指引
+# LYRASOFT Package Development Guide
 
-基本套件開發指引請見: `../../../windwalker/references/development-core/package-development.md`
+## Git history
 
-這裡是 LYASOFT 的延伸處理方案。
+- Add a `.gitignore` file. You can use this shared version as a reference: <https://github.com/lyrasoft/luna/blob/master/.gitignore>
 
-## 根目錄各類開發文件
+## Automatically updating package versions
 
-- `.gitignore`，可參考這份共用版本：<https://github.com/lyrasoft/luna/blob/master/.gitignore>
-- `README.md`，可先放上套件標題即可
-- `VERSION` `0.1.0` 起始
+To make package versions easier to manage, use a prepared release command to update the version and Git tag.
 
-## 自動更新版本號
+First, create a `VERSION` file in the package root and set its initial version, such as `1.0.0` or `0.1.0`:
 
-為了方便管理套件版本，可使用預先準備的發布指令更新版本號與 Git tag。
+- For a feature-complete package ready for a stable release, use `1.0.0`. If it is still being tested, use `1.0.0-beta1`.
+- If the package is in early development and breaking changes are still expected, start with `0.1.0`. A `0.x` version indicates that the package is not yet stable and compatibility between versions is not guaranteed.
 
-先在套件根目錄建立 `VERSION` 檔案，填入初始版本號，例如 `0.1.0`：
-
-接著在套件根目錄建立 `bin/`，並在該目錄下載 `Console.php` 與 `release.php`：
+Next, create a `bin/` directory in the package root. From that directory, download `Console.php` and `release.php`:
 
 ```shell
 wget https://raw.githubusercontent.com/asika32764/php-simple-console/master/src/Console.php
@@ -25,7 +22,7 @@ wget https://raw.githubusercontent.com/asika32764/php-simple-console/refs/heads/
 chmod +x release.php
 ```
 
-或使用 `curl`：
+Alternatively, use `curl`:
 
 ```shell
 curl https://raw.githubusercontent.com/asika32764/php-simple-console/master/src/Console.php -o Console.php
@@ -34,20 +31,18 @@ curl https://raw.githubusercontent.com/asika32764/php-simple-console/refs/heads/
 chmod +x release.php
 ```
 
-### 更新版號的指令
-
-程式更新完成、準備發布新版本時，在套件根目錄執行：
+After updating the code, when preparing a new release, run this from the package root:
 
 ```shell
 php bin/release.php patch
 ```
 
-其他參數：
+Other options:
 
 ```shell
-php bin/release.php -h       # 顯示說明
-php bin/release.php patch    # 更新 patch 版本
-php bin/release.php minor    # 更新 minor 版本
-php bin/release.php major    # 更新 major 版本
-php bin/release.php x.x.x    # 指定版本號
+php bin/release.php -h       # Show help
+php bin/release.php patch    # Bump the patch version
+php bin/release.php minor    # Bump the minor version
+php bin/release.php major    # Bump the major version
+php bin/release.php x.x.x    # Set a specific version
 ```

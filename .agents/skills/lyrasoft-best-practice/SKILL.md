@@ -1,55 +1,55 @@
 ---
 name: lyrasoft-best-practice
-description: LYRASOFT 專案開發最佳實踐，涵蓋 Windwalker ORM、程式碼規範、樣式與審查的推薦寫法、Bad/OK/Good 範例與參考連結。
+description: LYRASOFT project development best practices, covering Windwalker ORM, coding standards, styling, and review guidance, with recommended approaches, Bad/OK/Good examples, and references.
 ---
 
 # Skill: lyrasoft-best-practice
 
-## 目的
+## Purpose
 
-提供 LYRASOFT 專案共用的開發最佳實踐，讓撰寫或審查程式碼時能快速判斷推薦寫法，並連結到詳細文件。
+Provide shared development best practices for LYRASOFT projects so developers can quickly identify recommended approaches while writing or reviewing code, with links to detailed documentation.
 
-## 使用時機
+## When to use
 
-- 撰寫或修改 LYRASOFT 專案程式碼時，遇到不確定的寫法或想確認是否符合專案規範。
-- 審查專案是否符合公司開發規範
+- When writing or modifying code in a LYRASOFT project and unsure of an approach or whether it follows project conventions.
+- When reviewing whether a project conforms to company development standards.
 
-## 範圍與指引
+## Scope and guidance
 
-- Windwalker ORM 最佳實踐（查詢分組、Entity 型別化、N+1 查詢、重複資料防護）：`references/windwalker/orm-best-practices.md`
-- 程式碼規範（`references/cs/`）：
-  - BEM 命名概念與規範：`references/cs/bem.md`
-  - CSS / SCSS 程式碼風格：`references/cs/css-cs.md`
-  - JS / TypeScript 程式碼風格：`references/cs/js-cs.md`
-  - PHP 程式碼風格：`references/cs/php-cs.md`
-  - SQL 程式碼風格與 Query Builder：`references/cs/sql-cs.md`
-- Lint 工具與使用方式（`references/cs/`）：
-  - PHP Lint 與 `php-cs-fixer` 使用方式：`references/cs/php-lint.md`
-- 套件開發（`references/packages/`）：
-  - LYRASOFT Package 開發指引：`references/packages/lyrasoft-package-develoment.md`
-- 結構與命名（`references/organizing/`）：
-  - CSS / SCSS 結構與組織方式：`references/organizing/css-scss-organizing.md`
-  - PHP / Windwalker Service 組織方式：`references/organizing/php-service-organizing.md`
-  - 現代化 Vue 專案結構與語法規範：`references/organizing/vue-service-organizing.md`
-  - VueI18n 語系鍵名命名規則：`references/organizing/vuei18n-locale-key-naming.md`
-  - Windwalker 語系鍵命名規範：`references/organizing/windwalker-locale-key-naming.md`
-- 樣式（`references/styling/`）：
-  - Bootstrap SCSS 客製化與變數覆蓋：`references/styling/bootstrap-scss.md`
-  - Bootstrap Dark Mode 最佳實踐：`references/styling/bootstrap-dark-mode.md`
-  - Design System 切版標準規範：`references/styling/design-system.md`
-- 審查（`references/review/`）：
-  - PHP 程式碼審查指引：`references/review/review-php.md`
-- 刻意不涵蓋：框架安裝、部署設定與單一專案的私有規則
+- Windwalker ORM best practices (query grouping, typed entities, N+1 queries, duplicate-data protection): `references/windwalker/orm-best-practices.md`
+- Coding standards (`references/cs/`):
+  - BEM naming concepts and conventions: `references/cs/bem.md`
+  - CSS / SCSS coding style: `references/cs/css-cs.md`
+  - JS / TypeScript coding style: `references/cs/js-cs.md`
+  - PHP coding style: `references/cs/php-cs.md`
+  - SQL coding style and Query Builder: `references/cs/sql-cs.md`
+- Lint tools and usage (`references/cs/`):
+  - PHP linting and `php-cs-fixer` usage: `references/cs/php-lint.md`
+- Package development (`references/packages/`):
+  - LYRASOFT Package development guide: `references/packages/lyrasoft-package-develoment.md`
+- Structure and naming (`references/organizing/`):
+  - CSS / SCSS structure and organization: `references/organizing/css-scss-organizing.md`
+  - PHP / Windwalker Service organization: `references/organizing/php-service-organizing.md`
+  - Modern Vue project structure and syntax conventions: `references/organizing/vue-service-organizing.md`
+  - VueI18n locale key naming conventions: `references/organizing/vuei18n-locale-key-naming.md`
+  - Windwalker locale key naming conventions: `references/organizing/windwalker-locale-key-naming.md`
+- Styling (`references/styling/`):
+  - Bootstrap SCSS customization and variable overrides: `references/styling/bootstrap-scss.md`
+  - Bootstrap Dark Mode best practices: `references/styling/bootstrap-dark-mode.md`
+  - Design System implementation standards: `references/styling/design-system.md`
+- Review (`references/review/`):
+  - PHP code review guidance: `references/review/review-php.md`
+- Deliberately out of scope: framework installation, deployment configuration, and private rules for a single project.
 
-## 預期行為
+## Expected behavior
 
-- 先確認任務屬於哪個主題，再讀取對應的 reference。
-- 以 Good 寫法為準，遇到 Bad 寫法時說明原因並提供修正方式。
-- 詳細原理與完整說明依 reference 內的連結查閱，不在回覆中重複長篇內容。
-- 讓結果保持簡潔、清楚，並符合專案慣例。
+- Identify the task's topic first, then read the corresponding reference.
+- Follow the Good examples; when encountering a Bad approach, explain why and provide a correction.
+- Consult links in the references for detailed reasoning and full explanations rather than repeating long material in the response.
+- Keep results concise, clear, and consistent with project conventions.
 
-## 驗證
+## Verification
 
-- 結果符合要求的任務與 repository 脈絡
-- 沒有引入不必要或無關的變更
-- 指示內容保持簡潔且可重用
+- The result fits the task and repository context.
+- No unnecessary or unrelated changes have been introduced.
+- Instructions remain concise and reusable.

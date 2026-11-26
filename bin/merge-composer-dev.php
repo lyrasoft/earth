@@ -31,6 +31,7 @@ class MergeComposerDev extends Console
             'windwalker/unicorn',
             'lyrasoft/luna',
             'lyrasoft/toolkit',
+            'lyrasoft/agents',
         ];
     }
 
