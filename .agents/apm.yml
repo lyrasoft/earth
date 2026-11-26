@@ -1,0 +1,7 @@
+name: simular-agent-skills-zh-TW
+version: 1.0.0
+description: 夏木樂（Simular）與 LYRASOFT 共用的 agent 指示庫（繁體中文版）
+author: LYRASOFT
+target: all
+dependencies:
+  apm: []
