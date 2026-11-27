@@ -1,16 +1,9 @@
 {
   "servers": {
-    "windwalker-docs": {
-      "type": "http",
-      "url": "https://docs-search.windwalker.io/mcp",
-        "x-metadata": {
-            "plugin": {
-                "id": "io.windwalker.docs",
-                "name": "Windwalker Docs",
-                "publisher": "Windwalker",
-                "description": "Windwalker Docs MCP server providing documentation search."
-            }
-        }
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
     }
   }
 }
